@@ -1,225 +1,157 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Phone, CheckCircle, Shield, Award, Star, Zap, Clock, Users, Images } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 
+const heroImages = [
+  {
+    src: "/pump_installation_hero.jpg",
+    alt: "Borehole pump installation in Gauteng by Borehole Works",
+  },
+  {
+    src: "/jojo_tank_installation.jpg",
+    alt: "JoJo water tank installation in Gauteng by Borehole Works",
+  },
+  {
+    src: "/borehole_pump_water_tank_installation.jpg",
+    alt: "Borehole and water tank system installation in Gauteng",
+  },
+  {
+    src: "/kwikot_geyser_installation.jpg",
+    alt: "Geyser installation in Gauteng by Borehole Works",
+  },
+]
+
 export function HeroSection() {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroImages.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
-    <section className="relative overflow-hidden bg-primary" itemScope itemType="https://schema.org/Service">
-      {/* Background Image with Optimized Loading */}
+    <section
+      className="relative overflow-hidden bg-primary min-h-[600px] lg:min-h-[720px] flex items-center"
+      itemScope
+      itemType="https://schema.org/Service"
+    >
+      {/* Full-bleed background image carousel */}
       <div className="absolute inset-0">
-        <Image
-          src="/professional-construction-site-aerial-view-modern-.jpg"
-          alt="Professional construction site in Gauteng - ZECO Construction aerial view of modern building development in Pretoria and Johannesburg"
-          fill
-          className="object-cover opacity-20"
-          priority
-          quality={75}
-          sizes="100vw"
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/80" />
+        {heroImages.map((image, index) => (
+          <div
+            key={image.src}
+            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+            style={{ opacity: index === activeIndex ? 1 : 0 }}
+          >
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              className="object-cover"
+              priority={index === 0}
+              quality={85}
+              sizes="100vw"
+              itemProp="image"
+            />
+          </div>
+        ))}
+        {/* Dark gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/70 to-primary/95" />
       </div>
 
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-secondary/10 blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-accent/10 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+      {/* Dot indicators */}
+      <div className="absolute right-6 top-6 z-10 flex gap-2 lg:right-10 lg:top-8">
+        {heroImages.map((image, index) => (
+          <button
+            key={image.src}
+            onClick={() => setActiveIndex(index)}
+            aria-label={`Show image ${index + 1}`}
+            className={`h-2 rounded-full transition-all ${
+              index === activeIndex ? "w-6 bg-white" : "w-2 bg-white/40 hover:bg-white/60"
+            }`}
+          />
+        ))}
       </div>
 
-      <div className="container relative mx-auto px-4 py-6 sm:py-10 lg:px-8 lg:py-8 xl:py-10">
-        <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-12">
-          {/* Content */}
-          <div className="text-center lg:text-left">
-            {/* Trust Badge with Rating - Structured Data */}
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs sm:text-sm font-medium text-white backdrop-blur-sm border border-white/10 hover:bg-white/15 transition-all shadow-lg">
-              <Shield className="h-4 w-4 text-accent" aria-hidden="true" />
-              <span className="hidden sm:inline">Gauteng's Trusted Service Provider</span>
-              <span className="sm:hidden">Trusted in Gauteng</span>
-              <div className="flex items-center gap-0.5 ml-2" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
-                <meta itemProp="ratingValue" content="5" />
-                <meta itemProp="bestRating" content="5" />
-                <meta itemProp="reviewCount" content="150" />
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-3 w-3 fill-accent text-accent" aria-hidden="true" />
-                ))}
-              </div>
-            </div>
-
-            {/* Main Headline - SEO Optimized H1 */}
-            <h1 className="mb-3 text-balance text-3xl font-bold tracking-tight text-primary-foreground sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl" itemProp="name">
-              <span className="block">We Build Gauteng.</span>
-              <span className="block text-accent">From Foundation to Finish.</span>
-              <span className="mt-1 hidden text-base text-primary-foreground/90 sm:block sm:text-lg md:text-xl">
-                Roofing, Plumbing, Renovations &amp; More
-              </span>
-            </h1>
-
-            {/* Homeowner-Friendly Description */}
-            <p className="mb-4 text-pretty text-sm text-primary-foreground/80 sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0" itemProp="description">
-              Need a leaking roof fixed, a new geyser installed, or your kitchen renovated? <strong className="text-white">ZECO Construction</strong> is Gauteng's trusted team for home repairs, renovations, plumbing, electrical and painting, serving <strong className="text-white">Pretoria, Johannesburg, Midrand</strong> and beyond.
-            </p>
-
-            {/* Trust Indicators with Icons - hidden below lg to keep CTAs above the fold */}
-            <div className="mb-4 hidden lg:flex flex-wrap justify-center gap-3 lg:justify-start">
-              <div className="flex items-center gap-2 text-sm text-primary-foreground/90 bg-white/5 rounded-lg px-3 py-1.5 backdrop-blur-sm">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/20">
-                  <CheckCircle className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                </div>
-                <span className="font-medium">Licensed & Compliant</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-primary-foreground/90 bg-white/5 rounded-lg px-3 py-1.5 backdrop-blur-sm">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/20">
-                  <Award className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                </div>
-                <span className="font-medium">Quality Guaranteed</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-primary-foreground/90 bg-white/5 rounded-lg px-3 py-1.5 backdrop-blur-sm">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/20">
-                  <Clock className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                </div>
-                <span className="font-medium">24/7 Emergency</span>
-              </div>
-            </div>
-
-            {/* CTA Buttons - Optimized for Conversion, visible without scrolling */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
-              <Button
-                asChild
-                size="lg"
-                className="group bg-accent text-accent-foreground hover:bg-accent/90 shadow-xl shadow-accent/25 h-11 lg:h-12 px-6 lg:px-8 text-sm lg:text-base font-semibold transition-all hover:scale-105"
-              >
-                <Link href="/contact" itemProp="url">
-                  <Phone className="mr-2 h-5 w-5 group-hover:animate-pulse" aria-hidden="true" />
-                  Get Your Free Quote Today
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                className="group h-11 lg:h-12 px-6 lg:px-8 text-sm lg:text-base font-semibold bg-[#25D366] text-white hover:bg-[#25D366]/90 shadow-xl shadow-[#25D366]/25 transition-all hover:scale-105"
-              >
-                <a href="https://wa.me/27748509727" target="_blank" rel="noopener noreferrer">
-                  <WhatsAppIcon className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Chat on WhatsApp
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="group border-white/40 bg-white/5 text-white hover:bg-white/15 backdrop-blur-sm h-11 lg:h-12 px-6 lg:px-8 text-sm lg:text-base font-semibold transition-all hover:scale-105"
-              >
-                <Link href="/gallery">
-                  <Images className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" aria-hidden="true" />
-                  See Our Recent Work
-                </Link>
-              </Button>
-            </div>
-
-            {/* Quick Stats - hidden below lg to keep CTAs above the fold */}
-            <div className="mt-4 hidden lg:flex flex-wrap justify-center lg:justify-start gap-5 text-sm text-primary-foreground/70">
-              <div className="flex items-center gap-2">
-                <Zap className="h-4 w-4 text-accent" aria-hidden="true" />
-                <span>Same-day quotes available</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-accent" aria-hidden="true" />
-                <span>500+ Happy clients</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Images - Optimized Loading */}
-          <div className="relative hidden lg:block" itemProp="image" itemScope itemType="https://schema.org/ImageObject">
-            <div className="relative mx-auto max-w-md xl:max-w-lg">
-              {/* Main Image - Priority Loading */}
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/10 transition-transform hover:scale-[1.02]">
-                <Image
-                  src="/professional-construction-workers-team.jpg"
-                  alt="Professional construction team working on site in Gauteng - ZECO Construction skilled workers"
-                  fill
-                  className="object-cover"
-                  priority
-                  quality={85}
-                  sizes="(max-width: 1024px) 0px, 40vw"
-                  itemProp="contentUrl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent" />
-              </div>
-
-              {/* Secondary Image - Lazy Loading */}
-              <div className="absolute -bottom-6 -left-6 aspect-square w-32 xl:w-36 overflow-hidden rounded-2xl border-4 border-background shadow-xl ring-1 ring-white/10 transition-transform hover:scale-105">
-                <Image
-                  src="/modern-renovated-kitchen-interior-design-south-afr.jpg"
-                  alt="Modern renovated kitchen in Gauteng - Completed renovation project by ZECO Construction"
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                  quality={80}
-                  sizes="144px"
-                />
-              </div>
-
-              {/* Stats Card - Animated */}
-              <div className="absolute -bottom-4 -right-4 rounded-2xl bg-card p-4 shadow-2xl border border-border backdrop-blur-sm hover:scale-105 transition-transform">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent/80 shadow-lg">
-                    <Award className="h-5 w-5 text-accent-foreground" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <p className="text-xl font-bold text-card-foreground">10+</p>
-                    <p className="text-xs text-muted-foreground">Service Categories</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Experience Badge */}
-              <div className="absolute -top-3 right-10 rounded-xl bg-secondary px-3 py-2 shadow-xl ring-1 ring-white/10 hover:scale-105 transition-transform">
-                <p className="text-lg font-bold text-secondary-foreground">10+</p>
-                <p className="text-[10px] text-secondary-foreground/80">Years Experience</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Certifications & Trust Badges - SEO Rich. Hidden below xl: this row was
-            leaving dead space below the fold on smaller desktop screens, and the
-            rest of the hero already hides secondary trust content there. Search
-            engines and screen readers still see it via the "hidden xl:block"
-            pattern used elsewhere in this component. */}
-        <div className="mt-6 hidden border-t border-white/10 pt-5 xl:block">
-          <p className="text-center text-xs text-primary-foreground/60 mb-4 font-medium">
-            Trusted by 500+ residential, commercial and industrial clients across Gauteng
+      {/* Text content overlaid on top of the image */}
+      <div className="container relative z-10 mx-auto px-6 py-20 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            Gauteng Borehole & Water Specialists
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <div className="flex items-center gap-2 text-white/90 bg-white/5 rounded-lg px-3 py-1.5 backdrop-blur-sm hover:bg-white/10 transition-all">
-              <Shield className="h-4 w-4 text-accent" aria-hidden="true" />
-              <span className="text-xs font-semibold">NHBRC Registered</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/90 bg-white/5 rounded-lg px-3 py-1.5 backdrop-blur-sm hover:bg-white/10 transition-all">
-              <Award className="h-4 w-4 text-accent" aria-hidden="true" />
-              <span className="text-xs font-semibold">CIDB Graded</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/90 bg-white/5 rounded-lg px-3 py-1.5 backdrop-blur-sm hover:bg-white/10 transition-all">
-              <CheckCircle className="h-4 w-4 text-accent" aria-hidden="true" />
-              <span className="text-xs font-semibold">SABS Compliant</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/90 bg-white/5 rounded-lg px-3 py-1.5 backdrop-blur-sm hover:bg-white/10 transition-all">
-              <Shield className="h-4 w-4 text-accent" aria-hidden="true" />
-              <span className="text-xs font-semibold">ECSA Certified</span>
-            </div>
+
+          <h1
+            className="mb-5 text-balance text-4xl font-bold leading-[1.1] tracking-tight text-primary-foreground sm:text-5xl"
+            itemProp="name"
+          >
+            Water, drilled and
+            <br />
+            <span className="text-accent">delivered properly.</span>
+          </h1>
+
+          <p
+            className="mb-8 text-pretty text-base leading-relaxed text-primary-foreground/80 sm:text-lg"
+            itemProp="description"
+          >
+            <strong className="text-white">Borehole Works</strong> handles borehole drilling,
+            pump installation, JoJo tank systems, geysers and plumbing for homes and businesses
+            across <strong className="text-white">Pretoria, Johannesburg, Midrand</strong> and
+            the rest of Gauteng.
+          </p>
+
+          <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 bg-accent px-7 text-base font-semibold text-accent-foreground hover:bg-accent/90"
+            >
+              <Link href="/contact" itemProp="url">
+                Get a Free Quote
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              className="group h-12 bg-[#25D366] px-7 text-base font-semibold text-white hover:bg-[#25D366]/90 shadow-xl shadow-[#25D366]/25 transition-all"
+            >
+              
+                <a
+                href="https://wa.me/27724115472"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhatsAppIcon className="mr-2 h-5 w-5" aria-hidden="true" />
+                Chat on WhatsApp
+              </a>
+            </Button>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-primary-foreground/10 pt-6 text-sm text-primary-foreground/60 lg:justify-start">
+            <span>Licensed & Compliant</span>
+            <span className="hidden h-1 w-1 rounded-full bg-primary-foreground/30 sm:block" />
+            <span>Quality Guaranteed</span>
+            <span className="hidden h-1 w-1 rounded-full bg-primary-foreground/30 sm:block" />
+            <span>24/7 Emergency Callouts</span>
           </div>
         </div>
       </div>
 
       {/* Hidden Structured Data for SEO */}
-      <meta itemProp="provider" content="ZECO Construction" />
-      <meta itemProp="areaServed" content="Gauteng, Pretoria, Johannesburg, Midrand, Sandton, Centurion, Randburg" />
-      <meta itemProp="serviceType" content="Construction, Renovation, Roofing, Plumbing, Electrical, Painting" />
+      <meta itemProp="provider" content="Borehole Works" />
+      <meta
+        itemProp="areaServed"
+        content="Gauteng, Pretoria, Johannesburg, Midrand, Sandton, Centurion, Randburg"
+      />
+      <meta
+        itemProp="serviceType"
+        content="Borehole Drilling, Pump Installation, Water Tanks, Plumbing"
+      />
     </section>
   )
 }
