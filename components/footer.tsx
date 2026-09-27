@@ -1,26 +1,14 @@
-"use client"
-
 import Link from "next/link"
 import Image from "next/image"
-import { Facebook, Instagram, Mail, MapPin, Phone, Clock, Award, Shield, Users } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
-import { PinterestIcon } from "@/components/icons/pinterest-icon"
-import { trackCallClick, trackWhatsAppClick, trackEmailClick } from "@/components/plumbing-cta"
 
 const services = [
-  { title: "Building Construction", href: "/building-construction-renovations" },
-  { title: "Property Maintenance", href: "/property-maintenance" },
-  { title: "Plumbing Services", href: "/plumbing-services" },
-  { title: "JoJo Water Tank Installation", href: "/jojo-water-tank-installation" },
+  { title: "Borehole Drilling", href: "/borehole-drilling" },
   { title: "Pump Installation & Repairs", href: "/pump-installation-repairs" },
-  { title: "Electrical Services", href: "/electrical-services" },
-  { title: "Roofing & Repairs", href: "/roofing-roof-leak-repairs" },
-  { title: "Waterproofing", href: "/waterproofing-services" },
-  { title: "Carpentry Services", href: "/carpentry-services" },
-  { title: "Kitchen & Bathroom Cupboards", href: "/kitchen-bathroom-cupboards" },
-  { title: "Bathroom Renovations", href: "/bathroom-renovations" },
-  { title: "Painting, Tiling & Finishing", href: "/painting-tiling-finishing" },
-  { title: "Paving & Driveways", href: "/paving-driveways-surfacing" },
+  { title: "Solar Borehole Pumps", href: "/solar-borehole-pumps" },
+  { title: "Irrigation Systems", href: "/irrigation-systems" },
+  { title: "JoJo Water Tank Installation", href: "/jojo-water-tank-installation" },
+  { title: "Plumbing Services", href: "/plumbing-services" },
   { title: "Emergency Plumber & Burst Pipes", href: "/emergency-plumber-burst-pipes" },
   { title: "Geyser Installation & Repairs", href: "/geyser-installation-repairs" },
   { title: "Blocked Drains Unblocking", href: "/blocked-drains-unblocking" },
@@ -47,38 +35,23 @@ const quickLinks = [
 export function Footer() {
   return (
     <footer className="border-t border-border bg-primary text-primary-foreground">
-      {/* Trust Badges */}
+      {/* Trust Badges - no icons, left accent bar instead */}
       <div className="border-b border-primary-foreground/10 bg-primary/95">
         <div className="container mx-auto px-4 py-8 lg:px-8">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/20">
-                <Award className="h-6 w-6 text-accent" />
-              </div>
-              <div>
-                <h4 className="font-semibold text-white">Licensed & Certified</h4>
-                <p className="text-sm text-primary-foreground/70">Fully compliant professionals</p>
-              </div>
+            <div className="border-l-2 border-accent pl-4">
+              <h4 className="font-semibold text-white">Licensed & Certified</h4>
+              <p className="text-sm text-primary-foreground/70">Fully compliant professionals</p>
             </div>
 
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/20">
-                <Shield className="h-6 w-6 text-accent" />
-              </div>
-              <div>
-                <h4 className="font-semibold text-white">Insured & Guaranteed</h4>
-                <p className="text-sm text-primary-foreground/70">All work fully insured</p>
-              </div>
+            <div className="border-l-2 border-accent pl-4">
+              <h4 className="font-semibold text-white">Insured & Guaranteed</h4>
+              <p className="text-sm text-primary-foreground/70">All work fully insured</p>
             </div>
 
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/20">
-                <Users className="h-6 w-6 text-accent" />
-              </div>
-              <div>
-                <h4 className="font-semibold text-white">Experienced Team</h4>
-                <p className="text-sm text-primary-foreground/70">Trusted by hundreds of clients</p>
-              </div>
+            <div className="border-l-2 border-accent pl-4">
+              <h4 className="font-semibold text-white">Experienced Team</h4>
+              <p className="text-sm text-primary-foreground/70">10+ years in water systems</p>
             </div>
           </div>
         </div>
@@ -90,10 +63,10 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4 lg:col-span-2">
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg bg-white shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg shadow-lg">
                 <Image
                   src="/logo-icon.png"
-                  alt="ZECO Construction Logo"
+                  alt="Borehole Works Logo"
                   width={48}
                   height={48}
                   className="object-cover"
@@ -102,70 +75,29 @@ export function Footer() {
               </div>
               <div>
                 <h3 className="text-xl font-bold text-white">
-                  ZECO <span className="text-accent">Construction</span>
+                  Borehole <span className="text-accent">Works</span>
                 </h3>
-                <p className="text-xs text-primary-foreground/70">Building Excellence in Gauteng</p>
+                <p className="text-xs text-primary-foreground/70">Water & Pump Specialists</p>
               </div>
             </Link>
 
             <p className="max-w-md text-sm leading-relaxed text-primary-foreground/80">
-              ZECO Construction is your trusted partner for comprehensive building, infrastructure, maintenance, and security solutions across Gauteng. From foundation to finish, we deliver quality workmanship with professional service.
+              Borehole Works is your trusted partner for borehole drilling, pump installation, water tanks, and plumbing services across Gauteng. From the first site assessment to the last drop reaching your tap, we deliver reliable water systems that last.
             </p>
 
-            {/* Social Media Links */}
+            {/* WhatsApp Link */}
             <div>
-              <h4 className="mb-3 text-sm font-semibold text-white">Follow Us</h4>
-
-              <div className="flex gap-3">
-                <a href="https://www.facebook.com/profile.php?id=61592716047862"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-foreground/10 text-primary-foreground/70 transition-all hover:bg-accent hover:text-white"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="h-5 w-5" />
-                </a>
-
-                <a href="https://www.instagram.com/zecoconstruction?igsh=bnFldWhiZ2FpeGph"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-foreground/10 text-primary-foreground/70 transition-all hover:bg-accent hover:text-white"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="h-5 w-5" />
-                </a>
-
-                <a href="https://za.pinterest.com/zecoconstruction/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-foreground/10 text-primary-foreground/70 transition-all hover:bg-accent hover:text-white"
-                  aria-label="Pinterest"
-                >
-                  <PinterestIcon className="h-5 w-5" />
-                </a>
-
-                <a href="https://wa.me/27748509727"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={trackWhatsAppClick}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-foreground/10 text-primary-foreground/70 transition-all hover:bg-[#25D366] hover:text-white"
-                  aria-label="WhatsApp"
-                >
-                  <WhatsAppIcon className="h-5 w-5" />
-                </a>
-              </div>
-
-              {/* Google Reviews */}
-              <div className="mt-4">
-                <a href="https://www.google.com/search?q=ZECO+Construction+Gauteng+reviews"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-primary-foreground/10 px-4 py-2 text-sm text-primary-foreground/80 transition hover:bg-accent hover:text-white"
-                  aria-label="Google Reviews"
-                >
-                  ⭐ ★★★★★ Google Reviews
-                </a>
-              </div>
+              <h4 className="mb-3 text-sm font-semibold text-white">Reach Us Directly</h4>
+              
+                <a
+                href="https://wa.me/27724115472"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-[#25D366]/90"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                Chat on WhatsApp
+              </a>
             </div>
           </div>
 
@@ -183,12 +115,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services — 2 columns of 8 */}
+          {/* Services */}
           <div className="lg:col-span-2">
             <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Our Services</h4>
             <div className="grid grid-cols-2 gap-x-6">
               <ul className="space-y-2.5">
-                {services.slice(0, 8).map((service) => (
+                {services.slice(0, 5).map((service) => (
                   <li key={service.href}>
                     <Link href={service.href} className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent">
                       {service.title}
@@ -197,7 +129,7 @@ export function Footer() {
                 ))}
               </ul>
               <ul className="space-y-2.5">
-                {services.slice(8, 16).map((service) => (
+                {services.slice(5, 9).map((service) => (
                   <li key={service.href}>
                     <Link href={service.href} className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent">
                       {service.title}
@@ -211,67 +143,51 @@ export function Footer() {
             </Link>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Info - plain text, no icons */}
           <div className="lg:col-span-1">
             <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Contact Us</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3 text-sm">
               <li>
-                <a href="https://www.google.com/maps?q=ZECO+Construction+Gauteng+South+Africa"
+                
+                  <a
+                  href="https://www.google.com/maps?q=Borehole+Works+Gauteng+South+Africa"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-start gap-3"
+                  className="text-primary-foreground/80 transition-colors hover:text-accent"
                 >
-                  <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
-                  <span className="text-sm text-primary-foreground/80 transition-colors group-hover:text-accent">
-                    Gauteng, South Africa
-                    <br />
-                    Serving Pretoria &amp; Johannesburg
-                  </span>
+                  Gauteng, South Africa
+                  <br />
+                  Serving Pretoria &amp; Johannesburg
                 </a>
               </li>
 
               <li>
-                <a href="tel:+27748509727"
-                  onClick={trackCallClick}
-                  className="group flex items-center gap-3"
-                >
-                  <Phone className="h-5 w-5 flex-shrink-0 text-accent" />
-                  <span className="text-sm text-primary-foreground/80 transition-colors group-hover:text-accent">+27 74 850 9727</span>
+                <a href="tel:+27724115472" className="text-primary-foreground/80 transition-colors hover:text-accent">
+                  072 411 5472
                 </a>
               </li>
 
               <li>
-                <a href="https://wa.me/27748509727"
+                
+                  <a
+                  href="https://wa.me/27724115472"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={trackWhatsAppClick}
-                  className="group flex items-center gap-3"
+                  className="text-primary-foreground/80 transition-colors hover:text-accent"
                 >
-                  <WhatsAppIcon className="h-5 w-5 flex-shrink-0 text-accent" />
-                  <span className="text-sm text-primary-foreground/80 transition-colors group-hover:text-accent">
-                    WhatsApp: +27 74 850 9727
-                  </span>
+                  WhatsApp: 072 411 5472
                 </a>
               </li>
 
               <li>
-                <a href="mailto:info@zecoconstruction.co.za"
-                  onClick={trackEmailClick}
-                  className="group flex items-center gap-3"
-                >
-                  <Mail className="h-5 w-5 flex-shrink-0 text-accent" />
-                  <span className="text-sm text-primary-foreground/80 transition-colors group-hover:text-accent">
-                    info@zecoconstruction.co.za
-                  </span>
+                <a href="mailto:info@boreholeworks.co.za" className="text-primary-foreground/80 transition-colors hover:text-accent">
+                  info@boreholeworks.co.za
                 </a>
               </li>
 
-              <li className="flex items-start gap-3">
-                <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" />
-                <div className="text-sm text-primary-foreground/80">
-                  <div className="font-semibold text-white">Mon-Fri: 8:00 - 17:00</div>
-                  <div className="text-accent">24/7 Emergency Support</div>
-                </div>
+              <li className="text-primary-foreground/80">
+                <div className="font-semibold text-white">Mon-Fri: 8:00 - 17:00</div>
+                <div className="text-accent">24/7 Emergency Support</div>
               </li>
             </ul>
           </div>
@@ -299,7 +215,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-primary-foreground/10 pt-8 md:flex-row">
           <p className="text-center text-sm text-primary-foreground/70 md:text-left">
-            © {new Date().getFullYear()} ZECO Construction. All rights reserved.
+            © {new Date().getFullYear()} Borehole Works. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <Link href="/privacy-policy" className="text-sm text-primary-foreground/70 transition-colors hover:text-accent">
