@@ -6,11 +6,11 @@ import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 
 const galleryImages = [
   {
-    src: "/borehole_drilling_water_gushing.webp",
+    src: "/borehole_drilling_water_gushing.jpg",
     alt: "Borehole drilling rig striking water in Gauteng - Borehole Works",
   },
   {
-    src: "/solar_borehole_pump_aerial_view.avif",
+    src: "/solar_borehole_pump_aerial_view.jpg",
     alt: "Aerial view of solar borehole pump and water tank installation",
   },
   {
@@ -18,7 +18,7 @@ const galleryImages = [
     alt: "Pump and water tank installation by Borehole Works",
   },
   {
-    src: "/solar_borehole_tank_installation.avif",
+    src: "/solar_borehole_tank_installation.jpg",
     alt: "Solar-powered borehole tank stand installation in Gauteng",
   },
 ]
