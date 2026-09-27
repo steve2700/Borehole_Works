@@ -1,22 +1,19 @@
 // File path: app/gallery/page.tsx
-// Clean URL: https://www.zecoconstruction.co.za/gallery
-// Real ZECO Construction project photos only. Every image carries a small
+// Real Borehole Works project photos only. Every image carries a small
 // logo watermark badge so it's unmistakably our own work, not stock or a
-// supplier's catalogue — this page is a common sitelink destination.
+// supplier's catalogue.
 
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { Images } from "lucide-react"
-import { CallButton, WhatsAppCta, StickyCallBar } from "@/components/plumbing-cta"
+import { Button } from "@/components/ui/button"
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
+import { ScrollReveal } from "@/components/scroll-reveal"
 
 export const metadata: Metadata = {
-  title: "Project Gallery | ZECO Construction Gauteng",
+  title: "Project Gallery | Borehole Works Gauteng",
   description:
-    "Real completed jobs from ZECO Construction: bathroom renovations, JoJo tank installations, pump repairs and plumbing work across Pretoria, Johannesburg and Gauteng.",
-  alternates: {
-    canonical: "https://www.zecoconstruction.co.za/gallery",
-  },
+    "Real completed jobs from Borehole Works: borehole drilling, pump installations, water tanks, solar systems and plumbing work across Pretoria, Johannesburg and Gauteng.",
 }
 
 function WatermarkedPhoto({
@@ -36,16 +33,15 @@ function WatermarkedPhoto({
           alt={alt}
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-          className="object-cover"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
-        {/* Logo watermark badge, bottom-right corner of every real project photo */}
         <div className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-md bg-black/60 px-2 py-1 backdrop-blur-sm">
-          <div className="relative h-4 w-4 overflow-hidden rounded-sm bg-white">
+          <div className="relative h-4 w-4 overflow-hidden rounded-sm">
             <Image src="/logo-icon.png" alt="" fill sizes="16px" className="object-cover" />
           </div>
           <span className="text-[10px] font-semibold uppercase tracking-wide text-white">
-            ZECO Construction
+            Borehole Works
           </span>
         </div>
       </div>
@@ -54,36 +50,37 @@ function WatermarkedPhoto({
   )
 }
 
-const bathroomRenovations = [
-  { src: "/bathroom_renovation_after_complete.jpg", caption: "Full bathroom renovation, completed" },
-  { src: "/bathroom_renovation_freestanding_tub.jpg", caption: "Freestanding bath installation" },
-  { src: "/shower_glass_installation_complete.jpg", caption: "Glass shower enclosure" },
-  { src: "/bathroom_renovation_glass_shower_screen.jpg", caption: "Frameless glass shower screen" },
-  { src: "/vanity_black_Bathroom.jpg", caption: "Vanity and basin installation" },
-  { src: "/bathroom-cabinets.jpg", caption: "Custom bathroom cabinetry" },
-  { src: "/bathroom_tub.jpg", caption: "Bath installation" },
-  { src: "/bathroom_renovation_tiling_after.jpg", caption: "Bathroom tiling, completed" },
-]
-
-const jojoTanks = [
-  { src: "/jojo_installation.jpg", caption: "JoJo tank installation" },
-  { src: "/jojo_tank_installation.jpg", caption: "JoJo tank on stand" },
-  { src: "/jojo_tank_installation_randburg.jpg", caption: "JoJo tank installation, Randburg" },
-  { src: "/3_jojo_tank_installation.jpg", caption: "Multiple tank installation" },
-  { src: "/water_pump_for_Jojo_tank.jpg", caption: "Pump fitted for a JoJo tank system" },
-]
-
-const pumpsAndBoreholes = [
+const boreholesAndPumps = [
+  { src: "/borehole_drilling_water_gushing.jpg", caption: "Borehole drilling, water strike" },
+  { src: "/borehole_drilling_rig_action.webp", caption: "Drilling rig on site" },
   { src: "/pump_installation_hero.jpg", caption: "Pump installation" },
   { src: "/water_pump_installation.jpg", caption: "Submersible pump installation" },
   { src: "/pump_systems_boreholes.jpg", caption: "Borehole pump system" },
   { src: "/borehole_pump_water_tank_installation.jpg", caption: "Borehole pump feeding a storage tank" },
   { src: "/pressure_pumps_installations.jpg", caption: "Pressure pump installation" },
   { src: "/pump_supply_replacements.jpg", caption: "Pump breakdown and replacement" },
+]
+
+const waterTanks = [
+  { src: "/jojo_installation.jpg", caption: "Water tank installation" },
+  { src: "/jojo_tank_installation.jpg", caption: "Tank on stand" },
+  { src: "/jojo_tank_installation_randburg.jpg", caption: "Tank installation, Randburg" },
+  { src: "/3_jojo_tank_installation.jpg", caption: "Multiple tank installation" },
+  { src: "/water_pump_for_Jojo_tank.jpg", caption: "Pump fitted for a tank system" },
+  { src: "/eco_water_tanks_installation.jpg", caption: "Eco water tank installation" },
+  { src: "/green_water_tank_installation.jpg", caption: "Water tank installation" },
   { src: "/pump_tank_storage_installation.jpg", caption: "Pump installed for tank storage" },
-  { src: "/water_pump_services.jpg", caption: "Pump servicing" },
+]
+
+const solarWaterSolutions = [
+  { src: "/solar_borehole_pump_aerial_view.jpg", caption: "Solar borehole pump, aerial view" },
+  { src: "/solar_borehole_tank_installation.jpg", caption: "Solar-powered tank installation" },
+  { src: "/solar_geyser_installation_pretoria.jpg", caption: "Solar geyser installation, Pretoria" },
+  { src: "/apollo_solar_geyser_installation.jpg", caption: "Apollo solar geyser installation" },
+  { src: "/pump_system_installation.webp", caption: "Pump system installation" },
   { src: "/water-pump-tank-pipes-green.webp", caption: "Pump and tank pipework" },
   { src: "/water-pump-tank-pipes-green-controls.webp", caption: "Pump control system" },
+  { src: "/Pump-and-tanks.jpg", caption: "Pump and water tank installation" },
 ]
 
 const plumbingAndGeysers = [
@@ -93,36 +90,74 @@ const plumbingAndGeysers = [
   { src: "/blocked_drains_pretoria.jpg", caption: "Blocked drain clearing, Pretoria" },
   { src: "/geyser-installation.jpg", caption: "Geyser installation" },
   { src: "/kwikot_geyser_installation.jpg", caption: "Kwikot geyser installation" },
-  { src: "/solar_geyser_installation_pretoria.jpg", caption: "Solar geyser installation, Pretoria" },
-  { src: "/apollo_solar_geyser_installation.jpg", caption: "Apollo solar geyser installation" },
+  { src: "/water_pump_services.jpg", caption: "Pump servicing" },
 ]
 
 const categories = [
-  { title: "Bathroom Renovations", href: "/bathroom-renovations", items: bathroomRenovations },
-  { title: "JoJo Tank Installations", href: "/jojo-water-tank-installation", items: jojoTanks },
-  { title: "Pumps & Boreholes", href: "/pump-installation-repairs", items: pumpsAndBoreholes },
+  { title: "Borehole Drilling & Pumps", href: "/pump-installation-repairs", items: boreholesAndPumps },
+  { title: "Water Tank Installations", href: "/jojo-water-tank-installation", items: waterTanks },
+  { title: "Solar Water Solutions", href: "/solar-borehole-pumps", items: solarWaterSolutions },
   { title: "Plumbing & Geysers", href: "/plumbing-services", items: plumbingAndGeysers },
+]
+
+const marqueeImages = [
+  { src: "/borehole_drilling_water_gushing.jpg", alt: "Borehole drilling striking water" },
+  { src: "/solar_borehole_pump_aerial_view.jpg", alt: "Aerial view of solar borehole pump" },
+  { src: "/eco_water_tanks_installation.jpg", alt: "Eco water tanks installation" },
+  { src: "/pump_systems_boreholes.jpg", alt: "Borehole pump system" },
+  { src: "/jojo_tank_installation.jpg", alt: "Water tank on stand" },
+  { src: "/kwikot_geyser_installation.jpg", alt: "Kwikot geyser installation" },
 ]
 
 export default function GalleryPage() {
   return (
     <>
-      <section className="border-b border-border bg-muted py-14 lg:py-20">
+      <section className="border-b border-border bg-muted py-14 lg:py-20 overflow-hidden">
+        <style>{`
+          @keyframes marquee-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+          }
+          .marquee-track {
+            animation: marquee-left 40s linear infinite;
+          }
+          .marquee-track:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+
         <div className="container mx-auto px-4 lg:px-8">
-          <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary">
-            <Images className="h-4 w-4" aria-hidden="true" />
+          <p className="mb-3 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary">
             Real jobs, not stock photos
           </p>
           <h1 className="max-w-2xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
             Our project gallery
           </h1>
           <p className="mt-4 max-w-xl text-lg text-muted-foreground">
-            Every photo here is from a completed ZECO Construction job across Pretoria, Johannesburg and
+            Every photo here is from a completed Borehole Works job across Pretoria, Johannesburg and
             Gauteng, not a supplier's catalogue.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <CallButton size="lg" />
-            <WhatsAppCta size="lg" label="WhatsApp us" />
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Link href="tel:+27724115472">Call: 072 411 5472</Link>
+            </Button>
+            <Button asChild size="lg" className="bg-[#25D366] text-white hover:bg-[#25D366]/90">
+              <a href="https://wa.me/27724115472" target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon className="mr-2 h-5 w-5" />
+                WhatsApp Us
+              </a>
+            </Button>
+          </div>
+        </div>
+
+        {/* Moving image strip */}
+        <div className="mt-10">
+          <div className="flex w-max marquee-track">
+            {[...marqueeImages, ...marqueeImages].map((img, i) => (
+              <div key={i} className="relative mx-2 h-40 w-60 flex-shrink-0 overflow-hidden rounded-2xl">
+                <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="240px" />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -134,36 +169,42 @@ export default function GalleryPage() {
               <h2 className="text-3xl font-bold">{category.title}</h2>
               <Link
                 href={category.href}
-                className="text-sm font-semibold text-secondary hover:underline"
+                className="text-sm font-semibold text-accent hover:underline"
               >
                 View this service →
               </Link>
             </div>
 
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {category.items.map((item) => (
-                <WatermarkedPhoto key={item.src} src={item.src} alt={item.caption} caption={item.caption} />
+              {category.items.map((item, index) => (
+                <ScrollReveal key={item.src} delay={(index % 4) * 100}>
+                  <WatermarkedPhoto src={item.src} alt={item.caption} caption={item.caption} />
+                </ScrollReveal>
               ))}
             </div>
           </div>
         </section>
       ))}
 
-      <section className="bg-foreground py-16 text-background">
+      <section className="bg-primary py-16 text-primary-foreground">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="text-3xl font-bold lg:text-4xl">Want work like this at your place?</h2>
-          <p className="mx-auto mt-4 max-w-xl text-background/80">
-            Call now, or send us a photo on WhatsApp and we&apos;ll tell you what it needs.
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
+            Call now, or send us a photo on WhatsApp and we'll tell you what it needs.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <CallButton size="lg" />
-            <WhatsAppCta size="lg" label="WhatsApp us" />
+            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+              <Link href="tel:+27724115472">Call: 072 411 5472</Link>
+            </Button>
+            <Button asChild size="lg" className="bg-[#25D366] text-white hover:bg-[#25D366]/90">
+              <a href="https://wa.me/27724115472" target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon className="mr-2 h-5 w-5" />
+                WhatsApp Us
+              </a>
+            </Button>
           </div>
         </div>
       </section>
-
-      <div className="h-20 md:hidden" aria-hidden="true" />
-      <StickyCallBar />
     </>
   )
 }
