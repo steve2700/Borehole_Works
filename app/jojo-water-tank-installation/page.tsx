@@ -1,45 +1,33 @@
 // File path: app/jojo-water-tank-installation/page.tsx
-// Clean URL: https://www.zecoconstruction.co.za/jojo-water-tank-installation
-// Built the same way as /plumbing-services: call and WhatsApp first, proof second, copy last.
-// Built specifically to run as a Google Ads landing page for "jojo water tank installation" traffic.
+// Clean URL: https://www.boreholeworks.co.za/jojo-water-tank-installation
 
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import {
-  Droplet,
-  Ruler,
-  Layers,
-  Wrench,
-  Gauge,
-  ShieldCheck,
-  MapPin,
-  CheckCircle2,
-  Clock,
-  Star,
-} from "lucide-react"
-import { CallButton, WhatsAppCta, StickyCallBar, trackCallClick } from "@/components/plumbing-cta"
-import { PHONE_DISPLAY, PHONE_TEL } from "@/components/contact-info"
+import { CallButton, WhatsAppCta, StickyCallBar, HeroPhoneLink, BigPhoneLink, RequestQuoteLink } from "@/components/service-cta"
+import { WatermarkedImage } from "@/components/watermarked-image"
+import { ImageMarquee } from "@/components/image-marquee"
+import { PHONE_DISPLAY } from "@/components/contact-info"
 
 export const metadata: Metadata = {
   title: "JoJo Tank Installation Gauteng | Pretoria & Joburg",
   description:
-    "Professional JoJo water tank installation in Pretoria, Johannesburg, Midrand and Centurion. Stands, plumbing, pumps and pressure systems, all in one visit. Call 074 850 9727 or WhatsApp for a same-day quote.",
+    "Professional JoJo water tank installation in Pretoria, Johannesburg, Midrand and Centurion. Stands, plumbing, pumps and pressure systems, all in one visit. Call 072 411 5472 or WhatsApp for a same-day quote.",
   keywords:
     "jojo tank installation Gauteng, jojo water tank installer Pretoria, jojo tank installation Johannesburg, water tank installation Midrand, jojo tank plumber Centurion, water tank pump installation, jojo tank stand installation",
   alternates: {
-    canonical: "https://www.zecoconstruction.co.za/jojo-water-tank-installation",
+    canonical: "https://www.boreholeworks.co.za/jojo-water-tank-installation",
   },
   openGraph: {
-    title: "JoJo Tank Installation Gauteng | ZECO Construction",
+    title: "JoJo Tank Installation Gauteng | Borehole Works",
     description:
-      "Stand, plumbing, pump and pressure system, all installed properly in one visit. JoJo tank installers across Pretoria, Johannesburg and Midrand. Call 074 850 9727.",
+      "Stand, plumbing, pump and pressure system, all installed properly in one visit. JoJo tank installers across Pretoria, Johannesburg and Midrand. Call 072 411 5472.",
     images: [
       {
         url: "/jojo_installation.jpg",
         width: 1200,
         height: 630,
-        alt: "JoJo water tank installed by ZECO Construction in Gauteng",
+        alt: "JoJo water tank installed by Borehole Works in Gauteng",
       },
     ],
   },
@@ -49,35 +37,30 @@ const process = [
   {
     step: 1,
     title: "Site visit & tank sizing",
-    icon: Ruler,
     description:
       "We look at your roof catchment, household size or business usage, and available space before recommending a tank size. Too small and you run out, too big and you're paying for capacity you'll never fill.",
   },
   {
     step: 2,
     title: "Stand & base preparation",
-    icon: Layers,
     description:
       "A JoJo tank full of water is heavy, so the base has to be dead level and properly rated for the weight. We build or check the stand, compact and level the base, and confirm it can carry a full tank before anything goes on top of it.",
   },
   {
     step: 3,
     title: "Tank positioning & pipe connections",
-    icon: Droplet,
     description:
       "The tank is positioned, inlet and overflow fitted, and connected into your existing gutters or borehole feed. First-flush diverters and inlet strainers go in here too, so debris doesn't end up in your stored water.",
   },
   {
     step: 4,
     title: "Pump & pressure system",
-    icon: Gauge,
     description:
       "If you need pressurised water out of the tank, we install and wire the pump, set up the pressure switch or controller, and plumb it into your existing supply so it feeds the house or garden the way you expect.",
   },
   {
     step: 5,
     title: "Pressure test & handover",
-    icon: ShieldCheck,
     description:
       "Every connection is pressure tested before we call the job done. We walk you through the overflow, the pump controls and basic maintenance, so you know exactly how the system works.",
   },
@@ -115,24 +98,24 @@ const gallery = [
     copy: "Clean pipe runs from tank to pump to supply, labelled and accessible for future servicing.",
   },
   {
-    title: "Pump control system",
-    image: "/water-pump-tank-pipes-green-controls.webp",
-    alt: "Pressure switch and control system wired for a water tank pump",
-    copy: "Pressure controller set up so the pump only runs when it needs to, protecting the motor and saving power.",
+    title: "Eco tank installation",
+    image: "/eco_water_tanks_installation.jpg",
+    alt: "Eco water tank installation in Gauteng",
+    copy: "Multiple tanks plumbed together against the wall of a property for maximum storage in a compact footprint.",
   },
 ]
 
+const marqueeImages = [
+  { src: "/jojo_installation.jpg", alt: "JoJo tank installation" },
+  { src: "/jojo_tank_installation_randburg.jpg", alt: "JoJo tank installation in Randburg" },
+  { src: "/eco_water_tanks_installation.jpg", alt: "Eco water tank installation" },
+  { src: "/green_water_tank_installation.jpg", alt: "Green water tank installation" },
+  { src: "/water_pump_for_Jojo_tank.jpg", alt: "Pump fitted for a JoJo tank" },
+]
+
 const areas = [
-  "Pretoria",
-  "Centurion",
-  "Midrand",
-  "Johannesburg",
-  "Sandton",
-  "Randburg",
-  "Fourways",
-  "Rosebank",
-  "Bedfordview",
-  "Roodepoort",
+  "Pretoria", "Centurion", "Midrand", "Johannesburg", "Sandton",
+  "Randburg", "Fourways", "Rosebank", "Bedfordview", "Roodepoort",
 ]
 
 const faqs = [
@@ -156,10 +139,6 @@ const faqs = [
     q: "Do I need a pump, or will gravity feed work?",
     a: "Gravity feed works if the tank is elevated high enough above where the water needs to go, which is common for garden taps. For household pressure, a pump and pressure controller is usually needed, and we size that to match your demand.",
   },
-  {
-    q: "What does a JoJo tank installation cost?",
-    a: "It depends on tank size, whether a stand needs to be built, and whether a pump is included. You get an estimate on the phone and a full itemised quote after the site visit, before any work starts.",
-  },
 ]
 
 export default function JojoTankInstallationPage() {
@@ -169,7 +148,7 @@ export default function JojoTankInstallationPage() {
       <section className="relative isolate overflow-hidden">
         <Image
           src="/jojo_installation.jpg"
-          alt="JoJo water tank installed by ZECO Construction in Gauteng"
+          alt="JoJo water tank installed by Borehole Works in Gauteng"
           fill
           priority
           sizes="100vw"
@@ -179,8 +158,7 @@ export default function JojoTankInstallationPage() {
 
         <div className="container mx-auto px-4 py-16 lg:px-8 lg:py-28">
           <div className="max-w-2xl text-white">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-secondary/20 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-secondary/50">
-              <Droplet className="h-4 w-4" aria-hidden="true" />
+            <p className="mb-4 inline-flex items-center rounded-full bg-accent/20 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-accent/50">
               Stand, plumbing, pump — done properly, in one visit
             </p>
 
@@ -194,50 +172,26 @@ export default function JojoTankInstallationPage() {
               it right the first time.
             </p>
 
-            <a
-              href={`tel:${PHONE_TEL}`}
-              onClick={trackCallClick}
-              className="group mt-8 flex items-center gap-4 text-white"
-              aria-label={`Call ZECO Construction on ${PHONE_DISPLAY}`}
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                <Droplet className="h-6 w-6" aria-hidden="true" />
-              </span>
-              <span>
-                <span className="block text-sm uppercase tracking-wide text-white/70">Speak to an installer now</span>
-                <span className="block text-3xl font-bold tabular-nums group-hover:underline sm:text-4xl">
-                  {PHONE_DISPLAY}
-                </span>
-              </span>
-            </a>
+            <HeroPhoneLink label="Speak to an installer now" />
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <CallButton size="lg" />
               <WhatsAppCta size="lg" label="WhatsApp us your site photos" />
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-xl border border-white/40 px-7 py-4 text-base font-semibold text-white transition hover:bg-white/10 md:text-lg"
-              >
-                Request a quote
-              </Link>
+              <RequestQuoteLink />
             </div>
 
             <ul className="mt-10 grid gap-3 text-sm text-white/85 sm:grid-cols-3">
-              <li className="flex items-center gap-2">
-                <Ruler className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Correct sizing, not guesswork
-              </li>
-              <li className="flex items-center gap-2">
-                <Gauge className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Pump & pressure systems included
-              </li>
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Pressure tested before handover
-              </li>
+              <li>Correct sizing, not guesswork</li>
+              <li>Pump & pressure systems included</li>
+              <li>Pressure tested before handover</li>
             </ul>
           </div>
         </div>
+      </section>
+
+      {/* MOVING IMAGE STRIP */}
+      <section className="bg-muted py-10">
+        <ImageMarquee images={marqueeImages} name="jojo" direction="left" speed={38} />
       </section>
 
       {/* THE INSTALLATION PROCESS */}
@@ -254,13 +208,8 @@ export default function JojoTankInstallationPage() {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {process.map((item) => (
               <div key={item.step} className="rounded-2xl border border-border bg-card p-6">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary text-sm font-bold text-secondary-foreground">
-                    {item.step}
-                  </span>
-                  <item.icon className="h-6 w-6 text-secondary" aria-hidden="true" />
-                </div>
-                <h3 className="mt-4 text-lg font-bold">{item.title}</h3>
+                <p className="text-sm font-bold text-accent">{String(item.step).padStart(2, "0")}</p>
+                <h3 className="mt-2 text-lg font-bold">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
               </div>
             ))}
@@ -285,20 +234,8 @@ export default function JojoTankInstallationPage() {
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {gallery.map((job) => (
-              <article
-                key={job.title}
-                className="overflow-hidden rounded-2xl border border-border bg-card"
-              >
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src={job.image}
-                    alt={job.alt}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                </div>
+              <article key={job.title} className="overflow-hidden rounded-2xl border border-border bg-card">
+                <WatermarkedImage src={job.image} alt={job.alt} className="aspect-[4/3]" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold">{job.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{job.copy}</p>
@@ -347,14 +284,33 @@ export default function JojoTankInstallationPage() {
           </div>
 
           <div className="relative min-h-[320px] overflow-hidden rounded-2xl">
-            <Image
+            <WatermarkedImage
               src="/jojo_tank_installation_randburg.jpg"
               alt="Completed JoJo water tank installation in Randburg"
-              fill
+              className="h-full"
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
-              loading="lazy"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* INTERNAL LINKING */}
+      <section className="border-y border-border bg-muted py-14">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="text-2xl font-bold">Complete your water system</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            <Link href="/borehole-drilling" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
+              <h3 className="font-bold">Borehole drilling</h3>
+              <p className="mt-1 text-sm text-muted-foreground">Feed your tank from your own water source.</p>
+            </Link>
+            <Link href="/pump-installation-repairs" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
+              <h3 className="font-bold">Pump installation & repairs</h3>
+              <p className="mt-1 text-sm text-muted-foreground">Submersible, borehole and pressure pumps.</p>
+            </Link>
+            <Link href="/solar-borehole-pumps" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
+              <h3 className="font-bold">Solar borehole pumps</h3>
+              <p className="mt-1 text-sm text-muted-foreground">Off-grid pumping powered by solar.</p>
+            </Link>
           </div>
         </div>
       </section>
@@ -362,27 +318,21 @@ export default function JojoTankInstallationPage() {
       {/* AREAS */}
       <section className="bg-muted py-14">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-bold">
-            <MapPin className="h-6 w-6 text-secondary" aria-hidden="true" />
-            Where we install
-          </h2>
+          <h2 className="text-2xl font-bold">Where we install</h2>
           <ul className="mt-6 flex flex-wrap gap-2">
             {areas.map((area) => (
-              <li
-                key={area}
-                className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium"
-              >
+              <li key={area} className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium">
                 {area}
               </li>
             ))}
           </ul>
           <p className="mt-6 text-sm text-muted-foreground">
-            Not on the list? Call {PHONE_DISPLAY} and we will tell you straight away whether we cover you.
+            Not on the list? Call {PHONE_DISPLAY} and we'll tell you straight away whether we cover you.
           </p>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ PREVIEW - links to full FAQ page */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto max-w-3xl px-4 lg:px-8">
           <h2 className="text-3xl font-bold">Questions we get asked first</h2>
@@ -396,44 +346,21 @@ export default function JojoTankInstallationPage() {
               </details>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* TRUST STRIP */}
-      <section className="border-y border-border bg-card py-10">
-        <div className="container mx-auto px-4 lg:px-8">
-          <ul className="grid gap-6 text-sm sm:grid-cols-3">
-            <li className="flex items-center gap-3">
-              <Clock className="h-6 w-6 shrink-0 text-secondary" aria-hidden="true" />
-              <span>Most installs completed in a day</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Star className="h-6 w-6 shrink-0 text-secondary" aria-hidden="true" />
-              <span>10+ years working across Gauteng</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <CheckCircle2 className="h-6 w-6 shrink-0 text-secondary" aria-hidden="true" />
-              <span>Itemised quote before work starts</span>
-            </li>
-          </ul>
+          <Link href="/faq#general" className="mt-6 inline-block text-sm font-semibold text-accent hover:underline">
+            See all FAQs →
+          </Link>
         </div>
       </section>
 
       {/* CLOSING CTA */}
-      <section className="bg-foreground py-16 text-background">
+      <section className="bg-primary py-16 text-primary-foreground">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="text-3xl font-bold lg:text-4xl">Ready to get water security sorted?</h2>
-          <p className="mx-auto mt-4 max-w-xl text-background/80">
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
             Call now for a straight answer on tank size and cost, or send us a photo of your site on
             WhatsApp and we'll tell you what it needs.
           </p>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            onClick={trackCallClick}
-            className="mt-6 inline-block text-4xl font-bold tabular-nums hover:underline sm:text-5xl"
-          >
-            {PHONE_DISPLAY}
-          </a>
+          <BigPhoneLink />
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <CallButton size="lg" />
             <WhatsAppCta size="lg" label="WhatsApp us" />
@@ -441,25 +368,23 @@ export default function JojoTankInstallationPage() {
         </div>
       </section>
 
-      {/* Padding so the sticky mobile bar never covers the last CTA */}
       <div className="h-20 md:hidden" aria-hidden="true" />
       <StickyCallBar />
 
-      {/* Structured data: local service plus FAQ rich result */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "@id": "https://www.zecoconstruction.co.za/jojo-water-tank-installation#service",
+            "@id": "https://www.boreholeworks.co.za/jojo-water-tank-installation#service",
             name: "JoJo Water Tank Installation",
             serviceType: "Water tank installation",
             provider: {
-              "@type": "Plumber",
-              name: "ZECO Construction",
-              telephone: "+27-74-850-9727",
-              image: "https://www.zecoconstruction.co.za/jojo_installation.jpg",
+              "@type": "LocalBusiness",
+              name: "Borehole Works",
+              telephone: "+27-72-411-5472",
+              image: "https://www.boreholeworks.co.za/jojo_installation.jpg",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Johannesburg",
@@ -468,7 +393,7 @@ export default function JojoTankInstallationPage() {
               },
             },
             areaServed: areas.map((a) => ({ "@type": "City", name: a })),
-            url: "https://www.zecoconstruction.co.za/jojo-water-tank-installation",
+            url: "https://www.boreholeworks.co.za/jojo-water-tank-installation",
           }),
         }}
       />

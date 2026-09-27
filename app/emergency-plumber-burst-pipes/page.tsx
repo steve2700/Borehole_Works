@@ -1,38 +1,27 @@
 // File path: app/emergency-plumber-burst-pipes/page.tsx
-// Clean URL: https://www.zecoconstruction.co.za/emergency-plumber-burst-pipes
-// Built the same way as /plumbing-services: call and WhatsApp first, proof second, copy last.
-// Difference on this page: the visitor is usually mid-emergency, so the hero leads with
-// "what to do right now" and the phone number, not with brand copy.
+// Clean URL: https://www.boreholeworks.co.za/emergency-plumber-burst-pipes
 
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import {
-  AlertTriangle,
-  Clock,
-  Droplets,
-  PhoneCall,
-  ShieldCheck,
-  Timer,
-  Zap,
-  CheckCircle2,
-  MapPin,
-} from "lucide-react"
-import { CallButton, WhatsAppCta, StickyCallBar, trackCallClick } from "@/components/plumbing-cta"
-import { PHONE_DISPLAY, PHONE_TEL } from "@/components/contact-info"
+import { CallButton, WhatsAppCta, StickyCallBar, HeroPhoneLink, BigPhoneLink } from "@/components/service-cta"
+import { WatermarkedImage } from "@/components/watermarked-image"
+import { ImageMarquee } from "@/components/image-marquee"
+import { PHONE_DISPLAY } from "@/components/contact-info"
+
 export const metadata: Metadata = {
   title: "Emergency Plumber Gauteng | 24/7 Burst Pipe Repairs",
   description:
-    "Burst pipe or major leak right now? Emergency plumbers in Pretoria, Johannesburg, Midrand and Centurion. On site fast, water stopped first, COC issued. Call 074 850 9727 or WhatsApp us a photo.",
+    "Burst pipe or major leak right now? Emergency plumbers in Pretoria, Johannesburg, Midrand and Centurion. On site fast, water stopped first. Call 072 411 5472 or WhatsApp us a photo.",
   keywords:
     "emergency plumber Gauteng, burst pipe repair Pretoria, 24 hour plumber Johannesburg, emergency plumbing Midrand, burst pipe near me, emergency leak repair Centurion",
   alternates: {
-    canonical: "https://www.zecoconstruction.co.za/emergency-plumber-burst-pipes",
+    canonical: "https://www.boreholeworks.co.za/emergency-plumber-burst-pipes",
   },
   openGraph: {
     title: "Emergency Plumber Gauteng | 24/7 Burst Pipe Repairs",
     description:
-      "Water running where it shouldn't be? Our emergency plumbers respond fast, 24/7, across Pretoria, Johannesburg and Midrand. Call 074 850 9727.",
+      "Water running where it shouldn't be? Our emergency plumbers respond fast, 24/7, across Pretoria, Johannesburg and Midrand. Call 072 411 5472.",
     images: [
       {
         url: "/24hr-Emergency-Plumber-Johannesburg.png",
@@ -55,19 +44,19 @@ const emergencies = [
     title: "Geyser bursts",
     image: "/kwikot_geyser_installation.jpg",
     alt: "Replacement Kwikot geyser installed after a burst geyser emergency",
-    copy: "Ceiling flooding from a burst geyser is the most common after-hours call we get. Power isolated, geyser replaced, insurance report supplied.",
+    copy: "Ceiling flooding from a burst geyser is the most common after-hours call we get. Power isolated, geyser replaced.",
   },
   {
     title: "Blocked sewer backing up",
     image: "/blocked_drains.jpg",
     alt: "High pressure jetting machine clearing a blocked sewer line",
-    copy: "Sewage backing up into a house or yard doesn't wait for Monday. Jetted clear and camera-checked so it doesn't come straight back.",
+    copy: "Sewage backing up into a house or yard doesn't wait for Monday. Jetted clear so it doesn't come straight back.",
   },
   {
     title: "No water supply",
     image: "/professional-plumber-working-on-pipes-installation.jpg",
     alt: "Plumber diagnosing a loss of water supply fault",
-    copy: "Could be a burst on your side of the meter, a stuck valve or a municipal issue. We find out and tell you straight.",
+    copy: "Could be a burst on your side of the meter, a stuck valve or a borehole pump issue. We find out and tell you straight.",
   },
   {
     title: "Frozen or cracked pipes",
@@ -78,8 +67,8 @@ const emergencies = [
   {
     title: "Active flood damage",
     image: "/emergency_plumber_Gauteng.jpg",
-    alt: "ZECO emergency plumber arriving to control flood damage",
-    copy: "First job on arrival is always stopping the water. Permanent repairs and drying-out advice come after the damage is contained.",
+    alt: "Emergency plumber arriving to control flood damage",
+    copy: "First job on arrival is always stopping the water. Permanent repairs come after the damage is contained.",
   },
 ]
 
@@ -92,7 +81,7 @@ const quickSteps = [
   {
     step: 2,
     title: "Kill the power to wet areas",
-    description: "If water is near a geyser, plugs or a distribution board, switch off that circuit at the DB board. Don't touch switches with wet hands.",
+    description: "If water is near a geyser, pump or a distribution board, switch off that circuit at the DB board. Don't touch switches with wet hands.",
   },
   {
     step: 3,
@@ -106,17 +95,17 @@ const quickSteps = [
   },
 ]
 
+const marqueeImages = [
+  { src: "/24hr-Emergency-Plumber-Johannesburg.png", alt: "24/7 emergency plumber callout" },
+  { src: "/burst_pipe_centurion.jpg", alt: "Burst pipe repair, Centurion" },
+  { src: "/emergency_plumber_Gauteng.jpg", alt: "Emergency plumber controlling flood damage" },
+  { src: "/blocked_drains.jpg", alt: "Blocked drain clearing" },
+  { src: "/kwikot_geyser_installation.jpg", alt: "Kwikot geyser installation" },
+]
+
 const areas = [
-  "Pretoria",
-  "Johannesburg",
-  "Midrand",
-  "Centurion",
-  "Sandton",
-  "Randburg",
-  "Fourways",
-  "Rosebank",
-  "Bedfordview",
-  "Roodepoort",
+  "Pretoria", "Johannesburg", "Midrand", "Centurion", "Sandton",
+  "Randburg", "Fourways", "Rosebank", "Bedfordview", "Roodepoort",
 ]
 
 const faqs = [
@@ -126,11 +115,11 @@ const faqs = [
   },
   {
     q: "What does an emergency callout cost?",
-    a: "You get a callout fee and a rough estimate on the phone before we drive out, so there's no surprise. Once the plumber has seen the problem you get an itemised quote for parts and labour, and nothing further happens until you say go.",
+    a: "You get a callout fee and a rough estimate on the phone before we drive out, so there's no surprise. Once the plumber has seen the problem you get an itemised quote for parts and labour.",
   },
   {
     q: "Is a burst geyser covered by my insurance?",
-    a: "Most household policies cover geyser bursts and resulting damage. We supply the assessment report and photos your insurer needs, install the replacement and issue the COC so the claim closes without back and forth.",
+    a: "Most household policies cover geyser bursts and resulting damage. We supply the assessment report and photos your insurer needs, and install the replacement so the claim closes without back and forth.",
   },
   {
     q: "Do you charge more for after-hours or weekend callouts?",
@@ -149,7 +138,7 @@ export default function EmergencyPlumberPage() {
       <section className="relative isolate overflow-hidden">
         <Image
           src="/24hr-Emergency-Plumber-Johannesburg.png"
-          alt="ZECO Construction emergency plumber responding to a callout in Johannesburg"
+          alt="Borehole Works emergency plumber responding to a callout in Johannesburg"
           fill
           priority
           sizes="100vw"
@@ -159,36 +148,20 @@ export default function EmergencyPlumberPage() {
 
         <div className="container mx-auto px-4 py-16 lg:px-8 lg:py-28">
           <div className="max-w-2xl text-white">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-secondary/20 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-secondary/50">
-              <AlertTriangle className="h-4 w-4" aria-hidden="true" />
-              Water running right now? Call, don&apos;t wait.
+            <p className="mb-4 inline-flex items-center rounded-full bg-accent/20 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-accent/50">
+              Water running right now? Call, don't wait.
             </p>
 
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              Burst pipe or major leak? We&apos;re on our way.
+              Burst pipe or major leak? We're on our way.
             </h1>
 
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/85">
-              A plumber answers this phone, day or night. Tell us what&apos;s flooding and where you are,
-              and we&apos;ll get a fully stocked team moving while you&apos;re still on the call.
+              A plumber answers this phone, day or night. Tell us what's flooding and where you are,
+              and we'll get a fully stocked team moving while you're still on the call.
             </p>
 
-            <a
-              href={`tel:${PHONE_TEL}`}
-              onClick={trackCallClick}
-              className="group mt-8 flex items-center gap-4 text-white"
-              aria-label={`Call ZECO Construction emergency line on ${PHONE_DISPLAY}`}
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                <PhoneCall className="h-6 w-6" aria-hidden="true" />
-              </span>
-              <span>
-                <span className="block text-sm uppercase tracking-wide text-white/70">Emergency line, answered 24/7</span>
-                <span className="block text-3xl font-bold tabular-nums group-hover:underline sm:text-4xl">
-                  {PHONE_DISPLAY}
-                </span>
-              </span>
-            </a>
+            <HeroPhoneLink label="Emergency line, answered 24/7" />
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <CallButton size="lg" />
@@ -196,48 +169,42 @@ export default function EmergencyPlumberPage() {
             </div>
 
             <ul className="mt-10 grid gap-3 text-sm text-white/85 sm:grid-cols-3">
-              <li className="flex items-center gap-2">
-                <Clock className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                60–90 min average response
-              </li>
-              <li className="flex items-center gap-2">
-                <Zap className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Fully stocked emergency vehicles
-              </li>
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Licensed, COC issued
-              </li>
+              <li>60–90 min average response</li>
+              <li>Fully stocked emergency vehicles</li>
+              <li>Licensed, experienced team</li>
             </ul>
           </div>
         </div>
       </section>
 
-      {/* WHAT TO DO RIGHT NOW — the thing an emergency page is missing without this */}
-      <section className="border-b border-border bg-foreground py-14 text-background">
+      {/* MOVING IMAGE STRIP */}
+      <section className="bg-muted py-10">
+        <ImageMarquee images={marqueeImages} name="emergency" direction="left" speed={36} />
+      </section>
+
+      {/* WHAT TO DO RIGHT NOW */}
+      <section className="border-b border-border bg-primary py-14 text-primary-foreground">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-2xl">
             <h2 className="text-2xl font-bold sm:text-3xl">While you're waiting for us, do this</h2>
-            <p className="mt-3 text-background/75">
+            <p className="mt-3 text-primary-foreground/75">
               Four things you can safely do in the next five minutes to stop the damage getting worse.
             </p>
           </div>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {quickSteps.map((item) => (
-              <div key={item.step} className="rounded-2xl border border-background/15 bg-background/5 p-5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-sm font-bold text-secondary-foreground">
-                  {item.step}
-                </span>
-                <h3 className="mt-4 font-bold">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-background/75">{item.description}</p>
+              <div key={item.step} className="rounded-2xl border border-primary-foreground/15 bg-primary-foreground/5 p-5">
+                <p className="text-sm font-bold text-accent">{String(item.step).padStart(2, "0")}</p>
+                <h3 className="mt-3 font-bold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-primary-foreground/75">{item.description}</p>
               </div>
             ))}
           </div>
 
-          <p className="mt-8 text-sm text-background/70">
-            Not sure if it counts as an emergency? Call {PHONE_DISPLAY} anyway and describe what you&apos;re
-            seeing — we&apos;ll tell you honestly whether it needs to be dealt with now.
+          <p className="mt-8 text-sm text-primary-foreground/70">
+            Not sure if it counts as an emergency? Call {PHONE_DISPLAY} anyway and describe what you're
+            seeing, we'll tell you honestly whether it needs to be dealt with now.
           </p>
         </div>
       </section>
@@ -254,19 +221,8 @@ export default function EmergencyPlumberPage() {
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {emergencies.map((job) => (
-              <article
-                key={job.title}
-                className="overflow-hidden rounded-2xl border border-border bg-card"
-              >
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src={job.image}
-                    alt={job.alt}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
+              <article key={job.title} className="overflow-hidden rounded-2xl border border-border bg-card">
+                <WatermarkedImage src={job.image} alt={job.alt} className="aspect-[4/3]" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold">{job.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{job.copy}</p>
@@ -282,29 +238,20 @@ export default function EmergencyPlumberPage() {
         </div>
       </section>
 
-      {/* DEEPER PAGES, KEEPS ADS QUALITY SCORE AND INTERNAL LINKING */}
+      {/* INTERNAL LINKING */}
       <section className="border-y border-border bg-muted py-14">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-2xl font-bold">Not an emergency? See the full service</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <Link
-              href="/plumbing-services"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
+            <Link href="/plumbing-services" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
               <h3 className="font-bold">All plumbing services</h3>
               <p className="mt-1 text-sm text-muted-foreground">Everything we do, callouts and scheduled work.</p>
             </Link>
-            <Link
-              href="/geyser-installation-repairs"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
+            <Link href="/geyser-installation-repairs" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
               <h3 className="font-bold">Geyser installation and repairs</h3>
-              <p className="mt-1 text-sm text-muted-foreground">Electric, solar and Kwikot, COC included.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Electric, solar and Kwikot.</p>
             </Link>
-            <Link
-              href="/blocked-drains-unblocking"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
+            <Link href="/blocked-drains-unblocking" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
               <h3 className="font-bold">Blocked drains</h3>
               <p className="mt-1 text-sm text-muted-foreground">Jetting and CCTV inspection.</p>
             </Link>
@@ -321,8 +268,8 @@ export default function EmergencyPlumberPage() {
               <div>
                 <dt className="font-bold">Damage control comes first</dt>
                 <dd className="mt-1 text-muted-foreground">
-                  The first job on any emergency callout is stopping the water. Permanent repairs and
-                  certification follow once the immediate danger is under control.
+                  The first job on any emergency callout is stopping the water. Permanent repairs follow
+                  once the immediate danger is under control.
                 </dd>
               </div>
               <div>
@@ -336,26 +283,25 @@ export default function EmergencyPlumberPage() {
                 <dt className="font-bold">Honest pricing, even at 2am</dt>
                 <dd className="mt-1 text-muted-foreground">
                   You get an estimate on the phone before we drive out, and an itemised quote once the
-                  plumber has actually seen the problem. No inflated after-hours surprises on the invoice.
+                  plumber has actually seen the problem.
                 </dd>
               </div>
               <div>
                 <dt className="font-bold">Insurance-ready paperwork</dt>
                 <dd className="mt-1 text-muted-foreground">
-                  Photos, an assessment report and a Certificate of Compliance are supplied so your claim
-                  closes without you chasing us for documents afterward.
+                  Photos and an assessment report are supplied so your claim closes without you chasing us
+                  for documents afterward.
                 </dd>
               </div>
             </dl>
           </div>
 
           <div className="relative min-h-[320px] overflow-hidden rounded-2xl">
-            <Image
+            <WatermarkedImage
               src="/emergency_plumber_Gauteng.jpg"
-              alt="ZECO Construction emergency plumber on site controlling a flood in Gauteng"
-              fill
+              alt="Borehole Works emergency plumber on site controlling a flood in Gauteng"
+              className="h-full"
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
             />
           </div>
         </div>
@@ -364,28 +310,22 @@ export default function EmergencyPlumberPage() {
       {/* AREAS */}
       <section className="bg-muted py-14">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-bold">
-            <MapPin className="h-6 w-6 text-secondary" aria-hidden="true" />
-            Where we respond
-          </h2>
+          <h2 className="text-2xl font-bold">Where we respond</h2>
           <ul className="mt-6 flex flex-wrap gap-2">
             {areas.map((area) => (
-              <li
-                key={area}
-                className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium"
-              >
+              <li key={area} className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium">
                 {area}
               </li>
             ))}
           </ul>
           <p className="mt-6 text-sm text-muted-foreground">
-            Not on the list? Call {PHONE_DISPLAY} and we&apos;ll tell you straight away whether we can reach
+            Not on the list? Call {PHONE_DISPLAY} and we'll tell you straight away whether we can reach
             you and how soon.
           </p>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ PREVIEW */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto max-w-3xl px-4 lg:px-8">
           <h2 className="text-3xl font-bold">Questions we get asked mid-emergency</h2>
@@ -399,23 +339,20 @@ export default function EmergencyPlumberPage() {
               </details>
             ))}
           </div>
+          <Link href="/faq#general" className="mt-6 inline-block text-sm font-semibold text-accent hover:underline">
+            See all FAQs →
+          </Link>
         </div>
       </section>
 
       {/* CLOSING CTA */}
-      <section className="bg-foreground py-16 text-background">
+      <section className="bg-primary py-16 text-primary-foreground">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="text-3xl font-bold lg:text-4xl">Still flooding? Stop reading, start calling.</h2>
-          <p className="mx-auto mt-4 max-w-xl text-background/80">
-            A plumber picks up, not a call centre. Tell us what&apos;s happening and we&apos;ll get moving.
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
+            A plumber picks up, not a call centre. Tell us what's happening and we'll get moving.
           </p>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            onClick={trackCallClick}
-            className="mt-6 inline-block text-4xl font-bold tabular-nums hover:underline sm:text-5xl"
-          >
-            {PHONE_DISPLAY}
-          </a>
+          <BigPhoneLink />
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <CallButton size="lg" />
             <WhatsAppCta size="lg" label="WhatsApp us" />
@@ -423,22 +360,20 @@ export default function EmergencyPlumberPage() {
         </div>
       </section>
 
-      {/* Padding so the sticky mobile bar never covers the last CTA */}
       <div className="h-20 md:hidden" aria-hidden="true" />
       <StickyCallBar />
 
-      {/* Structured data: emergency plumbing service plus FAQ rich result */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Plumber",
-            "@id": "https://www.zecoconstruction.co.za/emergency-plumber-burst-pipes#plumber",
-            name: "ZECO Construction Emergency Plumbing",
-            url: "https://www.zecoconstruction.co.za/emergency-plumber-burst-pipes",
-            telephone: "+27-74-850-9727",
-            image: "https://www.zecoconstruction.co.za/24hr-Emergency-Plumber-Johannesburg.png",
+            "@id": "https://www.boreholeworks.co.za/emergency-plumber-burst-pipes#plumber",
+            name: "Borehole Works Emergency Plumbing",
+            url: "https://www.boreholeworks.co.za/emergency-plumber-burst-pipes",
+            telephone: "+27-72-411-5472",
+            image: "https://www.boreholeworks.co.za/24hr-Emergency-Plumber-Johannesburg.png",
             priceRange: "$$",
             address: {
               "@type": "PostalAddress",
@@ -450,15 +385,7 @@ export default function EmergencyPlumberPage() {
             openingHoursSpecification: [
               {
                 "@type": "OpeningHoursSpecification",
-                dayOfWeek: [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday",
-                  "Sunday",
-                ],
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                 opens: "00:00",
                 closes: "23:59",
               },

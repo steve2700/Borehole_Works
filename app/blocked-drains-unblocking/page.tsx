@@ -1,30 +1,22 @@
 // File path: app/blocked-drains-unblocking/page.tsx
-// Clean URL: https://www.zecoconstruction.co.za/blocked-drains-unblocking
-// Built the same way as /plumbing-services, /emergency-plumber-burst-pipes and
-// /geyser-installation-repairs: call and WhatsApp first, proof second, copy last.
+// Clean URL: https://www.boreholeworks.co.za/blocked-drains-unblocking
 
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import {
-  Waves,
-  Search,
-  Wrench,
-  ShieldCheck,
-  Timer,
-  CheckCircle2,
-  MapPin,
-} from "lucide-react"
-import { CallButton, WhatsAppCta, StickyCallBar, trackCallClick } from "@/components/plumbing-cta"
-import { PHONE_DISPLAY, PHONE_TEL } from "@/components/contact-info"
+import { CallButton, WhatsAppCta, StickyCallBar, HeroPhoneLink, BigPhoneLink, RequestQuoteLink } from "@/components/service-cta"
+import { WatermarkedImage } from "@/components/watermarked-image"
+import { ImageMarquee } from "@/components/image-marquee"
+import { PHONE_DISPLAY } from "@/components/contact-info"
+
 export const metadata: Metadata = {
   title: "Blocked Drains Unblocking Gauteng | Fast Drain Cleaning",
   description:
-    "Blocked drain, toilet or sewer in Pretoria, Johannesburg, Midrand or Centurion? High-pressure jetting and CCTV inspection, same-day service. Call 074 850 9727.",
+    "Blocked drain, toilet or sewer in Pretoria, Johannesburg, Midrand or Centurion? High-pressure jetting and CCTV inspection, same-day service. Call 072 411 5472.",
   keywords:
     "blocked drains Gauteng, drain unblocking Pretoria, drain cleaning Johannesburg, blocked sewer Midrand, CCTV drain inspection, blocked toilet drain",
   alternates: {
-    canonical: "https://www.zecoconstruction.co.za/blocked-drains-unblocking",
+    canonical: "https://www.boreholeworks.co.za/blocked-drains-unblocking",
   },
   openGraph: {
     title: "Blocked Drains Unblocking Gauteng | Fast Drain Cleaning",
@@ -35,7 +27,7 @@ export const metadata: Metadata = {
         url: "/blocked_drains.jpg",
         width: 1200,
         height: 630,
-        alt: "Blocked drain unblocking service in Gauteng - ZECO Construction",
+        alt: "Blocked drain unblocking service in Gauteng - Borehole Works",
       },
     ],
   },
@@ -80,17 +72,17 @@ const jobs = [
   },
 ]
 
+const marqueeImages = [
+  { src: "/blocked_drains.jpg", alt: "Blocked drain clearing" },
+  { src: "/blocked_drains_pretoria.jpg", alt: "Blocked drain clearing, Pretoria" },
+  { src: "/professional-plumber-working-on-pipes-installation.jpg", alt: "Plumber clearing a drain" },
+  { src: "/burst_pipe_centurion.jpg", alt: "Stormwater drain clearing" },
+  { src: "/emergency_plumber_Gauteng.jpg", alt: "CCTV drain inspection" },
+]
+
 const areas = [
-  "Pretoria",
-  "Centurion",
-  "Midrand",
-  "Johannesburg",
-  "Sandton",
-  "Randburg",
-  "Fourways",
-  "Rosebank",
-  "Bedfordview",
-  "Roodepoort",
+  "Pretoria", "Centurion", "Midrand", "Johannesburg", "Sandton",
+  "Randburg", "Fourways", "Rosebank", "Bedfordview", "Roodepoort",
 ]
 
 const faqs = [
@@ -123,7 +115,7 @@ export default function BlockedDrainsPage() {
       <section className="relative isolate overflow-hidden">
         <Image
           src="/blocked_drains.jpg"
-          alt="ZECO Construction clearing a blocked drain in Gauteng"
+          alt="Borehole Works clearing a blocked drain in Gauteng"
           fill
           priority
           sizes="100vw"
@@ -133,8 +125,7 @@ export default function BlockedDrainsPage() {
 
         <div className="container mx-auto px-4 py-16 lg:px-8 lg:py-28">
           <div className="max-w-2xl text-white">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-secondary/20 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-secondary/50">
-              <Waves className="h-4 w-4" aria-hidden="true" />
+            <p className="mb-4 inline-flex items-center rounded-full bg-accent/20 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-accent/50">
               High-pressure jetting & CCTV inspection
             </p>
 
@@ -147,50 +138,26 @@ export default function BlockedDrainsPage() {
               happening and we'll clear it properly, not just push the problem further down the pipe.
             </p>
 
-            <a
-              href={`tel:${PHONE_TEL}`}
-              onClick={trackCallClick}
-              className="group mt-8 flex items-center gap-4 text-white"
-              aria-label={`Call ZECO Construction on ${PHONE_DISPLAY}`}
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                <Waves className="h-6 w-6" aria-hidden="true" />
-              </span>
-              <span>
-                <span className="block text-sm uppercase tracking-wide text-white/70">Speak to a plumber now</span>
-                <span className="block text-3xl font-bold tabular-nums group-hover:underline sm:text-4xl">
-                  {PHONE_DISPLAY}
-                </span>
-              </span>
-            </a>
+            <HeroPhoneLink label="Speak to a plumber now" />
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <CallButton size="lg" />
               <WhatsAppCta size="lg" label="WhatsApp us" />
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-xl border border-white/40 px-7 py-4 text-base font-semibold text-white transition hover:bg-white/10 md:text-lg"
-              >
-                Request a quote
-              </Link>
+              <RequestQuoteLink />
             </div>
 
             <ul className="mt-10 grid gap-3 text-sm text-white/85 sm:grid-cols-3">
-              <li className="flex items-center gap-2">
-                <Search className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                CCTV inspection, no guesswork
-              </li>
-              <li className="flex items-center gap-2">
-                <Timer className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Same-day service available
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Usually no digging required
-              </li>
+              <li>CCTV inspection, no guesswork</li>
+              <li>Same-day service available</li>
+              <li>Usually no digging required</li>
             </ul>
           </div>
         </div>
+      </section>
+
+      {/* MOVING IMAGE STRIP */}
+      <section className="bg-muted py-10">
+        <ImageMarquee images={marqueeImages} name="drains" direction="right" speed={36} />
       </section>
 
       {/* WHAT WE CLEAR, WITH REAL PHOTOS */}
@@ -205,19 +172,8 @@ export default function BlockedDrainsPage() {
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {jobs.map((job) => (
-              <article
-                key={job.title}
-                className="overflow-hidden rounded-2xl border border-border bg-card"
-              >
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src={job.image}
-                    alt={job.alt}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
+              <article key={job.title} className="overflow-hidden rounded-2xl border border-border bg-card">
+                <WatermarkedImage src={job.image} alt={job.alt} className="aspect-[4/3]" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold">{job.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{job.copy}</p>
@@ -233,31 +189,22 @@ export default function BlockedDrainsPage() {
         </div>
       </section>
 
-      {/* DEEPER PAGES, KEEPS ADS QUALITY SCORE AND INTERNAL LINKING */}
+      {/* INTERNAL LINKING */}
       <section className="border-y border-border bg-muted py-14">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-2xl font-bold">Looking for something else?</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <Link
-              href="/emergency-plumber-burst-pipes"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
+            <Link href="/emergency-plumber-burst-pipes" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
               <h3 className="font-bold">Sewer backing up right now?</h3>
               <p className="mt-1 text-sm text-muted-foreground">24/7 emergency response.</p>
             </Link>
-            <Link
-              href="/plumbing-services"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
+            <Link href="/plumbing-services" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
               <h3 className="font-bold">All plumbing services</h3>
               <p className="mt-1 text-sm text-muted-foreground">Everything we do, callouts and scheduled work.</p>
             </Link>
-            <Link
-              href="/geyser-installation-repairs"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
+            <Link href="/geyser-installation-repairs" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
               <h3 className="font-bold">Geyser installation and repairs</h3>
-              <p className="mt-1 text-sm text-muted-foreground">Electric, solar and Kwikot, COC included.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Electric, solar and Kwikot.</p>
             </Link>
           </div>
         </div>
@@ -291,9 +238,9 @@ export default function BlockedDrainsPage() {
                 </dd>
               </div>
               <div>
-                <dt className="font-bold">Licensed team, certified when needed</dt>
+                <dt className="font-bold">Experienced team</dt>
                 <dd className="mt-1 text-muted-foreground">
-                  All drain work is carried out by licensed plumbers, with a Certificate of Compliance issued
+                  All drain work is carried out by an experienced team, with proper documentation supplied
                   where structural repairs are required.
                 </dd>
               </div>
@@ -301,12 +248,11 @@ export default function BlockedDrainsPage() {
           </div>
 
           <div className="relative min-h-[320px] overflow-hidden rounded-2xl">
-            <Image
+            <WatermarkedImage
               src="/blocked_drains_pretoria.jpg"
-              alt="ZECO Construction clearing a blocked drain in Pretoria"
-              fill
+              alt="Borehole Works clearing a blocked drain in Pretoria"
+              className="h-full"
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
             />
           </div>
         </div>
@@ -315,27 +261,21 @@ export default function BlockedDrainsPage() {
       {/* AREAS */}
       <section className="bg-muted py-14">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-bold">
-            <MapPin className="h-6 w-6 text-secondary" aria-hidden="true" />
-            Where we work
-          </h2>
+          <h2 className="text-2xl font-bold">Where we work</h2>
           <ul className="mt-6 flex flex-wrap gap-2">
             {areas.map((area) => (
-              <li
-                key={area}
-                className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium"
-              >
+              <li key={area} className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium">
                 {area}
               </li>
             ))}
           </ul>
           <p className="mt-6 text-sm text-muted-foreground">
-            Not on the list? Call {PHONE_DISPLAY} and we will tell you straight away whether we cover you.
+            Not on the list? Call {PHONE_DISPLAY} and we'll tell you straight away whether we cover you.
           </p>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ PREVIEW */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto max-w-3xl px-4 lg:px-8">
           <h2 className="text-3xl font-bold">Questions we get asked first</h2>
@@ -349,23 +289,20 @@ export default function BlockedDrainsPage() {
               </details>
             ))}
           </div>
+          <Link href="/faq#general" className="mt-6 inline-block text-sm font-semibold text-accent hover:underline">
+            See all FAQs →
+          </Link>
         </div>
       </section>
 
       {/* CLOSING CTA */}
-      <section className="bg-foreground py-16 text-background">
+      <section className="bg-primary py-16 text-primary-foreground">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="text-3xl font-bold lg:text-4xl">Drain not draining? Let's clear it.</h2>
-          <p className="mx-auto mt-4 max-w-xl text-background/80">
-            Call now and speak to a plumber, or send a photo on WhatsApp and we will tell you what it needs.
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
+            Call now and speak to a plumber, or send a photo on WhatsApp and we'll tell you what it needs.
           </p>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            onClick={trackCallClick}
-            className="mt-6 inline-block text-4xl font-bold tabular-nums hover:underline sm:text-5xl"
-          >
-            {PHONE_DISPLAY}
-          </a>
+          <BigPhoneLink />
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <CallButton size="lg" />
             <WhatsAppCta size="lg" label="WhatsApp us" />
@@ -373,22 +310,20 @@ export default function BlockedDrainsPage() {
         </div>
       </section>
 
-      {/* Padding so the sticky mobile bar never covers the last CTA */}
       <div className="h-20 md:hidden" aria-hidden="true" />
       <StickyCallBar />
 
-      {/* Structured data: local drain service plus FAQ rich result */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Plumber",
-            "@id": "https://www.zecoconstruction.co.za/blocked-drains-unblocking#plumber",
-            name: "ZECO Construction Blocked Drains",
-            url: "https://www.zecoconstruction.co.za/blocked-drains-unblocking",
-            telephone: "+27-74-850-9727",
-            image: "https://www.zecoconstruction.co.za/blocked_drains.jpg",
+            "@id": "https://www.boreholeworks.co.za/blocked-drains-unblocking#plumber",
+            name: "Borehole Works Blocked Drains",
+            url: "https://www.boreholeworks.co.za/blocked-drains-unblocking",
+            telephone: "+27-72-411-5472",
+            image: "https://www.boreholeworks.co.za/blocked_drains.jpg",
             priceRange: "$$",
             address: {
               "@type": "PostalAddress",
@@ -400,15 +335,7 @@ export default function BlockedDrainsPage() {
             openingHoursSpecification: [
               {
                 "@type": "OpeningHoursSpecification",
-                dayOfWeek: [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday",
-                  "Sunday",
-                ],
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                 opens: "00:00",
                 closes: "23:59",
               },
