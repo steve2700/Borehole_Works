@@ -7,6 +7,7 @@ import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
+import { GOOGLE_ADS_CONVERSION_ID } from "@/lib/analytics"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -100,6 +101,23 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=yes" />
+
+        {/* Google Ads conversion tracking - fill in GOOGLE_ADS_CONVERSION_ID in lib/analytics.ts to activate */}
+        {GOOGLE_ADS_CONVERSION_ID && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_CONVERSION_ID}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${GOOGLE_ADS_CONVERSION_ID}');
+                `,
+              }}
+            />
+          </>
+        )}
 
         {/* Structured Data for Organization */}
         <script

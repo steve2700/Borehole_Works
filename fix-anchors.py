@@ -13,7 +13,7 @@ for file in files:
     changed = False
 
     for i, line in enumerate(lines):
-        m = re.match(r'^(\s*)href="', line)
+        m = re.match(r'^(\s*)href=', line)
         if not m:
             continue
         indent = m.group(1)

@@ -1,45 +1,33 @@
 // File path: app/pump-installation-repairs/page.tsx
-// Clean URL: https://www.zecoconstruction.co.za/pump-installation-repairs
-// Built the same way as /blocked-drains-unblocking and /geyser-installation-repairs:
-// call and WhatsApp first, proof second, copy last. Covers both installation and
-// repair work, weighted slightly toward repairs since that's where most enquiries
-// come from, but kept balanced rather than repair-only.
+// Clean URL: https://www.boreholeworks.co.za/pump-installation-repairs
 
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import {
-  Wrench,
-  Droplet,
-  Gauge,
-  ShieldCheck,
-  Timer,
-  CheckCircle2,
-  MapPin,
-  Zap,
-} from "lucide-react"
-import { CallButton, WhatsAppCta, StickyCallBar, trackCallClick } from "@/components/plumbing-cta"
-import { PHONE_DISPLAY, PHONE_TEL } from "@/components/contact-info"
+import { CallButton, WhatsAppCta, StickyCallBar, HeroPhoneLink, BigPhoneLink, RequestQuoteLink } from "@/components/service-cta"
+import { WatermarkedImage } from "@/components/watermarked-image"
+import { ImageMarquee } from "@/components/image-marquee"
+import { PHONE_DISPLAY } from "@/components/contact-info"
 
 export const metadata: Metadata = {
   title: "Pump Installation & Repairs Gauteng | Submersible & Borehole",
   description:
-    "Pump supply, installation and repairs in Pretoria, Johannesburg, Midrand and Centurion. Submersible, borehole and pressure pumps, all types and brands. Call 074 850 9727 or WhatsApp for a same-day quote.",
+    "Pump supply, installation and repairs in Pretoria, Johannesburg, Midrand and Centurion. Submersible, borehole and pressure pumps, all types and brands. Call 072 411 5472 or WhatsApp for a same-day quote.",
   keywords:
     "pump installation Gauteng, pump repairs Pretoria, submersible pump installation, borehole pump repairs Johannesburg, pressure pump repairs, water pump supply Midrand, pump breakdown repair Centurion",
   alternates: {
-    canonical: "https://www.zecoconstruction.co.za/pump-installation-repairs",
+    canonical: "https://www.boreholeworks.co.za/pump-installation-repairs",
   },
   openGraph: {
-    title: "Pump Installation & Repairs Gauteng | ZECO Construction",
+    title: "Pump Installation & Repairs Gauteng | Borehole Works",
     description:
-      "Submersible, borehole and pressure pumps, supplied, installed and repaired across Gauteng. Call 074 850 9727.",
+      "Submersible, borehole and pressure pumps, supplied, installed and repaired across Gauteng. Call 072 411 5472.",
     images: [
       {
         url: "/pump_installation_hero.jpg",
         width: 1200,
         height: 630,
-        alt: "Pump installation and repairs by ZECO Construction in Gauteng",
+        alt: "Pump installation and repairs by Borehole Works in Gauteng",
       },
     ],
   },
@@ -84,17 +72,17 @@ const jobs = [
   },
 ]
 
+const marqueeImages = [
+  { src: "/pump_installation_hero.jpg", alt: "Pump installation in Gauteng" },
+  { src: "/pump_system_installation.webp", alt: "Pump system installation" },
+  { src: "/water-pump-tank-pipes-green.webp", alt: "Pump and tank pipework" },
+  { src: "/water-pump-tank-pipes-green-controls.webp", alt: "Pump control system" },
+  { src: "/pump_systems_boreholes.jpg", alt: "Borehole pump system" },
+]
+
 const areas = [
-  "Pretoria",
-  "Centurion",
-  "Midrand",
-  "Johannesburg",
-  "Sandton",
-  "Randburg",
-  "Fourways",
-  "Rosebank",
-  "Bedfordview",
-  "Roodepoort",
+  "Pretoria", "Centurion", "Midrand", "Johannesburg", "Sandton",
+  "Randburg", "Fourways", "Rosebank", "Bedfordview", "Roodepoort",
 ]
 
 const faqs = [
@@ -118,10 +106,6 @@ const faqs = [
     q: "How do you decide whether to repair or replace a pump?",
     a: "Age, the specific fault, and cost of parts against a new unit. If a repair genuinely makes sense we'll say so and do it. We don't push a replacement when a repair will do the job for years to come.",
   },
-  {
-    q: "What does a pump callout cost?",
-    a: "You get a callout fee and an estimate on the phone before we drive out. Once we've seen or tested the pump, you get an itemised quote for parts and labour before any work starts.",
-  },
 ]
 
 export default function PumpInstallationRepairsPage() {
@@ -131,7 +115,7 @@ export default function PumpInstallationRepairsPage() {
       <section className="relative isolate overflow-hidden">
         <Image
           src="/pump_installation_hero.jpg"
-          alt="Pump installation and repairs by ZECO Construction in Gauteng"
+          alt="Pump installation and repairs by Borehole Works in Gauteng"
           fill
           priority
           sizes="100vw"
@@ -141,8 +125,7 @@ export default function PumpInstallationRepairsPage() {
 
         <div className="container mx-auto px-4 py-16 lg:px-8 lg:py-28">
           <div className="max-w-2xl text-white">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-secondary/20 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-secondary/50">
-              <Zap className="h-4 w-4" aria-hidden="true" />
+            <p className="mb-4 inline-flex items-center rounded-full bg-accent/20 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-accent/50">
               Repairs, installs & breakdowns, all pump types
             </p>
 
@@ -155,50 +138,26 @@ export default function PumpInstallationRepairsPage() {
               happening and we'll tell you honestly whether it needs a repair or a new pump.
             </p>
 
-            <a
-              href={`tel:${PHONE_TEL}`}
-              onClick={trackCallClick}
-              className="group mt-8 flex items-center gap-4 text-white"
-              aria-label={`Call ZECO Construction on ${PHONE_DISPLAY}`}
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                <Wrench className="h-6 w-6" aria-hidden="true" />
-              </span>
-              <span>
-                <span className="block text-sm uppercase tracking-wide text-white/70">Speak to a pump technician now</span>
-                <span className="block text-3xl font-bold tabular-nums group-hover:underline sm:text-4xl">
-                  {PHONE_DISPLAY}
-                </span>
-              </span>
-            </a>
+            <HeroPhoneLink label="Speak to a pump technician now" />
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <CallButton size="lg" />
               <WhatsAppCta size="lg" label="WhatsApp us a photo" />
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-xl border border-white/40 px-7 py-4 text-base font-semibold text-white transition hover:bg-white/10 md:text-lg"
-              >
-                Request a quote
-              </Link>
+              <RequestQuoteLink />
             </div>
 
             <ul className="mt-10 grid gap-3 text-sm text-white/85 sm:grid-cols-3">
-              <li className="flex items-center gap-2">
-                <Wrench className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Repairs & new installs
-              </li>
-              <li className="flex items-center gap-2">
-                <Droplet className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Submersible & borehole specialists
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Itemised quote before work starts
-              </li>
+              <li>Repairs & new installs</li>
+              <li>Submersible & borehole specialists</li>
+              <li>Itemised quote before work starts</li>
             </ul>
           </div>
         </div>
+      </section>
+
+      {/* MOVING IMAGE STRIP */}
+      <section className="bg-muted py-10">
+        <ImageMarquee images={marqueeImages} name="pumps" direction="right" speed={38} />
       </section>
 
       {/* WHAT WE DO, WITH REAL PHOTOS */}
@@ -213,20 +172,8 @@ export default function PumpInstallationRepairsPage() {
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {jobs.map((job) => (
-              <article
-                key={job.title}
-                className="overflow-hidden rounded-2xl border border-border bg-card"
-              >
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src={job.image}
-                    alt={job.alt}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                </div>
+              <article key={job.title} className="overflow-hidden rounded-2xl border border-border bg-card">
+                <WatermarkedImage src={job.image} alt={job.alt} className="aspect-[4/3]" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold">{job.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{job.copy}</p>
@@ -242,31 +189,22 @@ export default function PumpInstallationRepairsPage() {
         </div>
       </section>
 
-      {/* DEEPER PAGES, KEEPS ADS QUALITY SCORE AND INTERNAL LINKING */}
+      {/* INTERNAL LINKING */}
       <section className="border-y border-border bg-muted py-14">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-2xl font-bold">Looking for something else?</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <Link
-              href="/jojo-water-tank-installation"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
+            <Link href="/borehole-drilling" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
+              <h3 className="font-bold">Borehole drilling</h3>
+              <p className="mt-1 text-sm text-muted-foreground">Need a new borehole before a pump?</p>
+            </Link>
+            <Link href="/solar-borehole-pumps" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
+              <h3 className="font-bold">Solar borehole pumps</h3>
+              <p className="mt-1 text-sm text-muted-foreground">Off-grid pumping powered by solar.</p>
+            </Link>
+            <Link href="/jojo-water-tank-installation" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
               <h3 className="font-bold">JoJo water tank installation</h3>
               <p className="mt-1 text-sm text-muted-foreground">Stand, plumbing and pump, in one visit.</p>
-            </Link>
-            <Link
-              href="/blocked-drains-unblocking"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
-              <h3 className="font-bold">Blocked drains</h3>
-              <p className="mt-1 text-sm text-muted-foreground">Jetting and CCTV inspection.</p>
-            </Link>
-            <Link
-              href="/emergency-plumber-burst-pipes"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
-              <h3 className="font-bold">Burst pipe right now?</h3>
-              <p className="mt-1 text-sm text-muted-foreground">24/7 emergency response.</p>
             </Link>
           </div>
         </div>
@@ -310,62 +248,34 @@ export default function PumpInstallationRepairsPage() {
           </div>
 
           <div className="relative min-h-[320px] overflow-hidden rounded-2xl">
-            <Image
+            <WatermarkedImage
               src="/water_pump_services.jpg"
-              alt="ZECO Construction pump technician servicing a water pump in Gauteng"
-              fill
+              alt="Borehole Works pump technician servicing a water pump in Gauteng"
+              className="h-full"
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
-              loading="lazy"
             />
           </div>
-        </div>
-      </section>
-
-      {/* TRUST STRIP */}
-      <section className="border-y border-border bg-card py-10">
-        <div className="container mx-auto px-4 lg:px-8">
-          <ul className="grid gap-6 text-sm sm:grid-cols-3">
-            <li className="flex items-center gap-3">
-              <Wrench className="h-6 w-6 shrink-0 text-secondary" aria-hidden="true" />
-              <span>Repairs & installs, all pump types</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Gauge className="h-6 w-6 shrink-0 text-secondary" aria-hidden="true" />
-              <span>Submersible & borehole specialists</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <ShieldCheck className="h-6 w-6 shrink-0 text-secondary" aria-hidden="true" />
-              <span>Itemised quote before work starts</span>
-            </li>
-          </ul>
         </div>
       </section>
 
       {/* AREAS */}
       <section className="bg-muted py-14">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-bold">
-            <MapPin className="h-6 w-6 text-secondary" aria-hidden="true" />
-            Where we work
-          </h2>
+          <h2 className="text-2xl font-bold">Where we work</h2>
           <ul className="mt-6 flex flex-wrap gap-2">
             {areas.map((area) => (
-              <li
-                key={area}
-                className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium"
-              >
+              <li key={area} className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium">
                 {area}
               </li>
             ))}
           </ul>
           <p className="mt-6 text-sm text-muted-foreground">
-            Not on the list? Call {PHONE_DISPLAY} and we will tell you straight away whether we cover you.
+            Not on the list? Call {PHONE_DISPLAY} and we'll tell you straight away whether we cover you.
           </p>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ PREVIEW - links to full FAQ page */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto max-w-3xl px-4 lg:px-8">
           <h2 className="text-3xl font-bold">Questions we get asked first</h2>
@@ -379,24 +289,21 @@ export default function PumpInstallationRepairsPage() {
               </details>
             ))}
           </div>
+          <Link href="/faq#pumps" className="mt-6 inline-block text-sm font-semibold text-accent hover:underline">
+            See all borehole & pump FAQs →
+          </Link>
         </div>
       </section>
 
       {/* CLOSING CTA */}
-      <section className="bg-foreground py-16 text-background">
+      <section className="bg-primary py-16 text-primary-foreground">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="text-3xl font-bold lg:text-4xl">Pump not working? Let's get it sorted.</h2>
-          <p className="mx-auto mt-4 max-w-xl text-background/80">
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
             Call now for an honest repair-or-replace answer, or send us a photo on WhatsApp and we'll tell
             you what it needs.
           </p>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            onClick={trackCallClick}
-            className="mt-6 inline-block text-4xl font-bold tabular-nums hover:underline sm:text-5xl"
-          >
-            {PHONE_DISPLAY}
-          </a>
+          <BigPhoneLink />
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <CallButton size="lg" />
             <WhatsAppCta size="lg" label="WhatsApp us" />
@@ -404,25 +311,23 @@ export default function PumpInstallationRepairsPage() {
         </div>
       </section>
 
-      {/* Padding so the sticky mobile bar never covers the last CTA */}
       <div className="h-20 md:hidden" aria-hidden="true" />
       <StickyCallBar />
 
-      {/* Structured data: local service plus FAQ rich result */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "@id": "https://www.zecoconstruction.co.za/pump-installation-repairs#service",
+            "@id": "https://www.boreholeworks.co.za/pump-installation-repairs#service",
             name: "Pump Installation & Repairs",
             serviceType: "Water pump installation and repair",
             provider: {
-              "@type": "Plumber",
-              name: "ZECO Construction",
-              telephone: "+27-74-850-9727",
-              image: "https://www.zecoconstruction.co.za/pump_installation_hero.jpg",
+              "@type": "LocalBusiness",
+              name: "Borehole Works",
+              telephone: "+27-72-411-5472",
+              image: "https://www.boreholeworks.co.za/pump_installation_hero.jpg",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Johannesburg",
@@ -431,7 +336,7 @@ export default function PumpInstallationRepairsPage() {
               },
             },
             areaServed: areas.map((a) => ({ "@type": "City", name: a })),
-            url: "https://www.zecoconstruction.co.za/pump-installation-repairs",
+            url: "https://www.boreholeworks.co.za/pump-installation-repairs",
           }),
         }}
       />
