@@ -7,24 +7,23 @@ import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
-import { GoogleAdsTag } from "@/components/google-ads-tag"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.zecoconstruction.co.za"),
+  metadataBase: new URL("https://www.boreholeworks.co.za"),
   title: {
-    default: "ZECO Construction | Building, Infrastructure & Maintenance in Gauteng",
-    template: "%s | ZECO Construction - Gauteng's Trusted Building Partner",
+    default: "Borehole Works | Borehole Drilling, Pumps & Water Systems in Gauteng",
+    template: "%s | Borehole Works - Gauteng's Water & Pump Specialists",
   },
   description:
-    "ZECO Construction delivers comprehensive building, property maintenance, civil works, paving, security, electrical, plumbing, solar, and renovation services in Gauteng, Pretoria & Johannesburg. One trusted partner from foundation to finish.",
+    "Borehole Works provides borehole drilling, pump installation, solar borehole pumps, irrigation systems, JoJo water tanks, and plumbing services across Gauteng, Pretoria & Johannesburg. Reliable water systems, done right the first time.",
   keywords:
-    "construction Gauteng, building contractor Pretoria, property maintenance Johannesburg, civil works South Africa, paving contractor Gauteng, electrical services Pretoria, plumbing Johannesburg, solar installation Gauteng, renovations Sandton, security systems Midrand, roofing Centurion, waterproofing Gauteng, ZECO Construction",
-  authors: [{ name: "ZECO Construction", url: "https://www.zecoconstruction.co.za" }],
-  creator: "ZECO Construction",
-  publisher: "ZECO Construction",
-  applicationName: "ZECO Construction",
+    "borehole drilling Gauteng, borehole pump installation Pretoria, solar borehole pumps Johannesburg, irrigation systems Gauteng, JoJo tank installation Pretoria, water tank installer Johannesburg, plumbing services Gauteng, geyser installation Centurion, blocked drains Gauteng, Borehole Works",
+  authors: [{ name: "Borehole Works", url: "https://www.boreholeworks.co.za" }],
+  creator: "Borehole Works",
+  publisher: "Borehole Works",
+  applicationName: "Borehole Works",
   robots: {
     index: true,
     follow: true,
@@ -36,7 +35,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  // Enhanced favicon and icons for Google Search results
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -47,56 +45,45 @@ export const metadata: Metadata = {
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
     other: [
-      { rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#f26a1b" },
+      { rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#26282B" },
     ],
   },
   manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_ZA",
-    url: "https://www.zecoconstruction.co.za",
-    siteName: "ZECO Construction",
-    title: "ZECO Construction | Building, Infrastructure & Maintenance in Gauteng",
+    url: "https://www.boreholeworks.co.za",
+    siteName: "Borehole Works",
+    title: "Borehole Works | Borehole Drilling, Pumps & Water Systems in Gauteng",
     description:
-      "Gauteng's trusted building partner for construction, maintenance, civil works, security, and energy solutions. Serving Pretoria, Johannesburg & surrounds.",
+      "Gauteng's trusted borehole and water systems specialists. Drilling, pump installation, solar pumps, irrigation, water tanks and plumbing. Serving Pretoria, Johannesburg & surrounds.",
     images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "ZECO Construction - Building & Infrastructure Solutions in Gauteng",
-      },
       {
         url: "/logo-square.png",
         width: 512,
         height: 512,
-        alt: "ZECO Construction Logo",
+        alt: "Borehole Works Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@zecoconstruction",
-    creator: "@zecoconstruction",
-    title: "ZECO Construction | Building & Infrastructure Gauteng",
+    title: "Borehole Works | Borehole Drilling & Water Systems Gauteng",
     description:
-      "Integrated construction, infrastructure, maintenance & security solutions in Gauteng. Serving Pretoria, Johannesburg & surrounds.",
-    images: ["/og-image.jpg"],
+      "Borehole drilling, pump installation, solar pumps, irrigation, water tanks and plumbing across Gauteng. Serving Pretoria, Johannesburg & surrounds.",
+    images: ["/logo-square.png"],
   },
   alternates: {
-    canonical: "https://www.zecoconstruction.co.za",
+    canonical: "https://www.boreholeworks.co.za",
   },
-  // Verification tags (add your verification codes when ready)
   verification: {
     google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-    // bing: "your-bing-verification-code",
   },
-  category: "Construction & Infrastructure",
+  category: "Water & Pump Services",
   other: {
     "geo.region": "ZA-GP",
     "geo.placename": "Gauteng, South Africa",
-    "geo.position": "-26.1076;28.0567", // Gauteng coordinates
+    "geo.position": "-26.1076;28.0567",
     "ICBM": "-26.1076, 28.0567",
   },
 }
@@ -109,8 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en-ZA">
       <head>
-        {/* Additional meta tags for better indexing */}
-        <meta name="theme-color" content="#f26a1b" />
+        <meta name="theme-color" content="#26282B" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=yes" />
@@ -122,11 +108,10 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "ZECO Construction",
-              url: "https://www.zecoconstruction.co.za",
-              logo: "https://www.zecoconstruction.co.za/logo.png",
-              image: "https://www.zecoconstruction.co.za/og-image.jpg",
-              description: "Comprehensive construction, infrastructure, and maintenance solutions in Gauteng",
+              name: "Borehole Works",
+              url: "https://www.boreholeworks.co.za",
+              logo: "https://www.boreholeworks.co.za/logo-icon.png",
+              description: "Borehole drilling, pump installation, solar borehole pumps, irrigation systems, water tanks and plumbing services in Gauteng",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Johannesburg",
@@ -139,13 +124,9 @@ export default function RootLayout({
                 longitude: 28.0567,
               },
               areaServed: ["Gauteng", "Pretoria", "Johannesburg", "Sandton", "Midrand", "Centurion"],
-              sameAs: [
-                "https://www.facebook.com/zecoconstruction",
-                "https://www.instagram.com/zecoconstruction",
-              ],
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+27-74-850-9727",
+                telephone: "+27-72-411-5472",
                 contactType: "Customer Service",
                 areaServed: "ZA",
                 availableLanguage: ["en"],
@@ -161,11 +142,11 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "@id": "https://www.zecoconstruction.co.za",
-              name: "ZECO Construction",
-              image: "https://www.zecoconstruction.co.za/logo.png",
-              url: "https://www.zecoconstruction.co.za",
-              telephone: "+27-74-850-9727",
+              "@id": "https://www.boreholeworks.co.za",
+              name: "Borehole Works",
+              image: "https://www.boreholeworks.co.za/logo-icon.png",
+              url: "https://www.boreholeworks.co.za",
+              telephone: "+27-72-411-5472",
               priceRange: "$$",
               address: {
                 "@type": "PostalAddress",
@@ -184,10 +165,6 @@ export default function RootLayout({
                 opens: "08:00",
                 closes: "17:00",
               },
-              sameAs: [
-                "https://www.facebook.com/zecoconstruction",
-                "https://www.instagram.com/zecoconstruction",
-              ],
             }),
           }}
         />
@@ -199,7 +176,6 @@ export default function RootLayout({
           <Footer />
         </div>
         <WhatsAppButton />
-        <GoogleAdsTag />
         <Analytics />
         <SpeedInsights />
       </body>
