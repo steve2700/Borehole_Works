@@ -3,8 +3,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 const areas = [
-  { name: "Pretoria", href: "/service-areas/pretoria", highlight: true, suburbs: ["Centurion", "Montana", "Hatfield", "Silverton", "Brooklyn"] },
-  { name: "Johannesburg", href: "/service-areas/johannesburg", highlight: true, suburbs: ["Sandton", "Rosebank", "Fourways", "Randburg", "Roodepoort"] },
+  { name: "Pretoria", href: "/service-areas/pretoria", suburbs: ["Centurion", "Montana", "Hatfield", "Silverton", "Brooklyn"] },
+  { name: "Johannesburg", href: "/service-areas/johannesburg", suburbs: ["Sandton", "Rosebank", "Fourways", "Randburg", "Roodepoort"] },
   { name: "Midrand", href: "/service-areas/midrand", suburbs: ["Carlswald", "Halfway House", "Waterfall Estate"] },
   { name: "Sandton", href: "/service-areas/sandton", suburbs: ["Morningside", "Rivonia", "Bryanston"] },
   { name: "Centurion", href: "/service-areas/centurion", suburbs: ["Highveld", "Eldoraigne", "Irene"] },
@@ -83,38 +83,20 @@ export function ServiceAreasPreview() {
             <strong>Borehole Works</strong> provides borehole drilling, pump installation, and water system services throughout Gauteng, including <strong>Pretoria, Johannesburg, Midrand</strong> and surrounding areas.
           </p>
 
-          <ul className="mb-8 flex flex-col items-center gap-2">
+          <ul className="mb-8 flex flex-col items-center gap-1.5">
             {benefits.map((benefit) => (
-              <li key={benefit} className="flex items-start gap-3 text-muted-foreground">
-                <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" aria-hidden="true" />
+              <li key={benefit} className="text-muted-foreground">
                 {benefit}
               </li>
             ))}
           </ul>
-
-          <div className="mb-8 flex flex-wrap justify-center gap-2">
-            {areas.map((area) => (
-              <Link
-                key={area.name}
-                href={area.href}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                  area.highlight
-                    ? "bg-accent text-accent-foreground hover:bg-accent/90"
-                    : "bg-muted text-foreground hover:bg-accent/10 hover:text-accent border border-border"
-                }`}
-                itemProp="areaServed"
-              >
-                {area.name}
-              </Link>
-            ))}
-          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg h-12 px-8 transition-transform hover:scale-105">
               <Link href="/service-areas">View All Service Areas</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-accent/30 hover:bg-accent/10 h-12 px-8 transition-transform hover:scale-105">
-              <Link href="tel:+27724115472">Call: 072 411 5472</Link>
+              <Link href="tel:+27724115472">Speak to a Specialist — 072 411 5472</Link>
             </Button>
           </div>
         </div>
