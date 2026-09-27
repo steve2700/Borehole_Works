@@ -29,11 +29,14 @@ export function ImageMarquee({
         {[...images, ...images].map((img, i) => (
           <div key={i} className="relative mx-2 h-48 w-72 flex-shrink-0 overflow-hidden rounded-2xl">
             <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="288px" />
-            <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded-md bg-black/60 px-1.5 py-0.5 backdrop-blur-sm">
-              <div className="relative h-3 w-3 overflow-hidden rounded-sm">
-                <Image src="/logo-icon.png" alt="" fill sizes="12px" className="object-cover" />
-              </div>
-              <span className="text-[8px] font-semibold uppercase tracking-wide text-white">Borehole Works</span>
+            <div className="absolute bottom-2 right-2 h-5 w-5 drop-shadow-md">
+              <Image
+                src="/water_droplet_logo_transparent.png"
+                alt=""
+                fill
+                sizes="20px"
+                className="object-contain"
+              />
             </div>
           </div>
         ))}

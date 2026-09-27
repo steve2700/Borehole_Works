@@ -1,7 +1,8 @@
 // File path: app/gallery/page.tsx
-// Real Borehole Works project photos only. Every image carries a small
-// logo watermark badge so it's unmistakably our own work, not stock or a
-// supplier's catalogue.
+// Real Borehole Works project photos only. Most images carry a small water
+// droplet logo watermark so it's unmistakably our own work. Irrigation
+// photos are the exception: those source files already carry their own
+// watermark, so no droplet is layered on top of them.
 
 import type { Metadata } from "next"
 import Image from "next/image"
@@ -13,7 +14,7 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 export const metadata: Metadata = {
   title: "Project Gallery | Borehole Works Gauteng",
   description:
-    "Real completed jobs from Borehole Works: borehole drilling, pump installations, water tanks, solar systems and plumbing work across Pretoria, Johannesburg and Gauteng.",
+    "Real completed jobs from Borehole Works: borehole drilling, pump installations, water tanks, solar systems, irrigation and plumbing work across Pretoria, Johannesburg and Gauteng.",
 }
 
 function WatermarkedPhoto({
@@ -36,14 +37,43 @@ function WatermarkedPhoto({
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
-        <div className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-md bg-black/60 px-2 py-1 backdrop-blur-sm">
-          <div className="relative h-4 w-4 overflow-hidden rounded-sm">
-            <Image src="/logo-icon.png" alt="" fill sizes="16px" className="object-cover" />
-          </div>
-          <span className="text-[10px] font-semibold uppercase tracking-wide text-white">
-            Borehole Works
-          </span>
+        <div className="absolute bottom-2 right-2 h-7 w-7 drop-shadow-md">
+          <Image
+            src="/water_droplet_logo_transparent.png"
+            alt=""
+            fill
+            sizes="28px"
+            className="object-contain"
+          />
         </div>
+      </div>
+      <figcaption className="p-4 text-sm font-medium text-muted-foreground">{caption}</figcaption>
+    </figure>
+  )
+}
+
+// Plain version, no watermark - used only for irrigation photos,
+// since those source files already carry their own watermark
+function PlainPhoto({
+  src,
+  alt,
+  caption,
+}: {
+  src: string
+  alt: string
+  caption: string
+}) {
+  return (
+    <figure className="group overflow-hidden rounded-2xl border border-border bg-card">
+      <div className="relative aspect-[4/3]">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
       </div>
       <figcaption className="p-4 text-sm font-medium text-muted-foreground">{caption}</figcaption>
     </figure>
@@ -83,6 +113,13 @@ const solarWaterSolutions = [
   { src: "/Pump-and-tanks.jpg", caption: "Pump and water tank installation" },
 ]
 
+const irrigationSystems = [
+  { src: "/large_scale_drip_irrigation_farm.jpg", caption: "Large scale drip irrigation farm" },
+  { src: "/farm_workers_drip_irrigation.jpg", caption: "Farm workers in a drip irrigated field" },
+  { src: "/farmers_cultivating_drip_irrigated_crops.jpg", caption: "Farmers cultivating drip irrigated crops" },
+  { src: "/young_crops_drip_irrigation.jpg", caption: "Young crops under drip irrigation" },
+]
+
 const plumbingAndGeysers = [
   { src: "/emergency_plumber_Gauteng.jpg", caption: "Emergency plumbing callout" },
   { src: "/burst_pipe_centurion.jpg", caption: "Burst pipe repair, Centurion" },
@@ -94,15 +131,17 @@ const plumbingAndGeysers = [
 ]
 
 const categories = [
-  { title: "Borehole Drilling & Pumps", href: "/pump-installation-repairs", items: boreholesAndPumps },
-  { title: "Water Tank Installations", href: "/jojo-water-tank-installation", items: waterTanks },
-  { title: "Solar Water Solutions", href: "/solar-borehole-pumps", items: solarWaterSolutions },
-  { title: "Plumbing & Geysers", href: "/plumbing-services", items: plumbingAndGeysers },
+  { title: "Borehole Drilling & Pumps", href: "/pump-installation-repairs", items: boreholesAndPumps, watermark: true },
+  { title: "Water Tank Installations", href: "/jojo-water-tank-installation", items: waterTanks, watermark: true },
+  { title: "Solar Water Solutions", href: "/solar-borehole-pumps", items: solarWaterSolutions, watermark: true },
+  { title: "Irrigation Systems", href: "/irrigation-systems", items: irrigationSystems, watermark: false },
+  { title: "Plumbing & Geysers", href: "/plumbing-services", items: plumbingAndGeysers, watermark: true },
 ]
 
 const marqueeImages = [
   { src: "/borehole_drilling_water_gushing.jpg", alt: "Borehole drilling striking water" },
   { src: "/solar_borehole_pump_aerial_view.jpg", alt: "Aerial view of solar borehole pump" },
+  { src: "/large_scale_drip_irrigation_farm.jpg", alt: "Large scale drip irrigation farm" },
   { src: "/eco_water_tanks_installation.jpg", alt: "Eco water tanks installation" },
   { src: "/pump_systems_boreholes.jpg", alt: "Borehole pump system" },
   { src: "/jojo_tank_installation.jpg", alt: "Water tank on stand" },
@@ -178,7 +217,11 @@ export default function GalleryPage() {
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {category.items.map((item, index) => (
                 <ScrollReveal key={item.src} delay={(index % 4) * 100}>
-                  <WatermarkedPhoto src={item.src} alt={item.caption} caption={item.caption} />
+                  {category.watermark ? (
+                    <WatermarkedPhoto src={item.src} alt={item.caption} caption={item.caption} />
+                  ) : (
+                    <PlainPhoto src={item.src} alt={item.caption} caption={item.caption} />
+                  )}
                 </ScrollReveal>
               ))}
             </div>
