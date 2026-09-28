@@ -1,43 +1,33 @@
 // File path: app/geyser-installation-repairs/page.tsx
-// Clean URL: https://www.zecoconstruction.co.za/geyser-installation-repairs
-// Built the same way as /plumbing-services and /emergency-plumber-burst-pipes:
-// call and WhatsApp first, proof second, copy last.
+// Clean URL: https://www.boreholeworks.co.za/geyser-installation-repairs
 
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import {
-  Flame,
-  Sun,
-  Wrench,
-  ShieldCheck,
-  Timer,
-  CheckCircle2,
-  MapPin,
-  Droplets,
-} from "lucide-react"
-import { CallButton, WhatsAppCta, StickyCallBar, trackCallClick } from "@/components/plumbing-cta"
-import { PHONE_DISPLAY, PHONE_TEL } from "@/components/contact-info"
+import { CallButton, WhatsAppCta, StickyCallBar, HeroPhoneLink, BigPhoneLink, RequestQuoteLink } from "@/components/service-cta"
+import { WatermarkedImage } from "@/components/watermarked-image"
+import { ImageMarquee } from "@/components/image-marquee"
+import { PHONE_DISPLAY } from "@/components/contact-info"
 
 export const metadata: Metadata = {
   title: "Geyser Installation & Repairs Gauteng | Kwikot Certified",
   description:
-    "Electric, solar and Kwikot geyser installation and repairs in Pretoria, Johannesburg, Midrand and Centurion. Same-day installs, COC issued, insurance claims handled. Call 074 850 9727.",
+    "Electric, solar and Kwikot geyser installation and repairs in Pretoria, Johannesburg, Midrand and Centurion. Same-day installs, insurance claims handled. Call 072 411 5472.",
   keywords:
     "geyser installation Gauteng, Kwikot geyser installation, solar geyser installation Pretoria, geyser repairs Johannesburg, geyser replacement Midrand, electric geyser installation",
   alternates: {
-    canonical: "https://www.zecoconstruction.co.za/geyser-installation-repairs",
+    canonical: "https://www.boreholeworks.co.za/geyser-installation-repairs",
   },
   openGraph: {
-    title: "Geyser Installation & Repairs Gauteng | Kwikot Certified",
+    title: "Geyser Installation & Repairs Gauteng | Borehole Works",
     description:
-      "Electric, solar and Kwikot geyser installation and repairs across Gauteng. Same-day quotes, licensed installers, full compliance certification.",
+      "Electric, solar and Kwikot geyser installation and repairs across Gauteng. Same-day quotes, licensed installers.",
     images: [
       {
         url: "/geyser-installation.jpg",
         width: 1200,
         height: 630,
-        alt: "Geyser installation by ZECO Construction in Gauteng",
+        alt: "Geyser installation by Borehole Works in Gauteng",
       },
     ],
   },
@@ -71,8 +61,8 @@ const jobs = [
   {
     title: "Insurance geyser replacements",
     image: "/burst_pipe_centurion.jpg",
-    alt: "Insurance geyser replacement handled by ZECO Construction",
-    copy: "Assessment report, photos and COC supplied so your claim closes without you chasing paperwork.",
+    alt: "Insurance geyser replacement handled by Borehole Works",
+    copy: "Assessment report and photos supplied so your claim closes without you chasing paperwork.",
   },
   {
     title: "Annual servicing",
@@ -82,23 +72,23 @@ const jobs = [
   },
 ]
 
+const marqueeImages = [
+  { src: "/geyser-installation.jpg", alt: "Geyser installation" },
+  { src: "/kwikot_geyser_installation.jpg", alt: "Kwikot geyser installation" },
+  { src: "/solar_geyser_installation_pretoria.jpg", alt: "Solar geyser installation, Pretoria" },
+  { src: "/apollo_solar_geyser_installation.jpg", alt: "Apollo solar geyser installation" },
+  { src: "/professional-plumber-working-on-pipes-installation.jpg", alt: "Plumber repairing a geyser" },
+]
+
 const areas = [
-  "Pretoria",
-  "Centurion",
-  "Midrand",
-  "Johannesburg",
-  "Sandton",
-  "Randburg",
-  "Fourways",
-  "Rosebank",
-  "Bedfordview",
-  "Roodepoort",
+  "Pretoria", "Centurion", "Midrand", "Johannesburg", "Sandton",
+  "Randburg", "Fourways", "Rosebank", "Bedfordview", "Roodepoort",
 ]
 
 const faqs = [
   {
     q: "Can you install a new geyser the same day?",
-    a: "Often, yes. Where stock and roof access allow, we can remove the old unit and have a new one installed and certified the same day, so your household isn't without hot water any longer than necessary.",
+    a: "Often, yes. Where stock and roof access allow, we can remove the old unit and have a new one installed the same day, so your household isn't without hot water any longer than necessary.",
   },
   {
     q: "How do you decide what size geyser I need?",
@@ -110,11 +100,7 @@ const faqs = [
   },
   {
     q: "Is a geyser burst covered by insurance?",
-    a: "Most household policies cover a burst geyser and the resulting damage. We supply the assessment report and photos your insurer asks for, install the replacement, and issue the COC so the claim goes through cleanly.",
-  },
-  {
-    q: "Do you issue a Certificate of Compliance?",
-    a: "Yes, on every installation and replacement, to SANS 10254. You'll need this for insurance validity and for a property transfer, and we hand it over as soon as the job is done.",
+    a: "Most household policies cover a burst geyser and the resulting damage. We supply the assessment report and photos your insurer asks for, and install the replacement so the claim goes through cleanly.",
   },
   {
     q: "Does a solar geyser actually work during load shedding?",
@@ -129,7 +115,7 @@ export default function GeyserInstallationPage() {
       <section className="relative isolate overflow-hidden">
         <Image
           src="/geyser-installation.jpg"
-          alt="ZECO Construction geyser installation in Gauteng"
+          alt="Borehole Works geyser installation in Gauteng"
           fill
           priority
           sizes="100vw"
@@ -139,8 +125,7 @@ export default function GeyserInstallationPage() {
 
         <div className="container mx-auto px-4 py-16 lg:px-8 lg:py-28">
           <div className="max-w-2xl text-white">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-secondary/20 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-secondary/50">
-              <Flame className="h-4 w-4" aria-hidden="true" />
+            <p className="mb-4 inline-flex items-center rounded-full bg-accent/20 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-accent/50">
               Certified Kwikot installers, same-day installs available
             </p>
 
@@ -153,50 +138,26 @@ export default function GeyserInstallationPage() {
               tell you honestly whether it needs a repair or a replacement, then get it sorted properly.
             </p>
 
-            <a
-              href={`tel:${PHONE_TEL}`}
-              onClick={trackCallClick}
-              className="group mt-8 flex items-center gap-4 text-white"
-              aria-label={`Call ZECO Construction on ${PHONE_DISPLAY}`}
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                <Flame className="h-6 w-6" aria-hidden="true" />
-              </span>
-              <span>
-                <span className="block text-sm uppercase tracking-wide text-white/70">Speak to a plumber now</span>
-                <span className="block text-3xl font-bold tabular-nums group-hover:underline sm:text-4xl">
-                  {PHONE_DISPLAY}
-                </span>
-              </span>
-            </a>
+            <HeroPhoneLink label="Speak to a plumber now" />
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <CallButton size="lg" />
               <WhatsAppCta size="lg" label="WhatsApp us a photo" />
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-xl border border-white/40 px-7 py-4 text-base font-semibold text-white transition hover:bg-white/10 md:text-lg"
-              >
-                Request a quote
-              </Link>
+              <RequestQuoteLink />
             </div>
 
             <ul className="mt-10 grid gap-3 text-sm text-white/85 sm:grid-cols-3">
-              <li className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                COC issued on every install
-              </li>
-              <li className="flex items-center gap-2">
-                <Timer className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Same-day installs available
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
-                Insurance claims handled
-              </li>
+              <li>Certified Kwikot installer</li>
+              <li>Same-day installs available</li>
+              <li>Insurance claims handled</li>
             </ul>
           </div>
         </div>
+      </section>
+
+      {/* MOVING IMAGE STRIP */}
+      <section className="bg-muted py-10">
+        <ImageMarquee images={marqueeImages} name="geyser" direction="right" speed={38} />
       </section>
 
       {/* WHAT WE INSTALL AND FIX, WITH REAL PHOTOS */}
@@ -211,19 +172,8 @@ export default function GeyserInstallationPage() {
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {jobs.map((job) => (
-              <article
-                key={job.title}
-                className="overflow-hidden rounded-2xl border border-border bg-card"
-              >
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src={job.image}
-                    alt={job.alt}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
+              <article key={job.title} className="overflow-hidden rounded-2xl border border-border bg-card">
+                <WatermarkedImage src={job.image} alt={job.alt} className="aspect-[4/3]" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold">{job.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{job.copy}</p>
@@ -239,29 +189,20 @@ export default function GeyserInstallationPage() {
         </div>
       </section>
 
-      {/* DEEPER PAGES, KEEPS ADS QUALITY SCORE AND INTERNAL LINKING */}
+      {/* INTERNAL LINKING */}
       <section className="border-y border-border bg-muted py-14">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-2xl font-bold">Looking for something else?</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <Link
-              href="/emergency-plumber-burst-pipes"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
+            <Link href="/emergency-plumber-burst-pipes" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
               <h3 className="font-bold">Geyser burst right now?</h3>
               <p className="mt-1 text-sm text-muted-foreground">24/7 emergency response, water stopped fast.</p>
             </Link>
-            <Link
-              href="/plumbing-services"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
+            <Link href="/plumbing-services" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
               <h3 className="font-bold">All plumbing services</h3>
               <p className="mt-1 text-sm text-muted-foreground">Everything we do, callouts and scheduled work.</p>
             </Link>
-            <Link
-              href="/blocked-drains-unblocking"
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-secondary"
-            >
+            <Link href="/blocked-drains-unblocking" className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent">
               <h3 className="font-bold">Blocked drains</h3>
               <p className="mt-1 text-sm text-muted-foreground">Jetting and CCTV inspection.</p>
             </Link>
@@ -292,8 +233,8 @@ export default function GeyserInstallationPage() {
               <div>
                 <dt className="font-bold">Insurance-ready from day one</dt>
                 <dd className="mt-1 text-muted-foreground">
-                  Assessment reports, photos and a Certificate of Compliance are supplied as standard, so a
-                  claim doesn't stall waiting on paperwork from us.
+                  Assessment reports and photos are supplied as standard, so a claim doesn't stall waiting
+                  on paperwork from us.
                 </dd>
               </div>
               <div>
@@ -307,12 +248,11 @@ export default function GeyserInstallationPage() {
           </div>
 
           <div className="relative min-h-[320px] overflow-hidden rounded-2xl">
-            <Image
+            <WatermarkedImage
               src="/solar_geyser_installation_pretoria.jpg"
-              alt="Solar geyser installation completed by ZECO Construction in Pretoria"
-              fill
+              alt="Solar geyser installation completed by Borehole Works in Pretoria"
+              className="h-full"
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
             />
           </div>
         </div>
@@ -321,27 +261,21 @@ export default function GeyserInstallationPage() {
       {/* AREAS */}
       <section className="bg-muted py-14">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-bold">
-            <MapPin className="h-6 w-6 text-secondary" aria-hidden="true" />
-            Where we install and service
-          </h2>
+          <h2 className="text-2xl font-bold">Where we install and service</h2>
           <ul className="mt-6 flex flex-wrap gap-2">
             {areas.map((area) => (
-              <li
-                key={area}
-                className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium"
-              >
+              <li key={area} className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium">
                 {area}
               </li>
             ))}
           </ul>
           <p className="mt-6 text-sm text-muted-foreground">
-            Not on the list? Call {PHONE_DISPLAY} and we will tell you straight away whether we cover you.
+            Not on the list? Call {PHONE_DISPLAY} and we'll tell you straight away whether we cover you.
           </p>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ PREVIEW */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto max-w-3xl px-4 lg:px-8">
           <h2 className="text-3xl font-bold">Questions we get asked first</h2>
@@ -355,23 +289,20 @@ export default function GeyserInstallationPage() {
               </details>
             ))}
           </div>
+          <Link href="/faq#general" className="mt-6 inline-block text-sm font-semibold text-accent hover:underline">
+            See all FAQs →
+          </Link>
         </div>
       </section>
 
       {/* CLOSING CTA */}
-      <section className="bg-foreground py-16 text-background">
+      <section className="bg-primary py-16 text-primary-foreground">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="text-3xl font-bold lg:text-4xl">No hot water? Let's get that sorted.</h2>
-          <p className="mx-auto mt-4 max-w-xl text-background/80">
-            Call now and speak to a plumber, or send a photo on WhatsApp and we will tell you what it needs.
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
+            Call now and speak to a plumber, or send a photo on WhatsApp and we'll tell you what it needs.
           </p>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            onClick={trackCallClick}
-            className="mt-6 inline-block text-4xl font-bold tabular-nums hover:underline sm:text-5xl"
-          >
-            {PHONE_DISPLAY}
-          </a>
+          <BigPhoneLink />
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <CallButton size="lg" />
             <WhatsAppCta size="lg" label="WhatsApp us" />
@@ -379,22 +310,20 @@ export default function GeyserInstallationPage() {
         </div>
       </section>
 
-      {/* Padding so the sticky mobile bar never covers the last CTA */}
       <div className="h-20 md:hidden" aria-hidden="true" />
       <StickyCallBar />
 
-      {/* Structured data: local geyser service plus FAQ rich result */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Plumber",
-            "@id": "https://www.zecoconstruction.co.za/geyser-installation-repairs#plumber",
-            name: "ZECO Construction Geyser Installation & Repairs",
-            url: "https://www.zecoconstruction.co.za/geyser-installation-repairs",
-            telephone: "+27-74-850-9727",
-            image: "https://www.zecoconstruction.co.za/geyser-installation.jpg",
+            "@id": "https://www.boreholeworks.co.za/geyser-installation-repairs#plumber",
+            name: "Borehole Works Geyser Installation & Repairs",
+            url: "https://www.boreholeworks.co.za/geyser-installation-repairs",
+            telephone: "+27-72-411-5472",
+            image: "https://www.boreholeworks.co.za/geyser-installation.jpg",
             priceRange: "$$",
             address: {
               "@type": "PostalAddress",
@@ -406,15 +335,7 @@ export default function GeyserInstallationPage() {
             openingHoursSpecification: [
               {
                 "@type": "OpeningHoursSpecification",
-                dayOfWeek: [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday",
-                  "Sunday",
-                ],
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                 opens: "00:00",
                 closes: "23:59",
               },
