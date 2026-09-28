@@ -27,6 +27,8 @@ export function ScrollReveal({
   variant?: Variant
   className?: string
 }) {
+  // The outer node is what we observe. It is never clipped or hidden,
+  // so the observer can always see it. Only the inner node animates.
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
 
@@ -34,7 +36,10 @@ export function ScrollReveal({
     const node = ref.current
     if (!node) return
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      typeof IntersectionObserver === "undefined"
+    ) {
       setVisible(true)
       return
     }
@@ -46,7 +51,7 @@ export function ScrollReveal({
           observer.disconnect()
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     )
 
     observer.observe(node)
@@ -54,15 +59,16 @@ export function ScrollReveal({
   }, [])
 
   return (
-    <div
-      ref={ref}
-      className={`transition-all ease-out ${variant === "wipe" ? "duration-1000" : "duration-700"} ${className ?? ""}`}
-      style={{
-        ...(visible ? shownStyles[variant] : hiddenStyles[variant]),
-        transitionDelay: `${delay}ms`,
-      }}
-    >
-      {children}
+    <div ref={ref} className={className}>
+      <div
+        className={`h-full transition-all ease-out ${variant === "wipe" ? "duration-1000" : "duration-700"}`}
+        style={{
+          ...(visible ? shownStyles[variant] : hiddenStyles[variant]),
+          transitionDelay: `${delay}ms`,
+        }}
+      >
+        {children}
+      </div>
     </div>
   )
 }
