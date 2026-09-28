@@ -52,6 +52,16 @@ export function AreaCallDesk({
     track("area_contact", { channel, area: areaName, place: place ?? "not set", job: job ?? "not set" })
   }
 
+  const rows = [
+    { key: "area", label: "Area", value: areaName as string | null },
+    {
+      key: "place",
+      label: placeLabel.replace("Your ", "").replace(/^./, (c) => c.toUpperCase()),
+      value: place,
+    },
+    { key: "job", label: "Job", value: job },
+  ]
+
   return (
     <section id={id} aria-labelledby={`${id}-heading`} className="scroll-mt-24 bg-primary text-primary-foreground">
       <div className="container mx-auto grid gap-12 px-4 py-16 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:py-24">
@@ -103,12 +113,8 @@ export function AreaCallDesk({
               </div>
 
               <dl className="job-card-lines mt-1 text-sm" aria-live="polite">
-                {[
-                  { label: "Area", value: areaName },
-                  { label: placeLabel.replace("Your ", "").replace(/^./, (c) => c.toUpperCase()), value: place },
-                  { label: "Job", value: job },
-                ].map((row) => (
-                  <div key={row.label} className="flex h-12 items-center justify-between gap-4">
+                {rows.map((row) => (
+                  <div key={row.key} className="flex h-12 items-center justify-between gap-4">
                     <dt className="text-muted-foreground">{row.label}</dt>
                     <dd key={row.value ?? "empty"} className="area-card-in text-right font-semibold">
                       {row.value ?? <span className="font-normal text-muted-foreground/70">Not picked yet</span>}

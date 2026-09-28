@@ -1,677 +1,318 @@
 // File path: app/privacy-policy/page.tsx
-// Clean URL: https://www.zecoconstruction.co.za/privacy-policy
+// Clean URL: https://www.boreholeworks.co.za/privacy-policy
 
 import type { Metadata } from "next"
-import { Shield, Lock, Eye, FileText, Mail, Phone, MapPin } from "lucide-react"
+import type { ReactNode } from "react"
+import { EMAIL, PHONE_DISPLAY, PHONE_TEL } from "@/components/contact-info"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | ZECO Construction - POPIA Compliant",
+  title: "Privacy Policy | Borehole Works - POPIA Compliant",
   description:
-    "Privacy Policy for ZECO Construction (Pty) Ltd. Learn how we collect, use, and protect your personal information in compliance with POPIA (Protection of Personal Information Act, 2013).",
+    "Privacy Policy for Borehole Works. Learn how we collect, use and protect your personal information in line with the Protection of Personal Information Act, 2013 (POPIA).",
+  alternates: {
+    canonical: "https://www.boreholeworks.co.za/privacy-policy",
+  },
   robots: "index, follow",
+}
+
+const EFFECTIVE_DATE = "September 28, 2026"
+
+function Section({ number, title, children }: { number: number; title: string; children: ReactNode }) {
+  return (
+    <section className="border-t border-border py-10 first:border-t-0 first:pt-0">
+      <h2 className="flex items-baseline gap-4 text-2xl font-bold tracking-tight">
+        <span className="text-sm font-bold text-accent">{String(number).padStart(2, "0")}</span>
+        {title}
+      </h2>
+      <div className="mt-5 space-y-4 leading-relaxed text-muted-foreground">{children}</div>
+    </section>
+  )
+}
+
+function Bullets({ items }: { items: ReactNode[] }) {
+  return (
+    <ul className="list-disc space-y-2 pl-6">
+      {items.map((item, i) => (
+        <li key={i}>{item}</li>
+      ))}
+    </ul>
+  )
+}
+
+function SubHeading({ children }: { children: ReactNode }) {
+  return <h3 className="pt-2 text-lg font-semibold text-foreground">{children}</h3>
 }
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary/10 to-background py-16 lg:py-24">
+    <>
+      {/* HERO */}
+      <section className="border-b border-border bg-muted py-14 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-6 flex justify-center">
-              <div className="rounded-full bg-primary/10 p-4">
-                <Shield className="h-12 w-12 text-primary" />
-              </div>
-            </div>
-            <h1 className="mb-4 text-4xl font-bold lg:text-5xl">Privacy Policy</h1>
-            <p className="text-lg text-muted-foreground">
-              ZECO Construction (Pty) Ltd
+          <div className="mx-auto max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Legal</p>
+            <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">Privacy Policy</h1>
+            <p className="mt-4 text-muted-foreground">Borehole Works · Effective {EFFECTIVE_DATE} · POPIA</p>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTENT */}
+      <div className="container mx-auto px-4 py-14 lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-3xl">
+          <Section number={1} title="Introduction">
+            <p>
+              Borehole Works ("we", "us", "our") is committed to protecting your privacy and personal information.
+              This Privacy Policy explains how we collect, use, share and protect your information when you visit our
+              website https://www.boreholeworks.co.za, contact us, or use our services.
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <FileText className="h-4 w-4" />
-                <span>Effective Date: July 30, 2026</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Lock className="h-4 w-4" />
-                <span>POPIA Compliant</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            <p>
+              This policy is written to comply with the Protection of Personal Information Act, 2013 (POPIA) and other
+              applicable South African data protection law.
+            </p>
+            <ul className="space-y-1">
+              <li>Location: Gauteng, South Africa</li>
+              <li>
+                Phone: <a href={`tel:${PHONE_TEL}`} className="font-semibold text-accent hover:underline">{PHONE_DISPLAY}</a>
+              </li>
+              <li>
+                Email: <a href={`mailto:${EMAIL}`} className="font-semibold text-accent hover:underline">{EMAIL}</a>
+              </li>
+            </ul>
+          </Section>
 
-      {/* Main Content */}
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mx-auto max-w-4xl">
-            
-            {/* Introduction */}
-            <div className="mb-12 rounded-xl bg-muted p-8">
-              <h2 className="mb-4 text-2xl font-bold">1. Introduction</h2>
-              <p className="mb-4 leading-relaxed text-muted-foreground">
-                ZECO Construction (Pty) Ltd ("we," "us," "our," or "ZECO Construction") is committed to protecting your privacy and personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website{" "}
-                <a href="https://www.zecoconstruction.co.za" className="text-primary hover:underline">
-                  https://www.zecoconstruction.co.za
+          <Section number={2} title="Information we collect">
+            <SubHeading>2.1 Information you give us</SubHeading>
+            <p>
+              We collect personal information you choose to share when you call us, message us on WhatsApp, email us,
+              send a job card from our website, request a quote or engage our services. This may include:
+            </p>
+            <Bullets
+              items={[
+                "Your name and surname",
+                "Your phone number and email address",
+                "Your physical address or suburb",
+                "Company name, for business clients",
+                "Property details and photos you send us",
+                "What you need help with",
+                "Payment details needed to process your job",
+              ]}
+            />
+
+            <SubHeading>2.2 Information collected automatically</SubHeading>
+            <p>When you visit our website, we and our service providers may automatically collect:</p>
+            <Bullets
+              items={[
+                "IP address and approximate location",
+                "Browser type, device and operating system",
+                "Pages visited, time spent and how you arrived on our site",
+                "Whether you clicked to call, WhatsApp or email us",
+              ]}
+            />
+
+            <SubHeading>2.3 Information from advertising platforms</SubHeading>
+            <p>
+              If you arrive from an advertisement, the advertising platform may tell us which ad or campaign brought
+              you to our website. We do not receive your identity from this.
+            </p>
+          </Section>
+
+          <Section number={3} title="How we use your information">
+            <Bullets
+              items={[
+                "Responding to enquiries and preparing quotations",
+                "Scheduling site visits, callouts and installations",
+                "Delivering, invoicing and following up on our services",
+                "Keeping records for warranty, accounting and legal purposes",
+                "Measuring how our website and advertising perform, and improving them",
+                "Communicating with you about your job",
+                "Protecting our rights and preventing fraud",
+              ]}
+            />
+          </Section>
+
+          <Section number={4} title="Lawful basis for processing">
+            <p>We process personal information on these grounds under POPIA:</p>
+            <Bullets
+              items={[
+                <><strong className="text-foreground">Consent</strong>, where you have given it for a specific purpose.</>,
+                <><strong className="text-foreground">Contract</strong>, where processing is needed to deliver the service you asked for.</>,
+                <><strong className="text-foreground">Legal obligation</strong>, where South African law requires us to keep or share information.</>,
+                <><strong className="text-foreground">Legitimate interests</strong>, where processing is needed to run our business and does not override your rights.</>,
+              ]}
+            />
+          </Section>
+
+          <Section number={5} title="Who we share information with">
+            <Bullets
+              items={[
+                "Subcontractors and specialists who help us complete your job",
+                "Suppliers, where needed to order materials for your job",
+                "Insurers, where you ask us to support a claim",
+                "Technology providers, including website hosting, analytics, and messaging and email services",
+                "Advertising platforms, in the form of anonymous conversion measurement",
+                "Authorities, advisers and auditors, where the law requires or permits it",
+              ]}
+            />
+            <p>
+              Messages you send us on WhatsApp are also processed by WhatsApp under its own terms and privacy policy.
+            </p>
+            <p className="font-semibold text-foreground">We do not sell your personal information.</p>
+          </Section>
+
+          <Section number={6} title="Data security">
+            <p>
+              We take reasonable technical and organisational steps to protect personal information from loss, misuse
+              and unauthorised access, including using reputable hosting with encrypted (HTTPS) connections, limiting
+              who can see client information, and keeping records only where we need them.
+            </p>
+            <p className="text-sm italic">
+              No method of transmission over the internet is completely secure, so we cannot guarantee absolute
+              security.
+            </p>
+          </Section>
+
+          <Section number={7} title="How long we keep information">
+            <Bullets
+              items={[
+                "Client records: for the duration of our relationship plus 5 years",
+                "Job records and documentation: 5 years after completion",
+                "Financial records: 5 years, as required by South African tax law",
+                "Marketing communications: until you unsubscribe or withdraw consent",
+              ]}
+            />
+            <p>After the retention period we securely delete or anonymise your information.</p>
+          </Section>
+
+          <Section number={8} title="Your rights under POPIA">
+            <p>You have the right to:</p>
+            <Bullets
+              items={[
+                "Ask what personal information we hold about you and get access to it",
+                "Ask us to correct inaccurate or incomplete information",
+                "Ask us to delete your information, subject to legal retention requirements",
+                "Object to us processing your information for certain purposes",
+                "Ask us to restrict processing in certain circumstances",
+                "Withdraw your consent where consent was the basis for processing",
+                "Lodge a complaint with the Information Regulator",
+              ]}
+            />
+            <p>
+              To use any of these rights, contact us at{" "}
+              <a href={`mailto:${EMAIL}`} className="font-semibold text-accent hover:underline">{EMAIL}</a> or{" "}
+              <a href={`tel:${PHONE_TEL}`} className="font-semibold text-accent hover:underline">{PHONE_DISPLAY}</a>.
+              We will respond within 30 days.
+            </p>
+          </Section>
+
+          <Section number={9} title="Cookies, analytics and advertising">
+            <p>
+              Our website uses analytics and performance tools to understand how visitors use the site and how fast it
+              loads. When we run Google Ads campaigns, we also use Google's conversion measurement to count calls,
+              WhatsApp chats and email clicks that come from our ads. These tools may use cookies or similar
+              technologies.
+            </p>
+            <p>
+              You can control cookies through your browser settings. Turning them off may affect how parts of the
+              website work.
+            </p>
+          </Section>
+
+          <Section number={10} title="Third-party links">
+            <p>
+              Our website links to third-party services such as WhatsApp and Google Maps. We are not responsible for
+              their privacy practices, so please review their policies before sharing personal information with them.
+            </p>
+          </Section>
+
+          <Section number={11} title="Children">
+            <p>
+              Our services are not directed at anyone under 18 and we do not knowingly collect personal information
+              from children. If you believe we have collected a child's information, please contact us and we will
+              delete it.
+            </p>
+          </Section>
+
+          <Section number={12} title="International data transfers">
+            <p>
+              We operate in South Africa, but some of our technology providers, such as website hosting, analytics and
+              Google, may process information outside the country. We choose reputable providers and take reasonable
+              steps to make sure your information stays protected in line with POPIA.
+            </p>
+          </Section>
+
+          <Section number={13} title="Marketing communications">
+            <p>
+              We only send marketing messages with your consent. You can opt out at any time by telling us by phone,
+              WhatsApp or email. You will still receive messages about your job, such as quotes and appointment
+              details.
+            </p>
+          </Section>
+
+          <Section number={14} title="Changes to this policy">
+            <p>
+              We may update this policy to reflect changes in our practices or the law. Updates are posted on this page
+              with a revised date. Please check back from time to time.
+            </p>
+          </Section>
+
+          <Section number={15} title="Contact and complaints">
+            <SubHeading>15.1 Information Officer</SubHeading>
+            <ul className="space-y-1">
+              <li>Information Officer: Borehole Works Management</li>
+              <li>
+                Email: <a href={`mailto:${EMAIL}`} className="font-semibold text-accent hover:underline">{EMAIL}</a>
+              </li>
+              <li>
+                Phone: <a href={`tel:${PHONE_TEL}`} className="font-semibold text-accent hover:underline">{PHONE_DISPLAY}</a>
+              </li>
+            </ul>
+
+            <SubHeading>15.2 Complaints process</SubHeading>
+            <ol className="list-decimal space-y-2 pl-6">
+              <li>Contact our Information Officer using the details above.</li>
+              <li>We will acknowledge your complaint within 5 business days.</li>
+              <li>We will investigate and respond within 30 days.</li>
+              <li>If you are not satisfied, you may lodge a complaint with the Information Regulator.</li>
+            </ol>
+
+            <SubHeading>15.3 Information Regulator (South Africa)</SubHeading>
+            <ul className="space-y-1">
+              <li>Address: JD House, 27 Stiemens Street, Braamfontein, Johannesburg, 2001</li>
+              <li>Phone: +27 10 023 5200</li>
+              <li>Email: inforeg@justice.gov.za</li>
+              <li>
+                Website:{" "}
+                <a href="https://www.justice.gov.za/inforeg/" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent hover:underline">
+                  https://www.justice.gov.za/inforeg/
                 </a>
-                , use our services, or interact with us.
-              </p>
-              <p className="mb-6 leading-relaxed text-muted-foreground">
-                This policy complies with the <strong>Protection of Personal Information Act, 2013 (POPIA)</strong> and other applicable South African data protection legislation.
-              </p>
+              </li>
+            </ul>
+          </Section>
 
-              <div className="space-y-2 rounded-lg bg-card p-6 border border-border">
-                <h3 className="mb-4 font-bold text-lg">Our Contact Details:</h3>
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Location</p>
-                    <p className="text-sm text-muted-foreground">Gauteng, South Africa</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Phone</p>
-                    <p className="text-sm text-muted-foreground">074 850 9727</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Email</p>
-                    <p className="text-sm text-muted-foreground">info@zecoconstruction.co.za</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <Section number={16} title="Consent">
+            <p>
+              By using our website and services, you agree to this Privacy Policy. Where POPIA requires it, we will
+              ask for your explicit consent for specific processing.
+            </p>
+            <p className="text-sm">Last updated and effective: {EFFECTIVE_DATE}</p>
+          </Section>
+        </div>
+      </div>
 
-            {/* Information We Collect */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">2. Information We Collect</h2>
-              
-              <div className="space-y-6">
-                <div>
-                  <h3 className="mb-3 text-xl font-semibold">2.1 Personal Information You Provide</h3>
-                  <p className="mb-4 leading-relaxed text-muted-foreground">
-                    We collect personal information that you voluntarily provide to us when you:
-                  </p>
-                  <ul className="mb-4 ml-6 space-y-2 list-disc text-muted-foreground">
-                    <li>Request a quote or consultation</li>
-                    <li>Contact us via phone, email, or contact forms</li>
-                    <li>Subscribe to our newsletter or marketing communications</li>
-                    <li>Create an account on our website</li>
-                    <li>Engage our services</li>
-                    <li>Provide feedback or reviews</li>
-                  </ul>
-                  <p className="mb-3 leading-relaxed text-muted-foreground">
-                    This information may include:
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {[
-                      "Full name and surname",
-                      "Email address",
-                      "Phone number(s)",
-                      "Physical address",
-                      "Company name (for commercial clients)",
-                      "Property details",
-                      "Service requirements and preferences",
-                      "Payment information",
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <div className="h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="mb-3 text-xl font-semibold">2.2 Information Automatically Collected</h3>
-                  <p className="mb-4 leading-relaxed text-muted-foreground">
-                    When you visit our website, we may automatically collect certain information, including:
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {[
-                      "IP address",
-                      "Browser type and version",
-                      "Device information",
-                      "Operating system",
-                      "Pages visited and time spent",
-                      "Referring website addresses",
-                      "Geographic location data",
-                      "Cookies and tracking technologies",
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Eye className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="mb-3 text-xl font-semibold">2.3 Information from Third Parties</h3>
-                  <p className="mb-4 leading-relaxed text-muted-foreground">
-                    We may receive information about you from third parties, such as:
-                  </p>
-                  <div className="space-y-2">
-                    {[
-                      "Social media platforms (Facebook, Instagram, Pinterest)",
-                      "Payment processors",
-                      "Marketing partners",
-                      "Publicly available sources",
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <div className="h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* How We Use Your Information */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">3. How We Use Your Information</h2>
-              
-              <div className="space-y-6">
-                {[
-                  {
-                    title: "3.1 Service Delivery",
-                    items: [
-                      "Processing service requests and quotations",
-                      "Scheduling appointments and site visits",
-                      "Delivering construction and maintenance services",
-                      "Managing projects and client relationships",
-                      "Communicating about your projects",
-                    ],
-                  },
-                  {
-                    title: "3.2 Business Operations",
-                    items: [
-                      "Processing payments and maintaining financial records",
-                      "Managing customer accounts",
-                      "Providing customer support",
-                      "Conducting quality assurance and project follow-ups",
-                      "Maintaining records for warranty and compliance purposes",
-                    ],
-                  },
-                  {
-                    title: "3.3 Marketing and Communications",
-                    items: [
-                      "Sending promotional materials and newsletters (with your consent)",
-                      "Informing you about new services and special offers",
-                      "Conducting customer satisfaction surveys",
-                      "Building and maintaining customer relationships",
-                    ],
-                  },
-                  {
-                    title: "3.4 Legal and Compliance",
-                    items: [
-                      "Complying with legal obligations and regulations",
-                      "Maintaining NHBRC, CIDB, and other certification requirements",
-                      "Protecting our legal rights and preventing fraud",
-                      "Responding to legal processes and government requests",
-                    ],
-                  },
-                  {
-                    title: "3.5 Website Improvement",
-                    items: [
-                      "Analyzing website usage and performance",
-                      "Improving user experience and functionality",
-                      "Developing new features and services",
-                      "Conducting research and analytics",
-                    ],
-                  },
-                ].map((section, index) => (
-                  <div key={index} className="rounded-lg bg-muted p-6">
-                    <h3 className="mb-3 text-lg font-semibold">{section.title}</h3>
-                    <ul className="space-y-2">
-                      {section.items.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <div className="h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0 mt-2" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Legal Basis */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">4. Legal Basis for Processing (POPIA Compliance)</h2>
-              <p className="mb-4 leading-relaxed text-muted-foreground">
-                We process your personal information based on the following lawful grounds:
-              </p>
-              <div className="grid md:grid-cols-2 gap-4">
-                {[
-                  {
-                    title: "Consent",
-                    description: "You have given explicit consent for specific purposes",
-                  },
-                  {
-                    title: "Contractual Necessity",
-                    description: "Processing is necessary to fulfill our service agreements",
-                  },
-                  {
-                    title: "Legal Obligation",
-                    description: "We must process your information to comply with South African law",
-                  },
-                  {
-                    title: "Legitimate Interests",
-                    description: "Processing is necessary for our legitimate business interests, provided your rights are not overridden",
-                  },
-                ].map((item, index) => (
-                  <div key={index} className="rounded-lg bg-muted p-6 border border-border">
-                    <h3 className="mb-2 font-semibold text-primary">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* How We Share Information */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">5. How We Share Your Information</h2>
-              
-              <div className="mb-6 space-y-6">
-                {[
-                  {
-                    title: "5.1 Service Providers and Contractors",
-                    items: [
-                      "Subcontractors and specialist tradespeople",
-                      "Suppliers and material vendors",
-                      "Professional consultants (engineers, architects)",
-                      "Payment processors",
-                    ],
-                  },
-                  {
-                    title: "5.2 Business Partners",
-                    items: [
-                      "Insurance providers",
-                      "Certification bodies (NHBRC, CIDB, ECSA)",
-                      "Industry associations",
-                    ],
-                  },
-                  {
-                    title: "5.3 Legal and Regulatory Authorities",
-                    items: [
-                      "Government agencies and regulators",
-                      "Law enforcement when legally required",
-                      "Legal advisors and auditors",
-                    ],
-                  },
-                  {
-                    title: "5.4 Third-Party Service Providers",
-                    items: [
-                      "Website hosting and maintenance providers",
-                      "Email service providers",
-                      "Marketing and analytics platforms",
-                      "Customer relationship management (CRM) systems",
-                    ],
-                  },
-                ].map((section, index) => (
-                  <div key={index}>
-                    <h3 className="mb-3 text-lg font-semibold">{section.title}</h3>
-                    <ul className="space-y-2 ml-4">
-                      {section.items.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <div className="h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0 mt-2" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-
-              <div className="rounded-lg bg-primary/10 p-6 border-2 border-primary/20">
-                <p className="font-semibold text-center">
-                  We do not sell your personal information to third parties.
-                </p>
-              </div>
-            </div>
-
-            {/* Data Security */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">6. Data Security</h2>
-              <p className="mb-4 leading-relaxed text-muted-foreground">
-                We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction, including:
-              </p>
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                {[
-                  "Secure server infrastructure",
-                  "Encryption of sensitive data",
-                  "Regular security assessments",
-                  "Access controls and authentication",
-                  "Employee training on data protection",
-                  "Secure payment processing systems",
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-3 rounded-lg bg-muted p-4">
-                    <Lock className="h-5 w-5 text-primary flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="text-sm italic text-muted-foreground">
-                However, no method of transmission over the internet is 100% secure. While we strive to protect your information, we cannot guarantee absolute security.
-              </p>
-            </div>
-
-            {/* Data Retention */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">7. Data Retention</h2>
-              <p className="mb-4 leading-relaxed text-muted-foreground">
-                We retain your personal information for as long as necessary to:
-              </p>
-              <ul className="mb-6 ml-6 space-y-2 list-disc text-muted-foreground">
-                <li>Fulfill the purposes outlined in this Privacy Policy</li>
-                <li>Comply with legal, regulatory, and contractual obligations</li>
-                <li>Resolve disputes and enforce agreements</li>
-                <li>Maintain warranty and project records</li>
-              </ul>
-
-              <h3 className="mb-4 text-lg font-semibold">Retention Periods:</h3>
-              <div className="space-y-3">
-                {[
-                  {
-                    type: "Active client records",
-                    period: "Duration of service relationship plus 5 years",
-                  },
-                  {
-                    type: "Project documentation",
-                    period: "5 years after project completion (NHBRC requirements)",
-                  },
-                  {
-                    type: "Financial records",
-                    period: "5 years (South African tax law requirements)",
-                  },
-                  {
-                    type: "Marketing communications",
-                    period: "Until you unsubscribe or withdraw consent",
-                  },
-                ].map((item, index) => (
-                  <div key={index} className="flex items-start gap-4 rounded-lg bg-muted p-4">
-                    <FileText className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-semibold">{item.type}</p>
-                      <p className="text-sm text-muted-foreground">{item.period}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 text-sm text-muted-foreground">
-                After the retention period, we securely delete or anonymize your information.
-              </p>
-            </div>
-
-            {/* Your Rights Under POPIA */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">8. Your Rights Under POPIA</h2>
-              <p className="mb-6 leading-relaxed text-muted-foreground">
-                You have the following rights regarding your personal information:
-              </p>
-              
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                {[
-                  {
-                    title: "Right to Access",
-                    description: "Request access to your personal information we hold",
-                  },
-                  {
-                    title: "Right to Correction",
-                    description: "Request correction of inaccurate or incomplete information",
-                  },
-                  {
-                    title: "Right to Deletion",
-                    description: "Request deletion of your personal information (subject to legal retention requirements)",
-                  },
-                  {
-                    title: "Right to Object",
-                    description: "Object to processing of your information for certain purposes",
-                  },
-                  {
-                    title: "Right to Restriction",
-                    description: "Request restriction of processing in certain circumstances",
-                  },
-                  {
-                    title: "Right to Data Portability",
-                    description: "Receive your information in a structured, commonly used format",
-                  },
-                  {
-                    title: "Right to Withdraw Consent",
-                    description: "Withdraw consent for processing where consent was the legal basis",
-                  },
-                  {
-                    title: "Right to Lodge a Complaint",
-                    description: "Lodge a complaint with the Information Regulator of South Africa",
-                  },
-                ].map((right, index) => (
-                  <div key={index} className="rounded-lg bg-muted p-6 border border-border">
-                    <h3 className="mb-2 font-semibold text-primary">{right.title}</h3>
-                    <p className="text-sm text-muted-foreground">{right.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="rounded-xl bg-primary/10 p-6 border-2 border-primary/20">
-                <h3 className="mb-4 font-bold">To exercise your rights, contact us at:</h3>
-                <div className="space-y-2 text-sm">
-                  <p><strong>Email:</strong> info@zecoconstruction.co.za</p>
-                  <p><strong>Phone:</strong> 074 850 9727</p>
-                  <p><strong>Location:</strong> Gauteng, South Africa</p>
-                </div>
-                <p className="mt-4 text-sm font-semibold">We will respond to your request within 30 days.</p>
-              </div>
-            </div>
-
-            {/* Cookies */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">9. Cookies and Tracking Technologies</h2>
-              <p className="mb-6 leading-relaxed text-muted-foreground">
-                Our website uses cookies and similar tracking technologies to enhance user experience and analyze website performance.
-              </p>
-
-              <h3 className="mb-4 text-lg font-semibold">9.1 Types of Cookies We Use</h3>
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                {[
-                  {
-                    type: "Essential Cookies",
-                    description: "Necessary for website functionality",
-                  },
-                  {
-                    type: "Performance Cookies",
-                    description: "Help us understand how visitors use our site",
-                  },
-                  {
-                    type: "Functional Cookies",
-                    description: "Remember your preferences",
-                  },
-                  {
-                    type: "Marketing Cookies",
-                    description: "Track advertising effectiveness (with consent)",
-                  },
-                ].map((cookie, index) => (
-                  <div key={index} className="rounded-lg bg-muted p-4 border border-border">
-                    <h4 className="mb-2 font-semibold">{cookie.type}</h4>
-                    <p className="text-sm text-muted-foreground">{cookie.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              <h3 className="mb-3 text-lg font-semibold">9.2 Managing Cookies</h3>
-              <p className="text-sm text-muted-foreground">
-                You can control cookies through your browser settings. Note that disabling cookies may affect website functionality.
-              </p>
-            </div>
-
-            {/* Additional Sections */}
-            <div className="space-y-12 mb-12">
-              <div>
-                <h2 className="mb-4 text-2xl font-bold">10. Third-Party Links</h2>
-                <p className="text-muted-foreground">
-                  Our website may contain links to third-party websites (social media, suppliers, partners). We are not responsible for the privacy practices of these external sites. Please review their privacy policies before providing personal information.
-                </p>
-              </div>
-
-              <div>
-                <h2 className="mb-4 text-2xl font-bold">11. Children's Privacy</h2>
-                <p className="text-muted-foreground">
-                  Our services are not directed to individuals under 18 years of age. We do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us immediately.
-                </p>
-              </div>
-
-              <div>
-                <h2 className="mb-4 text-2xl font-bold">12. International Data Transfers</h2>
-                <p className="text-muted-foreground">
-                  We primarily operate within South Africa. If we transfer your information internationally, we ensure appropriate safeguards are in place to protect your data in accordance with POPIA.
-                </p>
-              </div>
-            </div>
-
-            {/* Marketing Communications */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">13. Marketing Communications</h2>
-              
-              <div className="mb-6">
-                <h3 className="mb-3 text-lg font-semibold">13.1 Consent</h3>
-                <p className="text-muted-foreground">
-                  We will only send marketing communications with your explicit consent.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="mb-3 text-lg font-semibold">13.2 Unsubscribe</h3>
-                <p className="mb-4 text-muted-foreground">
-                  You can unsubscribe from marketing communications at any time by:
-                </p>
-                <ul className="mb-4 ml-6 space-y-2 list-disc text-muted-foreground">
-                  <li>Clicking the "unsubscribe" link in emails</li>
-                  <li>Contacting us at info@zecoconstruction.co.za</li>
-                  <li>Calling us at 074 850 9727</li>
-                </ul>
-                <p className="text-sm italic text-muted-foreground">
-                  You will continue to receive service-related communications even after unsubscribing from marketing.
-                </p>
-              </div>
-            </div>
-
-            {/* Changes to Policy */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">14. Changes to This Privacy Policy</h2>
-              <p className="mb-4 leading-relaxed text-muted-foreground">
-                We may update this Privacy Policy periodically to reflect changes in our practices, technology, legal requirements, or business operations. We will notify you of significant changes by:
-              </p>
-              <ul className="ml-6 space-y-2 list-disc text-muted-foreground">
-                <li>Posting the updated policy on our website</li>
-                <li>Updating the "Last Updated" date</li>
-                <li>Sending email notifications for material changes (where appropriate)</li>
-              </ul>
-              <p className="mt-4 text-sm font-semibold">
-                We encourage you to review this policy regularly.
-              </p>
-            </div>
-
-            {/* Contact and Complaints */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">15. Contact Us and Complaints</h2>
-              
-              <div className="mb-8">
-                <h3 className="mb-4 text-lg font-semibold">15.1 Information Officer</h3>
-                <div className="rounded-xl bg-muted p-6">
-                  <p className="mb-4 text-muted-foreground">
-                    Our designated Information Officer under POPIA is available to address privacy concerns:
-                  </p>
-                  <div className="space-y-2">
-                    <p><strong>Information Officer:</strong> ZECO Construction Management</p>
-                    <p><strong>Email:</strong> info@zecoconstruction.co.za</p>
-                    <p><strong>Phone:</strong> 074 850 9727</p>
-                    <p><strong>Location:</strong> Gauteng, South Africa</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-8">
-                <h3 className="mb-4 text-lg font-semibold">15.2 Complaints Process</h3>
-                <p className="mb-4 text-muted-foreground">
-                  If you have concerns about how we handle your personal information:
-                </p>
-                <ol className="ml-6 space-y-2 list-decimal text-muted-foreground">
-                  <li>Contact our Information Officer using the details above</li>
-                  <li>We will acknowledge your complaint within 5 business days</li>
-                  <li>We will investigate and respond within 30 days</li>
-                  <li>If unsatisfied, you may lodge a complaint with the Information Regulator</li>
-                </ol>
-              </div>
-
-              <div>
-                <h3 className="mb-4 text-lg font-semibold">15.3 Information Regulator of South Africa</h3>
-                <div className="rounded-xl bg-primary/10 p-6 border-2 border-primary/20">
-                  <p className="mb-4 font-semibold">Information Regulator (South Africa)</p>
-                  <div className="space-y-2 text-sm">
-                    <p><strong>Address:</strong> JD House, 27 Stiemens Street, Braamfontein, Johannesburg, 2001</p>
-                    <p><strong>Phone:</strong> +27 10 023 5200</p>
-                    <p><strong>Email:</strong> inforeg@justice.gov.za</p>
-                    <p><strong>Website:</strong>{" "}
-                      <a href="https://www.justice.gov.za/inforeg/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
-                        https://www.justice.gov.za/inforeg/
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Consent */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold">16. Consent</h2>
-              <p className="mb-4 leading-relaxed text-muted-foreground">
-                By using our website and services, you consent to this Privacy Policy and our collection, use, and disclosure of your information as described herein.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                For specific processing activities, we will obtain your explicit consent where required by law.
-              </p>
-            </div>
-
-            {/* Footer */}
-            <div className="border-t border-border pt-8">
-              <div className="rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
-                <Shield className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3">Your Privacy Matters to Us</h3>
-                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  We are committed to protecting your personal information and respecting your privacy rights. 
-                  If you have any questions or concerns about this Privacy Policy or our data practices, 
-                  please don't hesitate to contact us.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a 
-                    href="mailto:info@zecoconstruction.co.za" 
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-                  >
-                    <Mail className="h-4 w-4" />
-                    Email Us
-                  </a>
-                  <a 
-                    href="tel:+27748509727" 
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-lg font-semibold hover:bg-secondary/90 transition-colors"
-                  >
-                    <Phone className="h-4 w-4" />
-                    Call: 074 850 9727
-                  </a>
-                </div>
-                <p className="mt-6 text-sm text-muted-foreground">
-                  Last Updated: July 30, 2026 | Effective Date: July 30, 2026
-                </p>
-              </div>
-            </div>
-
+      {/* CLOSING */}
+      <section className="bg-primary py-14 text-primary-foreground">
+        <div className="container mx-auto px-4 text-center lg:px-8">
+          <h2 className="text-3xl font-bold">Your privacy matters to us</h2>
+          <p className="mx-auto mt-3 max-w-xl text-primary-foreground/80">
+            Questions about how we handle your information? Get in touch and we'll answer them.
+          </p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <a href={`tel:${PHONE_TEL}`} className="inline-flex h-12 items-center justify-center rounded-xl bg-accent px-6 text-sm font-semibold text-accent-foreground hover:bg-accent/90">Call {PHONE_DISPLAY}</a>
+            <a href={`mailto:${EMAIL}`} className="inline-flex h-12 items-center justify-center rounded-xl border border-white/40 px-6 text-sm font-semibold text-white hover:bg-white/10">Email us</a>
           </div>
         </div>
       </section>
-    </div>
+    </>
   )
 }

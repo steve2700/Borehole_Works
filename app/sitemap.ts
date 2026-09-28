@@ -13,7 +13,6 @@ const services = [
   "geyser-installation-repairs",
   "blocked-drains-unblocking",
   "emergency-plumber-burst-pipes",
-  "bathroom-renovations",
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

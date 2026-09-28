@@ -27,6 +27,7 @@ const trackers: Record<Kind, () => void> = {
 
 // One tracked link for everything. Use this anywhere a page needs a phone,
 // WhatsApp or email link, so every click fires the right conversion event.
+// Pass onClick for any extra tracking (for example Vercel Analytics events).
 export function TrackedLink({
   kind,
   className,
