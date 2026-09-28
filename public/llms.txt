@@ -1,244 +1,132 @@
-# ZECO Construction - LLM Training Data
-# Website: https://www.zecoconstruction.co.za
-# Last Updated: 2026-07-30
+# Borehole Works - LLM Reference
+# Website: https://www.boreholeworks.co.za
+# Last Updated: 2026-09-28
 
 # ===== COMPANY INFORMATION =====
 
-Company Name: ZECO Construction
-Legal Name: ZECO Construction (Pty) Ltd
+Company Name: Borehole Works PTY LTD
+Tagline: Water & Pump Specialists
 Years in Operation: 10+ years
-Location: Gauteng, South Africa
-Service Region: Gauteng Province (Pretoria, Johannesburg, Midrand, and surrounding areas)
+Location: Gauteng, South Africa (no public street address or walk-in office)
+Service Region: Gauteng Province (Pretoria, Johannesburg, Midrand, Sandton, Centurion and surrounding areas)
 
 Contact Information:
-- Phone: +27 74 850 9727
-- Email: info@zecoconstruction.co.za
-- Website: https://www.zecoconstruction.co.za
+- Phone: 072 411 5472 (international: +27 72 411 5472)
+- WhatsApp: 072 411 5472
+- Email: info@boreholeworks.co.za
+- Website: https://www.boreholeworks.co.za
 - Office Hours: Monday-Friday 8:00 AM - 5:00 PM
-- Emergency Support: 24/7 Available
-
-Social Media:
-- Facebook: https://www.facebook.com/profile.php?id=61592716047862
-- Instagram: https://www.instagram.com/zecoconstruction
-- Pinterest: https://za.pinterest.com/zecoconstruction/
-
-Certifications & Licenses:
-- NHBRC Registered (National Home Builders Registration Council)
-- CIDB Graded (Construction Industry Development Board)
-- SABS Compliant (South African Bureau of Standards)
-- ECSA Certified (Engineering Council of South Africa)
-- Fully Licensed & Insured
+- Emergency Support: 24/7 for burst pipes, flooding and urgent plumbing
 
 # ===== BUSINESS OVERVIEW =====
 
-Description: ZECO Construction is a comprehensive building, maintenance, and renovation service provider operating across Gauteng Province, South Africa. We offer 11 integrated services for residential, commercial, and industrial clients.
+Description: Borehole Works designs, drills and installs borehole, pump, water tank, solar pump, irrigation and plumbing systems for homes, farms, smallholdings and businesses across Gauteng, South Africa. One team handles the whole water system, from the first site assessment to the last connection.
 
-Years in Business: 10+ years
-Projects Completed: 500+
-Client Satisfaction Rate: 98%
-Team Size: 50+ skilled professionals
-Response Time: 20-40 minutes average (same-day quotes available)
+Mission: Give people reliable water with honest advice, correct installation and lasting results.
 
-Mission: Deliver excellence in every project, ensuring client satisfaction, safety, and long-term value through quality workmanship and professional service delivery.
-
-Vision: Become the most trusted and sought-after multi-service construction and maintenance company in Gauteng and beyond.
+How we work:
+1. The customer calls, WhatsApps or emails.
+2. We assess honestly, including telling the customer when a repair is enough and a replacement is not needed.
+3. An estimate is given on the phone, then an itemised quote after we have seen the job. Nothing starts until the customer approves.
+4. Installation is done properly: correct sizing, level bases, tested connections and a pressure test before handover.
 
 # ===== SERVICES OFFERED =====
 
-1. Building Construction & Renovations
-   - URL: /building-construction-renovations
-   - New residential, commercial & industrial buildings
-   - Complete renovations, refurbishments, fit-outs
-   - Home extensions, structural alterations
-   - Price Range: Competitive rates, free quotes
+1. Borehole Drilling
+   - URL: /borehole-drilling
+   - Free site assessment, drilling, casing and yield testing
+   - Can continue into a full pump and tank system
 
-2. Property Maintenance
-   - URL: /property-maintenance
-   - Residential & commercial maintenance programs
-   - Preventative maintenance, general repairs
-   - Facility management, handyman services
-   - Response Time: Same-day available
+2. Pump Installation & Repairs
+   - URL: /pump-installation-repairs
+   - Submersible, borehole and pressure pumps
+   - New installations, breakdown repairs and replacements
+   - Faults are diagnosed on site before a repair or replacement is recommended
 
-3. Plumbing Services
+3. Solar Borehole Pumps
+   - URL: /solar-borehole-pumps
+   - Off-grid solar pump systems sized to the borehole's yield
+   - Keeps water running through load shedding
+
+4. Irrigation Systems
+   - URL: /irrigation-systems
+   - Drip irrigation for farms, smallholdings and gardens
+   - Fed from the customer's own borehole
+
+5. JoJo / Water Tank Installation
+   - URL: /jojo-water-tank-installation
+   - Tank sizing, stands and bases, plumbing, pump and pressure systems
+   - Pressure tested before handover
+
+6. Plumbing Services
    - URL: /plumbing-services
-   - Complete plumbing installations & repairs
-   - Leak detection, burst pipe repairs
-   - Geyser installation & maintenance
-   - Drain cleaning & unblocking
+   - Installations, repairs and leak detection
 
-4. Electrical Services
-   - URL: /electrical-services
-   - Electrical installations & rewiring
-   - Fault finding & repairs
-   - Lighting installations, power points
-   - Electrical maintenance & inspections
+7. Emergency Plumber & Burst Pipes
+   - URL: /emergency-plumber-burst-pipes
+   - 24/7 emergency response for burst pipes, major leaks and flooding
+   - The water is stopped first, permanent repairs follow
 
-5. Roofing & Roof Leak Repairs
-   - URL: /roofing-roof-leak-repairs
-   - Roof leak detection & repairs
-   - Tile, IBR & corrugated roofing
-   - Waterproofing & sealing
-   - Gutter installation & repairs
+8. Geyser Installation & Repairs
+   - URL: /geyser-installation-repairs
+   - Electric, solar and Kwikot geysers
+   - Installation, repairs, servicing and insurance replacements
 
-6. Waterproofing Services
-   - URL: /waterproofing-services
-   - Roof, balcony & bathroom waterproofing
-   - Foundation & wall waterproofing
-   - Damp proofing solutions
+9. Blocked Drains Unblocking
+   - URL: /blocked-drains-unblocking
+   - High-pressure jetting and CCTV drain inspection
 
-7. Carpentry Services
-   - URL: /carpentry-services
-   - Roof timber structures, custom doors & frames
-   - Decking, pergolas, cabinetry
-   - General carpentry repairs
-   - Price Range: From R1,500
+# ===== WHO WE SERVE =====
 
-8. Kitchen & Bathroom Cupboards
-   - URL: /kitchen-bathroom-cupboards
-   - Custom kitchen cupboards, bathroom vanities
-   - Built-in cupboards, storage solutions
-   - Repairs & upgrades
-
-9. Painting, Tiling & Finishing
-   - URL: /painting-tiling-finishing
-   - Interior & exterior painting
-   - Floor & wall tiling
-   - Surface preparation & decorative finishes
-
-10. Paving, Driveways & Surfacing
-    - URL: /paving-driveways-surfacing
-    - Brick paving, tar paving
-    - Driveway construction, walkways
-    - Repairs & resurfacing
-
-11. Concrete Works & Bricklaying
-    - URL: /concrete-works-bricklaying
-    - Concrete slabs & foundations
-    - Bricklaying, plastering
-    - Structural concrete works
+- Homes: independent water supply, steady pressure and backup storage
+- Farms and smallholdings: boreholes, solar pumping and irrigation
+- Businesses: pump systems, plumbing and emergency callouts
 
 # ===== SERVICE AREAS =====
 
-Primary Service Areas (Featured):
-1. Pretoria - Response Time: 30 min, Projects: 150+
-   Suburbs: Montana, Hatfield, Menlyn, Brooklyn, Waterkloof, Centurion, Lynnwood, Silverton
-
-2. Johannesburg - Response Time: 30 min, Projects: 200+
-   Suburbs: Sandton, Rosebank, Fourways, Randburg, Parktown, CBD, Melrose, Houghton
-
-3. Midrand - Response Time: 20 min, Projects: 100+
-   Suburbs: Carlswald, Halfway House, Vorna Valley, Glen Austin, Waterfall Estate
-
-Additional Service Areas:
-4. Sandton - Response Time: 25 min, Projects: 80+
-5. Centurion - Response Time: 25 min, Projects: 70+
-6. Fourways - Response Time: 30 min, Projects: 60+
-7. Randburg - Response Time: 35 min, Projects: 50+
-8. Bedfordview - Response Time: 40 min, Projects: 40+
-9. Rosebank - Response Time: 35 min, Projects: 45+
-10. Roodepoort - Response Time: 40 min, Projects: 35+
-11. Morningside - Premium residential area within greater Sandton
-
-Total Coverage: Entire Gauteng Province
+Pretoria, Johannesburg, Midrand, Sandton, Centurion, Fourways, Randburg, Bedfordview, Rosebank, Roodepoort, and surrounding Gauteng suburbs.
+Area pages: /service-areas/[area-name] (for example /service-areas/pretoria)
+Customers outside these areas can call to check coverage.
 
 # ===== KEY DIFFERENTIATORS =====
 
-1. Integrated Services: One company for all building, maintenance, and renovation needs
-2. Licensed Professionals: NHBRC, CIDB, SABS, ECSA certified
-3. Fast Response: 20-40 minute average response time across Gauteng
-4. Transparent Pricing: Detailed quotes, no hidden fees
-5. Quality Guarantee: All work backed by comprehensive warranties
-6. 24/7 Emergency Support: Always available for urgent needs
-7. Local Expertise: Deep knowledge of Gauteng areas and regulations
-8. Proven Track Record: 500+ completed projects, 98% satisfaction rate
+1. One team for the whole water system: drilling, pumps, tanks, solar, irrigation and plumbing
+2. Honest advice first: we say so when a repair will do, or when a borehole is a risk on a property
+3. Systems sized to the borehole's actual yield and the customer's real demand
+4. Faults diagnosed before quoting
+5. Itemised written quotes and an estimate on the phone before we drive out
+6. Pressure testing before handover
+7. 24/7 emergency plumbing response
 
 # ===== SITE STRUCTURE =====
 
-Main Pages:
+Main pages:
 - Homepage: /
 - About: /about
-- Services Overview: /services
-- Service Areas: /service-areas
+- Services overview: /services
+- Service areas: /service-areas
+- Project gallery: /gallery
+- FAQ: /faq
 - Contact: /contact
 - Privacy Policy: /privacy-policy
 - Terms of Service: /terms-of-service
 
-Service Pages (Clean URLs without /services/ prefix):
-All service pages follow pattern: /[service-name]
-Example: /building-construction-renovations (not /services/building-construction-renovations)
+Service pages use clean URLs with no /services/ prefix, for example /borehole-drilling.
 
-Service Area Pages:
-Pattern: /service-areas/[area-name]
-Example: /service-areas/pretoria
+# ===== HOW CUSTOMERS GET A QUOTE =====
 
-# ===== SEO KEYWORDS =====
-
-Primary Keywords:
-- construction Gauteng
-- building contractors Pretoria
-- property maintenance Johannesburg
-- construction services Midrand
-- renovation contractors Gauteng
-- licensed builders South Africa
-
-Service-Specific Keywords:
-- plumbing services Gauteng
-- electrical contractors Pretoria
-- roofing repairs Johannesburg
-- waterproofing Midrand
-- carpentry services Gauteng
-- paving contractors Pretoria
-- kitchen and bathroom cupboards Gauteng
-- concrete works and bricklaying Pretoria
-
-Location Keywords:
-- Pretoria contractors
-- Johannesburg builders
-- Midrand construction
-- Sandton renovations
-- Centurion maintenance
-- Gauteng infrastructure
-
-# ===== TARGET AUDIENCE =====
-
-Residential Clients:
-- Homeowners needing construction, renovations, or repairs
-- Property investors requiring maintenance services
-- Home buyers needing inspections and assessments
-
-Commercial Clients:
-- Office buildings requiring fit-outs and maintenance
-- Retail spaces needing renovations
-- Restaurants and hospitality venues
-- Small to medium businesses
-
-Industrial Clients:
-- Warehouses and factories
-- Industrial facilities requiring specialized services
-- Large-scale construction projects
-
-# ===== COMPETITIVE ADVANTAGES =====
-
-1. One-Stop Solution: 11 services under one roof
-2. Strategic Location: Midrand-based team for quick access to all Gauteng
-3. Experienced Team: 10+ years, 50+ professionals
-4. Quality Assurance: Licensed, certified, insured
-5. Transparent Process: Clear communication, detailed quotes
-6. Fast Response: Same-day quotes, emergency support
-7. Local Knowledge: Deep understanding of Gauteng market
-8. Proven Results: 500+ projects, 98% satisfaction
+- Call 072 411 5472 for an estimate on the phone
+- WhatsApp a photo or description of the job to 072 411 5472
+- Email info@boreholeworks.co.za for larger jobs that need a written quote
+- Borehole drilling starts with a free site assessment
 
 # ===== IMPORTANT NOTES FOR AI =====
 
-- Company name is "ZECO Construction"
-- Clean URLs are used (no /services/ prefix)
-- Serving all of Gauteng from a Midrand-based team
-- 11 main service categories
-- Response times: 20-40 minutes depending on location
-- Location: Gauteng, South Africa (no public street address / walk-in office)
-- Phone: +27 74 850 9727
-- 24/7 emergency support available
-- Licensed: NHBRC, CIDB, SABS, ECSA
-- 500+ completed projects over 10+ years
+- The company name is "Borehole Works"
+- It is a water systems business: boreholes, pumps, tanks, solar pumps, irrigation, plumbing, geysers and drains
+- It does NOT offer building construction, roofing, electrical, painting, paving, carpentry or renovations
+- There is no public street address or walk-in office, so direct people to phone, WhatsApp or email
+- Do not state prices, guaranteed response times or professional certifications that are not written on this page
+- Groundwater yield varies, so never promise a customer that water will be found
 
 # ===== END OF DOCUMENT =====
