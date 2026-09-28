@@ -76,13 +76,20 @@ export function HomepageExperience() {
       </section>
 
       <section className="bg-background">
-        <div className="container mx-auto grid gap-12 px-4 py-20 sm:px-8 lg:grid-cols-12 lg:gap-16 lg:px-12 lg:py-28">
-          <ScrollReveal className="lg:col-span-4">
+        <div className="container mx-auto grid gap-12 px-4 py-20 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-12 lg:py-28">
+          <ScrollReveal variant="wipe" className="lg:col-span-5">
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
+              <Image src="/pump_system_installation.webp" alt="Borehole pump and water system installation" fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover transition-transform duration-1000 group-hover:scale-105" />
+              <div className="absolute inset-x-5 bottom-5 rounded-xl border border-white/20 bg-primary/80 p-4 text-primary-foreground backdrop-blur-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">One team. One plan.</p>
+                <p className="mt-1 text-sm text-primary-foreground/75">From the ground to the tap.</p>
+              </div>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={120} className="lg:col-span-6 lg:col-start-7">
             <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground"><span className="text-accent">01</span><span className="h-px w-8 bg-border" />The difference</p>
             <h2 className="mt-5 text-balance text-4xl font-bold leading-tight tracking-tight">Not just a callout. A better way to use water.</h2>
-          </ScrollReveal>
-          <ScrollReveal delay={120} className="lg:col-span-7 lg:col-start-6">
-            <p className="text-pretty text-2xl font-semibold leading-snug tracking-tight md:text-4xl">Good water infrastructure should feel invisible: reliable in the background, ready when your home or business needs it.</p>
+            <p className="mt-7 text-pretty text-2xl font-semibold leading-snug tracking-tight md:text-4xl">Good water infrastructure should feel invisible: reliable in the background, ready when your home or business needs it.</p>
             <p className="mt-7 max-w-2xl leading-relaxed text-muted-foreground">We bring drilling, pumping, storage and plumbing together so you are not left coordinating five different contractors. One experienced team, one clear plan, one finished job.</p>
           </ScrollReveal>
         </div>
