@@ -33,19 +33,24 @@ export function TrackedLink({
   children,
   message,
   ariaLabel,
+  onClick,
 }: {
   kind: Kind
   className?: string
   children: ReactNode
   message?: string
   ariaLabel?: string
+  onClick?: () => void
 }) {
   const isWhatsApp = kind === "whatsapp"
   return (
     
       <a
       href={hrefFor(kind, message)}
-      onClick={trackers[kind]}
+      onClick={() => {
+        trackers[kind]()
+        onClick?.()
+      }}
       target={isWhatsApp ? "_blank" : undefined}
       rel={isWhatsApp ? "noopener noreferrer" : undefined}
       aria-label={ariaLabel}

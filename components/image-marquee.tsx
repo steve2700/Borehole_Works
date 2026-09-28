@@ -3,6 +3,7 @@ import Image from "next/image"
 interface MarqueeImage {
   src: string
   alt: string
+  watermark?: boolean
 }
 
 export function ImageMarquee({
@@ -28,7 +29,8 @@ export function ImageMarquee({
       <div className={`flex w-max ${cls}`}>
         {[...images, ...images].map((img, i) => (
           <div key={i} className="relative mx-2 h-48 w-72 flex-shrink-0 overflow-hidden rounded-2xl">
-            <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="288px" />
+            <Image src={img.src} alt={i < images.length ? img.alt : ""} fill className="object-cover" sizes="288px" />
+            {img.watermark !== false && (
             <div className="absolute bottom-2 right-2 h-5 w-5 drop-shadow-md">
               <Image
                 src="/water_droplet_logo_transparent.png"
@@ -38,6 +40,7 @@ export function ImageMarquee({
                 className="object-contain"
               />
             </div>
+            )}
           </div>
         ))}
       </div>
