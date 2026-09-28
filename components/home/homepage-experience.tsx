@@ -78,7 +78,7 @@ export function HomepageExperience() {
 
       <section className="bg-background">
         <div className="container mx-auto grid gap-12 px-4 py-20 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-12 lg:py-28">
-          <ScrollReveal variant="wipe" className="lg:col-span-5">
+          <div className="lg:col-span-5">
             <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
               <Image src="/pump_system_installation.webp" alt="Borehole pump and water system installation" fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover transition-transform duration-1000 group-hover:scale-105" />
               <div className="absolute inset-x-5 bottom-5 rounded-xl border border-white/20 bg-primary/80 p-4 text-primary-foreground backdrop-blur-sm">
@@ -86,7 +86,7 @@ export function HomepageExperience() {
                 <p className="mt-1 text-sm text-primary-foreground/75">From the ground to the tap.</p>
               </div>
             </div>
-          </ScrollReveal>
+          </div>
           <ScrollReveal delay={120} className="lg:col-span-6 lg:col-start-7">
             <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground"><span className="text-accent">01</span><span className="h-px w-8 bg-border" />The difference</p>
             <h2 className="mt-5 text-balance text-4xl font-bold leading-tight tracking-tight">Not just a callout. A better way to use water.</h2>
@@ -105,11 +105,11 @@ export function HomepageExperience() {
           <div className="mt-14 flex flex-col gap-16 lg:gap-24">
             {work.map((item, index) => (
               <div key={item.number} className="grid items-center gap-8 md:grid-cols-12 md:gap-14">
-                <ScrollReveal variant="wipe" className={`md:col-span-6 ${index % 2 ? "md:order-2" : ""}`}>
+                <div className={`md:col-span-6 ${index % 2 ? "md:order-2" : ""}`}>
                   <Link href={item.href} className="group block overflow-hidden rounded-2xl">
                     <div className="relative aspect-[16/11] overflow-hidden"><Image src={item.image} alt={item.title} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-1000 group-hover:scale-105" /></div>
                   </Link>
-                </ScrollReveal>
+                </div>
                 <ScrollReveal delay={140} className={`md:col-span-5 ${index % 2 ? "md:order-1" : "md:col-start-8"}`}>
                   <p className="text-6xl font-bold tracking-tight text-foreground/15">{item.number}</p>
                   <h3 className="mt-3 text-3xl font-bold tracking-tight">{item.title}</h3>
