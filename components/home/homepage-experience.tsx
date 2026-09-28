@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ScrollReveal } from "@/components/scroll-reveal"
@@ -19,8 +19,20 @@ const gallery = [
   "/geyser-installation.jpg",
 ]
 
+const heroImages = [
+  { src: "/borehole_drilling_rig_action.webp", alt: "Borehole drilling rig working in Gauteng" },
+  { src: "/pump_installation_hero.jpg", alt: "Borehole pump installation in Gauteng" },
+  { src: "/jojo_tank_installation.jpg", alt: "JoJo water tank installation in Gauteng" },
+  { src: "/borehole_pump_water_tank_installation.jpg", alt: "Borehole pump and water tank system" },
+]
+
 export function HomepageExperience() {
+  const [activeHero, setActiveHero] = useState(0)
   const [name, setName] = useState("")
+  useEffect(() => {
+    const interval = setInterval(() => setActiveHero((current) => (current + 1) % heroImages.length), 5000)
+    return () => clearInterval(interval)
+  }, [])
   const [suburb, setSuburb] = useState("")
   const [need, setNeed] = useState("")
 
@@ -32,8 +44,17 @@ export function HomepageExperience() {
   return (
     <main className="overflow-hidden">
       <section className="relative isolate min-h-[680px] bg-primary text-primary-foreground lg:min-h-[760px]">
-        <Image src="/borehole_drilling_rig_action.webp" alt="Borehole drilling rig working in Gauteng" fill priority className="object-cover object-center opacity-60" sizes="100vw" />
+        {heroImages.map((image, index) => (
+          <div key={image.src} className="absolute inset-0 transition-opacity duration-1000 ease-in-out" style={{ opacity: activeHero === index ? 1 : 0 }}>
+            <Image src={image.src} alt={image.alt} fill priority={index === 0} className="object-cover object-center" sizes="100vw" />
+          </div>
+        ))}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(26,31,37,.96)_0%,rgba(26,31,37,.82)_44%,rgba(26,31,37,.28)_100%)]" />
+        <div className="absolute right-5 top-6 z-10 flex gap-2 sm:right-8 lg:right-12 lg:top-8" aria-label="Hero image selection">
+          {heroImages.map((image, index) => (
+            <button key={image.src} type="button" onClick={() => setActiveHero(index)} aria-label={`Show hero image ${index + 1}`} aria-pressed={activeHero === index} className={`h-1.5 rounded-full transition-all ${activeHero === index ? "w-8 bg-accent" : "w-2 bg-primary-foreground/45 hover:bg-primary-foreground/75"}`} />
+          ))}
+        </div>
         <div className="container relative mx-auto flex min-h-[680px] items-end px-4 pb-16 pt-28 sm:px-8 lg:min-h-[760px] lg:px-12 lg:pb-24">
           <div className="max-w-3xl">
             <p className="area-rise text-xs font-semibold uppercase tracking-[0.24em] text-accent">Borehole Works / Gauteng</p>
