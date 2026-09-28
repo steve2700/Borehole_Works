@@ -138,3 +138,79 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes area-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes area-kenburns {
+  from {
+    transform: scale(1.14);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes area-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes area-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.area-rise {
+  animation: area-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.area-kenburns {
+  animation: area-kenburns 16s ease-out both;
+}
+
+.area-drift {
+  animation: area-drift 8s ease-in-out infinite;
+}
+
+.area-card-in {
+  animation: area-card-in 0.35s ease-out both;
+}
+
+.job-card-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 47px,
+    var(--border) 47px,
+    var(--border) 48px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .area-rise,
+  .area-kenburns,
+  .area-drift,
+  .area-card-in {
+    animation: none;
+  }
+}
