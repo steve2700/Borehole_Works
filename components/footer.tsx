@@ -1,6 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
+import { TrackedLink } from "@/components/service-cta"
+import { EMAIL, PHONE_DISPLAY } from "@/components/contact-info"
 
 const services = [
   { title: "Borehole Drilling", href: "/borehole-drilling" },
@@ -28,14 +30,14 @@ const quickLinks = [
   { title: "All Services", href: "/services" },
   { title: "Gallery", href: "/gallery" },
   { title: "Service Areas", href: "/service-areas" },
+  { title: "FAQ", href: "/faq" },
   { title: "Contact Us", href: "/contact" },
-  { title: "Get a Quote", href: "/contact#quote" },
 ]
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-primary text-primary-foreground">
-      {/* Trust Badges - no icons, left accent bar instead */}
+      {/* Trust Badges */}
       <div className="border-b border-primary-foreground/10 bg-primary/95">
         <div className="container mx-auto px-4 py-8 lg:px-8">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -82,22 +84,20 @@ export function Footer() {
             </Link>
 
             <p className="max-w-md text-sm leading-relaxed text-primary-foreground/80">
-              Borehole Works is your trusted partner for borehole drilling, pump installation, water tanks, and plumbing services across Gauteng. From the first site assessment to the last drop reaching your tap, we deliver reliable water systems that last.
+              Borehole Works is your trusted partner for borehole drilling, pump installation, water tanks, and
+              plumbing services across Gauteng. From the first site assessment to the last drop reaching your
+              tap, we deliver reliable water systems that last.
             </p>
 
-            {/* WhatsApp Link */}
             <div>
               <h4 className="mb-3 text-sm font-semibold text-white">Reach Us Directly</h4>
-              
-                <a
-                href="https://wa.me/27724115472"
-                target="_blank"
-                rel="noopener noreferrer"
+              <TrackedLink
+                kind="whatsapp"
                 className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-[#25D366]/90"
               >
                 <WhatsAppIcon className="h-4 w-4" />
                 Chat on WhatsApp
-              </a>
+              </TrackedLink>
             </div>
           </div>
 
@@ -107,7 +107,10 @@ export function Footer() {
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent">
+                  <Link
+                    href={link.href}
+                    className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent"
+                  >
                     {link.title}
                   </Link>
                 </li>
@@ -122,7 +125,10 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {services.slice(0, 5).map((service) => (
                   <li key={service.href}>
-                    <Link href={service.href} className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent">
+                    <Link
+                      href={service.href}
+                      className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent"
+                    >
                       {service.title}
                     </Link>
                   </li>
@@ -131,19 +137,25 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {services.slice(5, 9).map((service) => (
                   <li key={service.href}>
-                    <Link href={service.href} className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent">
+                    <Link
+                      href={service.href}
+                      className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent"
+                    >
                       {service.title}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <Link href="/services" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline">
+            <Link
+              href="/services"
+              className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
+            >
               View All Services →
             </Link>
           </div>
 
-          {/* Contact Info - plain text, no icons */}
+          {/* Contact Info */}
           <div className="lg:col-span-1">
             <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Contact Us</h4>
             <ul className="space-y-3 text-sm">
@@ -162,27 +174,30 @@ export function Footer() {
               </li>
 
               <li>
-                <a href="tel:+27724115472" className="text-primary-foreground/80 transition-colors hover:text-accent">
-                  072 411 5472
-                </a>
-              </li>
-
-              <li>
-                
-                  <a
-                  href="https://wa.me/27724115472"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <TrackedLink
+                  kind="call"
                   className="text-primary-foreground/80 transition-colors hover:text-accent"
                 >
-                  WhatsApp: 072 411 5472
-                </a>
+                  {PHONE_DISPLAY}
+                </TrackedLink>
               </li>
 
               <li>
-                <a href="mailto:info@boreholeworks.co.za" className="text-primary-foreground/80 transition-colors hover:text-accent">
-                  info@boreholeworks.co.za
-                </a>
+                <TrackedLink
+                  kind="whatsapp"
+                  className="text-primary-foreground/80 transition-colors hover:text-accent"
+                >
+                  WhatsApp: {PHONE_DISPLAY}
+                </TrackedLink>
+              </li>
+
+              <li>
+                <TrackedLink
+                  kind="email"
+                  className="text-primary-foreground/80 transition-colors hover:text-accent"
+                >
+                  {EMAIL}
+                </TrackedLink>
               </li>
 
               <li className="text-primary-foreground/80">
@@ -195,7 +210,9 @@ export function Footer() {
 
         {/* Service Areas Bar */}
         <div className="mt-10 border-t border-primary-foreground/10 pt-8">
-          <h4 className="mb-4 text-center text-sm font-bold uppercase tracking-wider text-white">Proudly Serving Gauteng</h4>
+          <h4 className="mb-4 text-center text-sm font-bold uppercase tracking-wider text-white">
+            Proudly Serving Gauteng
+          </h4>
           <div className="flex flex-wrap justify-center gap-3">
             {serviceAreas.map((area) => (
               <Link
@@ -206,7 +223,10 @@ export function Footer() {
                 {area.name}
               </Link>
             ))}
-            <Link href="/service-areas" className="rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-white hover:bg-accent/90">
+            <Link
+              href="/service-areas"
+              className="rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-white hover:bg-accent/90"
+            >
               View All Areas →
             </Link>
           </div>
@@ -218,13 +238,22 @@ export function Footer() {
             © {new Date().getFullYear()} Borehole Works. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            <Link href="/privacy-policy" className="text-sm text-primary-foreground/70 transition-colors hover:text-accent">
+            <Link
+              href="/privacy-policy"
+              className="text-sm text-primary-foreground/70 transition-colors hover:text-accent"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="text-sm text-primary-foreground/70 transition-colors hover:text-accent">
+            <Link
+              href="/terms-of-service"
+              className="text-sm text-primary-foreground/70 transition-colors hover:text-accent"
+            >
               Terms of Service
             </Link>
-            <Link href="/sitemap.xml" className="text-sm text-primary-foreground/70 transition-colors hover:text-accent">
+            <Link
+              href="/sitemap.xml"
+              className="text-sm text-primary-foreground/70 transition-colors hover:text-accent"
+            >
               Sitemap
             </Link>
           </div>

@@ -1,407 +1,293 @@
+// File path: app/contact/page.tsx
+// Clean URL: https://www.boreholeworks.co.za/contact
+
 import type { Metadata } from "next"
-import Image from "next/image"
-import { Breadcrumbs } from "@/components/breadcrumbs"
-import { CallButton, WhatsAppCta, StickyCallBar, trackCallClick } from "@/components/plumbing-cta"
-import { PHONE_DISPLAY, PHONE_TEL } from "@/components/contact-info"
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, CheckCircle, Award, Zap, Shield } from "lucide-react"
-import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
+import Link from "next/link"
+import {
+  CallButton,
+  WhatsAppCta,
+  EmailCta,
+  StickyCallBar,
+  BigPhoneLink,
+  TrackedLink,
+} from "@/components/service-cta"
+import { ImageMarquee } from "@/components/image-marquee"
+import { PHONE_DISPLAY, EMAIL } from "@/components/contact-info"
 
 export const metadata: Metadata = {
-  title: "Contact ZECO Construction | Free Quote in Gauteng - Pretoria, Johannesburg & Midrand",
+  title: "Contact Borehole Works | Free Site Assessment in Gauteng",
   description:
-    "Contact ZECO Construction for building, renovations, maintenance, paving, or civil works in Gauteng. Free consultation and same-day quotes. Call +27 74 850 9727.",
-  keywords: "contact ZECO Construction, construction quote Gauteng, free consultation Pretoria, building contractor Johannesburg, Midrand construction company, emergency services",
+    "Call, WhatsApp or email Borehole Works for borehole drilling, pumps, water tanks, irrigation and plumbing across Gauteng. Free site assessments. Call 072 411 5472.",
+  keywords:
+    "contact Borehole Works, borehole quote Gauteng, free site assessment Pretoria, pump installation quote Johannesburg, water tank quote Midrand",
+  alternates: {
+    canonical: "https://www.boreholeworks.co.za/contact",
+  },
   openGraph: {
-    title: "Contact ZECO Construction | Free Quote in Gauteng",
+    title: "Contact Borehole Works | Free Site Assessment in Gauteng",
     description:
-      "Get in touch for all building, maintenance, and infrastructure needs in Pretoria, Johannesburg, and Gauteng. Free quotes, 24/7 emergency support, same-day response.",
+      "Speak to a water systems specialist today. Call, WhatsApp or email us for a straight answer and a free site assessment.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/borehole_drilling_water_gushing.jpg",
         width: 1200,
         height: 630,
-        alt: "Contact ZECO Construction",
+        alt: "Borehole Works drilling rig striking water in Gauteng",
       },
     ],
   },
 }
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: "Coverage Area",
-    details: ["Gauteng, South Africa", "Serving Pretoria & Johannesburg"],
-    href: "https://www.google.com/maps?q=ZECO+Construction+Gauteng+South+Africa",
-    highlight: true,
-  },
-  {
-    icon: Phone,
-    title: "Phone & WhatsApp",
-    details: ["+27 74 850 9727"],
-    href: "tel:+27748509727",
-    highlight: true,
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    details: ["info@zecoconstruction.co.za"],
-    href: "mailto:info@zecoconstruction.co.za",
-    highlight: false,
-  },
-  {
-    icon: Clock,
-    title: "Business Hours",
-    details: ["Mon-Fri: 8:00 AM - 5:00 PM", "24/7 Emergency Support"],
-    highlight: false,
-  },
+const topRow = [
+  { src: "/borehole_drilling_water_gushing.jpg", alt: "Borehole drilling striking water" },
+  { src: "/solar_borehole_pump_aerial_view.jpg", alt: "Aerial view of a solar borehole pump" },
+  { src: "/eco_water_tanks_installation.jpg", alt: "Eco water tanks installation" },
+  { src: "/pump_installation_hero.jpg", alt: "Pump installation" },
+  { src: "/kwikot_geyser_installation.jpg", alt: "Kwikot geyser installation" },
 ]
 
-const serviceAreas = [
-  { name: "Pretoria", featured: true },
-  { name: "Johannesburg", featured: true },
-  { name: "Midrand", featured: true },
-  { name: "Sandton", featured: false },
-  { name: "Centurion", featured: false },
-  { name: "Fourways", featured: false },
-  { name: "Randburg", featured: false },
-  { name: "Bedfordview", featured: false },
-  { name: "Rosebank", featured: false },
-  { name: "Roodepoort", featured: false },
+const bottomRow = [
+  { src: "/jojo_tank_installation.jpg", alt: "Water tank on stand" },
+  { src: "/pump_systems_boreholes.jpg", alt: "Borehole pump system" },
+  { src: "/green_water_tank_installation.jpg", alt: "Water tank installation" },
+  { src: "/borehole_drilling_rig_action.webp", alt: "Drilling rig on site" },
+  { src: "/solar_borehole_tank_installation.jpg", alt: "Solar-powered tank installation" },
 ]
 
-const benefits = [
-  {
-    icon: CheckCircle,
-    text: "Same-day response & quotes",
-  },
-  {
-    icon: Shield,
-    text: "Licensed & fully insured",
-  },
-  {
-    icon: Award,
-    text: "500+ completed projects",
-  },
-  {
-    icon: Zap,
-    text: "24/7 emergency support",
-  },
+const areas = [
+  "Pretoria", "Johannesburg", "Midrand", "Sandton", "Centurion",
+  "Fourways", "Randburg", "Bedfordview", "Rosebank", "Roodepoort",
 ]
 
-const gallery = [
-  {
-    image: "/construction-team-meeting-on-site-in-gauteng.jpg",
-    alt: "ZECO Construction team on site in Gauteng",
-  },
-  {
-    image: "/professional-plumber-working-on-pipes-installation.jpg",
-    alt: "ZECO Construction plumber at work on a Gauteng job",
-  },
-  {
-    image: "/property-maintenance-worker-fixing-repairs-profess.jpg",
-    alt: "ZECO Construction maintenance team completing repairs",
-  },
-  {
-    image: "/modern-building-construction-site-with-scaffolding.jpg",
-    alt: "ZECO Construction building project underway in Gauteng",
-  },
-  {
-    image: "/jojo_installation.jpg",
-    alt: "JoJo water tank installed by ZECO Construction",
-  },
-  {
-    image: "/24hr-Emergency-Plumber-Johannesburg.png",
-    alt: "ZECO Construction 24 hour emergency plumber in Johannesburg",
-  },
+const helpfulDetails = [
+  "Your suburb or address, so we can tell you straight away if we cover you",
+  "What's happening: no water, low pressure, a pump that's stopped, or a new system you want",
+  "A photo of the pump, tank, geyser or area if you can grab one",
+  "Whether it's urgent, so we can prioritise the right team",
 ]
 
 export default function ContactPage() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-16 lg:py-24">
-        <Image
-          src="/construction-team-meeting-on-site-in-gauteng.jpg"
-          alt="ZECO Construction team on site in Gauteng"
-          fill
-          priority
-          sizes="100vw"
-          className="-z-10 object-cover opacity-25"
-        />
-        <div className="absolute inset-0 opacity-10" aria-hidden="true">
-          <div className="absolute top-20 right-20 w-96 h-96 bg-accent rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-20 w-96 h-96 bg-secondary rounded-full blur-3xl" />
-        </div>
-
-        <div className="container mx-auto px-4 lg:px-8 relative">
-          <Breadcrumbs variant="onDark" items={[{ label: "Contact Us" }]} />
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm border border-white/10">
-              <Phone className="h-4 w-4 text-accent animate-pulse" aria-hidden="true" />
-              <span>Available 24/7 for Emergencies</span>
-            </div>
-
-            <h1 className="mb-6 text-balance text-4xl font-bold tracking-tight text-primary-foreground md:text-5xl lg:text-6xl">
-              Talk to Us <span className="text-accent">Right Now</span>
+      {/* HERO */}
+      <section className="bg-primary py-16 text-primary-foreground lg:py-24">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Free site assessments across Gauteng
+            </p>
+            <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+              Water problem? Talk to a specialist <span className="text-accent">right now.</span>
             </h1>
-            <p className="text-pretty text-lg text-primary-foreground/90 md:text-xl leading-relaxed">
-              For building, renovations, maintenance, paving, or civil works in <strong className="text-white">Gauteng</strong>,
-              call or WhatsApp <strong className="text-white">ZECO Construction</strong> directly. No forms, no waiting
-              for a callback, just a straight answer from a real person.
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/80">
+              No forms and no waiting for a callback. Call, WhatsApp or email us and you'll get a straight
+              answer from someone who actually works on boreholes, pumps and tanks.
             </p>
 
-            {/* Fast contact buttons, front and centre */}
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <CallButton size="lg" />
               <WhatsAppCta size="lg" label="WhatsApp us now" />
+              <EmailCta size="lg" label="Email us" onDark />
             </div>
 
-            {/* Quick Benefits */}
-            <div className="mt-10 flex flex-wrap justify-center gap-6">
-              {benefits.map((benefit) => (
-                <div key={benefit.text} className="flex items-center gap-2 text-sm text-white/90">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/20">
-                    <benefit.icon className="h-4 w-4 text-accent" aria-hidden="true" />
-                  </div>
-                  <span className="font-medium">{benefit.text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Information */}
-      <section className="py-16 lg:py-24" itemScope itemType="https://schema.org/ContactPage">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center mb-12">
-            <span className="mb-4 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary uppercase tracking-wide">
-              Contact Details
-            </span>
-            <h2 className="mb-2 text-3xl font-bold">The Fastest Way to Reach Us</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Call or WhatsApp for the quickest response. Prefer email? That works too, we just can't
-              promise it's as fast as a phone call.
+            <p className="mt-6 text-sm text-primary-foreground/60">
+              24/7 emergency callouts · Estimate on the phone before we drive out
             </p>
           </div>
-
-          <div
-            className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2"
-            itemProp="contactPoint"
-            itemScope
-            itemType="https://schema.org/ContactPoint"
-          >
-            <meta itemProp="contactType" content="Customer Service" />
-            <meta itemProp="areaServed" content="Gauteng, South Africa" />
-            <meta itemProp="availableLanguage" content="English" />
-
-            {contactInfo.map((info) => (
-              <div
-                key={info.title}
-                className={`group flex items-start gap-4 p-5 rounded-xl transition-all ${
-                  info.highlight
-                    ? 'bg-secondary/5 border-2 border-secondary/20 hover:border-secondary/40 hover:shadow-lg'
-                    : 'bg-muted hover:bg-muted/80'
-                }`}
-              >
-                <div
-                  className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg ${
-                    info.highlight ? 'bg-secondary text-secondary-foreground' : 'bg-secondary/10 text-secondary'
-                  } group-hover:scale-110 transition-transform`}
-                >
-                  <info.icon className="h-6 w-6" aria-hidden="true" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-bold mb-1">{info.title}</h3>
-                  {info.details.map((detail, index) =>
-                    info.href ? (
-                      <a
-                        key={detail}
-                        href={info.href}
-                        onClick={info.icon === Phone ? trackCallClick : undefined}
-                        className={`block transition-colors ${
-                          info.highlight
-                            ? 'text-secondary font-semibold hover:text-secondary/80'
-                            : 'text-muted-foreground hover:text-secondary'
-                        }`}
-                        target={info.icon === MapPin ? "_blank" : undefined}
-                        rel={info.icon === MapPin ? "noopener noreferrer" : undefined}
-                        itemProp={info.icon === Phone ? "telephone" : info.icon === Mail ? "email" : undefined}
-                      >
-                        {detail}
-                        {index === 1 && info.title === "Business Hours" && (
-                          <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">
-                            <Zap className="h-3 w-3" aria-hidden="true" /> URGENT
-                          </span>
-                        )}
-                      </a>
-                    ) : (
-                      <p key={detail} className="text-muted-foreground">
-                        {detail}
-                        {index === 1 && info.title === "Business Hours" && (
-                          <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">
-                            <Zap className="h-3 w-3" aria-hidden="true" /> EMERGENCY
-                          </span>
-                        )}
-                      </p>
-                    ),
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Trust Indicators */}
-          <div className="mx-auto mt-6 grid max-w-4xl grid-cols-2 gap-4">
-            <div className="flex items-center gap-3 p-4 rounded-lg bg-muted">
-              <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" aria-hidden="true" />
-              <div>
-                <p className="text-sm font-semibold">No Hidden Fees</p>
-                <p className="text-xs text-muted-foreground">Transparent pricing</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 p-4 rounded-lg bg-muted">
-              <Shield className="h-5 w-5 text-accent flex-shrink-0" aria-hidden="true" />
-              <div>
-                <p className="text-sm font-semibold">Fully Licensed</p>
-                <p className="text-xs text-muted-foreground">NHBRC & CIDB</p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Photo Grid, real work across Gauteng */}
-      <section className="border-y border-border bg-muted py-16 lg:py-24">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-10">
-            <h2 className="text-3xl font-bold">Real Jobs, Real Teams, Across Gauteng</h2>
-            <p className="mt-3 text-muted-foreground">
-              A look at the work behind the phone call, from plumbing to construction to maintenance.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {gallery.map((item) => (
-              <div key={item.image} className="relative aspect-square overflow-hidden rounded-xl">
-                <Image
-                  src={item.image}
-                  alt={item.alt}
-                  fill
-                  sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
-                  className="object-cover transition-transform duration-500 hover:scale-110"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+      {/* MOVING PHOTOS */}
+      <section className="overflow-hidden bg-muted py-10">
+        <div className="space-y-4">
+          <ImageMarquee images={topRow} name="contact-top" direction="left" speed={40} />
+          <ImageMarquee images={bottomRow} name="contact-bottom" direction="right" speed={40} />
         </div>
       </section>
 
-      {/* Social Links + Service Areas */}
+      {/* PICK THE FASTEST ROUTE */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="mx-auto grid max-w-4xl gap-8 lg:grid-cols-2">
-            {/* Social Links */}
-            <div className="p-6 rounded-xl bg-gradient-to-br from-muted to-muted/50">
-              <h3 className="mb-4 font-bold flex items-center gap-2">
-                <span>Connect With Us</span>
-              </h3>
-              <div className="flex gap-3">
-                <a
-                  href="https://www.facebook.com/profile.php?id=61592716047862"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex h-12 w-12 items-center justify-center rounded-lg bg-secondary/10 text-secondary transition-all hover:bg-[#1877F2] hover:text-white hover:scale-110 hover:shadow-lg"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://www.instagram.com/zecoconstruction?igsh=bnFldWhiZ2FpeGph"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex h-12 w-12 items-center justify-center rounded-lg bg-secondary/10 text-secondary transition-all hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] hover:text-white hover:scale-110 hover:shadow-lg"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://wa.me/27748509727"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex h-12 w-12 items-center justify-center rounded-lg bg-secondary/10 text-secondary transition-all hover:bg-[#25D366] hover:text-white hover:scale-110 hover:shadow-lg"
-                  aria-label="WhatsApp"
-                >
-                  <WhatsAppIcon className="h-5 w-5" />
-                </a>
-              </div>
-              <p className="mt-4 text-xs text-muted-foreground">
-                Follow us for project updates, tips, and special offers
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold lg:text-4xl">Pick the fastest way to get sorted</h2>
+            <p className="mt-4 text-muted-foreground">
+              Three ways to reach us. Choose whichever suits your situation.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <div className="flex flex-col rounded-2xl border-2 border-accent bg-card p-8">
+              <p className="text-sm font-bold uppercase tracking-wide text-accent">Urgent</p>
+              <h3 className="mt-3 text-2xl font-bold">No water, flooding or a dead pump?</h3>
+              <p className="mt-3 flex-1 text-muted-foreground">
+                Call now. A person answers, not a call centre, and you'll get an honest arrival time
+                before you commit to anything.
               </p>
+              <div className="mt-6">
+                <CallButton size="lg" />
+              </div>
             </div>
 
-            {/* Service Areas */}
-            <div className="rounded-xl bg-gradient-to-br from-secondary/5 to-accent/5 p-6 border border-border">
-              <h3 className="mb-4 font-bold flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-secondary" aria-hidden="true" />
-                We Serve All of Gauteng
-              </h3>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {serviceAreas.map((area) => (
-                  <span
-                    key={area.name}
-                    className={`inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium transition-all ${
-                      area.featured
-                        ? 'bg-secondary text-secondary-foreground shadow-md hover:shadow-lg hover:scale-105'
-                        : 'bg-card hover:bg-secondary/10 hover:scale-105'
-                    }`}
-                  >
-                    <MapPin className="h-3 w-3" aria-hidden="true" />
-                    {area.name}
-                  </span>
-                ))}
-              </div>
-              <p className="text-xs text-muted-foreground">
-                Don't see your area?{" "}
-                <a
-                  href={`tel:${PHONE_TEL}`}
-                  onClick={trackCallClick}
-                  className="text-secondary font-semibold hover:underline"
-                >
-                  Call us
-                </a>{" "}
-                - we cover the entire province!
+            <div className="flex flex-col rounded-2xl border border-border bg-card p-8">
+              <p className="text-sm font-bold uppercase tracking-wide text-accent">Fastest quote</p>
+              <h3 className="mt-3 text-2xl font-bold">Send a photo, get a straight answer</h3>
+              <p className="mt-3 flex-1 text-muted-foreground">
+                WhatsApp us a photo of the pump, tank, geyser or your property and we'll tell you what it
+                needs and roughly what it'll cost.
               </p>
+              <div className="mt-6">
+                <WhatsAppCta
+                  size="lg"
+                  label="WhatsApp a photo"
+                  message="Hi Borehole Works, here's a photo of what I need help with:"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col rounded-2xl border border-border bg-card p-8">
+              <p className="text-sm font-bold uppercase tracking-wide text-accent">Written quote</p>
+              <h3 className="mt-3 text-2xl font-bold">Need it in writing? Email us</h3>
+              <p className="mt-3 flex-1 text-muted-foreground">
+                Best for larger jobs like new boreholes, solar systems and irrigation. Send your details
+                and we'll come back with a proper written quote.
+              </p>
+              <div className="mt-6">
+                <EmailCta size="lg" label="Email us" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Closing CTA */}
-      <section className="bg-foreground py-16 text-background">
-        <div className="container mx-auto px-4 text-center lg:px-8">
-          <h2 className="text-3xl font-bold lg:text-4xl">Ready when you are.</h2>
-          <p className="mx-auto mt-4 max-w-xl text-background/80">
-            No forms to fill in. Call or WhatsApp and we'll take it from there.
+      {/* CONTACT DETAILS + WHAT TO TELL US */}
+      <section className="border-y border-border bg-muted py-16 lg:py-24">
+        <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-2 lg:px-8">
+          <div>
+            <h2 className="text-3xl font-bold lg:text-4xl">Contact details</h2>
+            <dl className="mt-8 space-y-6">
+              <div>
+                <dt className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Phone</dt>
+                <dd className="mt-1">
+                  <TrackedLink kind="call" className="text-2xl font-bold tabular-nums hover:text-accent">
+                    {PHONE_DISPLAY}
+                  </TrackedLink>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">WhatsApp</dt>
+                <dd className="mt-1">
+                  <TrackedLink kind="whatsapp" className="text-lg font-semibold hover:text-accent">
+                    Message us on {PHONE_DISPLAY}
+                  </TrackedLink>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Email</dt>
+                <dd className="mt-1">
+                  <TrackedLink kind="email" className="text-lg font-semibold hover:text-accent">
+                    {EMAIL}
+                  </TrackedLink>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Hours</dt>
+                <dd className="mt-1 text-lg">
+                  Mon–Fri: 8:00 AM – 5:00 PM
+                  <span className="block font-semibold text-accent">24/7 emergency support</span>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Coverage</dt>
+                <dd className="mt-1 text-lg">Gauteng, South Africa. Serving Pretoria and Johannesburg.</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-bold lg:text-4xl">Tell us this and we can quote faster</h2>
+            <ul className="mt-8 space-y-4">
+              {helpfulDetails.map((item, i) => (
+                <li key={item} className="flex gap-4">
+                  <span className="text-sm font-bold text-accent">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 text-sm text-muted-foreground">
+              Got a general question first? See our{" "}
+              <Link href="/faq" className="font-semibold text-accent hover:underline">
+                FAQ page
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* AREAS */}
+      <section className="py-14">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="text-2xl font-bold">We serve all of Gauteng</h2>
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {areas.map((area) => (
+              <li key={area} className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium">
+                {area}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Don't see your area?{" "}
+            <TrackedLink kind="call" className="font-semibold text-accent hover:underline">
+              Call {PHONE_DISPLAY}
+            </TrackedLink>{" "}
+            and we'll tell you straight away whether we cover you.
           </p>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            onClick={trackCallClick}
-            className="mt-6 inline-block text-4xl font-bold tabular-nums hover:underline sm:text-5xl"
-          >
-            {PHONE_DISPLAY}
-          </a>
+        </div>
+      </section>
+
+      {/* CLOSING CTA */}
+      <section className="bg-primary py-16 text-primary-foreground">
+        <div className="container mx-auto px-4 text-center lg:px-8">
+          <h2 className="text-3xl font-bold lg:text-4xl">Every day without reliable water costs you.</h2>
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
+            One call gets you an honest answer, a rough price and a plan. No obligation.
+          </p>
+          <BigPhoneLink />
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <CallButton size="lg" />
             <WhatsAppCta size="lg" label="WhatsApp us" />
+            <EmailCta size="lg" label="Email us" onDark />
           </div>
         </div>
       </section>
 
-      {/* Padding so the sticky mobile bar never covers the last CTA */}
       <div className="h-20 md:hidden" aria-hidden="true" />
       <StickyCallBar />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contact Borehole Works",
+            url: "https://www.boreholeworks.co.za/contact",
+            mainEntity: {
+              "@type": "LocalBusiness",
+              name: "Borehole Works",
+              telephone: "+27-72-411-5472",
+              email: EMAIL,
+              areaServed: areas.map((a) => ({ "@type": "City", name: a })),
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Johannesburg",
+                addressRegion: "Gauteng",
+                addressCountry: "ZA",
+              },
+            },
+          }),
+        }}
+      />
     </>
   )
 }
