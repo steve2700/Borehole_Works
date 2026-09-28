@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { PHONE_TEL } from "@/components/contact-info"
 
 const work = [
   { number: "01", title: "Water where you need it", copy: "Borehole drilling, pump systems and tanks designed around the way your property actually uses water.", image: "/borehole_drilling_water_gushing.jpg", href: "/borehole-drilling" },
@@ -62,11 +63,11 @@ export function HomepageExperience() {
               Water systems that work as hard as you do.
             </h1>
             <p className="area-rise mt-7 max-w-xl text-pretty text-lg leading-relaxed text-primary-foreground/75 sm:text-xl" style={{ animationDelay: "180ms" }}>
-              Boreholes, pumps, tanks and plumbing — planned properly, installed cleanly and supported by a team that knows Gauteng.
+              Boreholes, pumps, tanks and plumbing, planned properly, installed cleanly and supported by a team that knows Gauteng.
             </p>
             <div className="area-rise mt-9 flex flex-wrap gap-4" style={{ animationDelay: "280ms" }}>
-              <Link href="#job-card" className="rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-1">Send a job card</Link>
-              <Link href="/services" className="rounded-full border border-primary-foreground/30 px-7 py-3.5 text-sm font-semibold transition-colors hover:border-primary-foreground hover:bg-primary-foreground/10">See what we do</Link>
+              <Link href={`tel:${PHONE_TEL}`} className="rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-1">Call for a free quote</Link>
+              <Link href="#job-card" className="rounded-full border border-primary-foreground/30 px-7 py-3.5 text-sm font-semibold transition-colors hover:border-primary-foreground hover:bg-primary-foreground/10">Send a job card</Link>
             </div>
             <div className="area-rise mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-primary-foreground/15 pt-5 text-xs font-semibold uppercase tracking-[0.14em] text-primary-foreground/55" style={{ animationDelay: "380ms" }}>
               <span>Residential</span><span>Commercial</span><span>Emergency callouts</span>
