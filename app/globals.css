@@ -206,11 +206,28 @@
   );
 }
 
+@keyframes area-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.area-marquee {
+  animation: area-marquee 38s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .area-rise,
   .area-kenburns,
   .area-drift,
   .area-card-in {
     animation: none;
+  }
+
+  .area-marquee {
+    animation-play-state: paused;
   }
 }
