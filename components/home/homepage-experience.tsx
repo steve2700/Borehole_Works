@@ -1,9 +1,10 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { PHONE_TEL } from "@/components/contact-info"
 
 const work = [
   { number: "01", title: "Water where you need it", copy: "Borehole drilling, pump systems and tanks designed around the way your property actually uses water.", image: "/borehole_drilling_water_gushing.jpg", href: "/borehole-drilling" },
@@ -19,8 +20,20 @@ const gallery = [
   "/geyser-installation.jpg",
 ]
 
+const heroImages = [
+  { src: "/borehole_drilling_rig_action.webp", alt: "Borehole drilling rig working in Gauteng" },
+  { src: "/pump_installation_hero.jpg", alt: "Borehole pump installation in Gauteng" },
+  { src: "/jojo_tank_installation.jpg", alt: "JoJo water tank installation in Gauteng" },
+  { src: "/borehole_pump_water_tank_installation.jpg", alt: "Borehole pump and water tank system" },
+]
+
 export function HomepageExperience() {
+  const [activeHero, setActiveHero] = useState(0)
   const [name, setName] = useState("")
+  useEffect(() => {
+    const interval = setInterval(() => setActiveHero((current) => (current + 1) % heroImages.length), 5000)
+    return () => clearInterval(interval)
+  }, [])
   const [suburb, setSuburb] = useState("")
   const [need, setNeed] = useState("")
 
@@ -32,8 +45,17 @@ export function HomepageExperience() {
   return (
     <main className="overflow-hidden">
       <section className="relative isolate min-h-[680px] bg-primary text-primary-foreground lg:min-h-[760px]">
-        <Image src="/borehole_drilling_rig_action.webp" alt="Borehole drilling rig working in Gauteng" fill priority className="object-cover object-center opacity-60" sizes="100vw" />
+        {heroImages.map((image, index) => (
+          <div key={image.src} className="absolute inset-0 transition-opacity duration-1000 ease-in-out" style={{ opacity: activeHero === index ? 1 : 0 }}>
+            <Image src={image.src} alt={image.alt} fill priority={index === 0} className="object-cover object-center" sizes="100vw" />
+          </div>
+        ))}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(26,31,37,.96)_0%,rgba(26,31,37,.82)_44%,rgba(26,31,37,.28)_100%)]" />
+        <div className="absolute right-5 top-6 z-10 flex gap-2 sm:right-8 lg:right-12 lg:top-8" aria-label="Hero image selection">
+          {heroImages.map((image, index) => (
+            <button key={image.src} type="button" onClick={() => setActiveHero(index)} aria-label={`Show hero image ${index + 1}`} aria-pressed={activeHero === index} className={`h-1.5 rounded-full transition-all ${activeHero === index ? "w-8 bg-accent" : "w-2 bg-primary-foreground/45 hover:bg-primary-foreground/75"}`} />
+          ))}
+        </div>
         <div className="container relative mx-auto flex min-h-[680px] items-end px-4 pb-16 pt-28 sm:px-8 lg:min-h-[760px] lg:px-12 lg:pb-24">
           <div className="max-w-3xl">
             <p className="area-rise text-xs font-semibold uppercase tracking-[0.24em] text-accent">Borehole Works / Gauteng</p>
@@ -41,11 +63,11 @@ export function HomepageExperience() {
               Water systems that work as hard as you do.
             </h1>
             <p className="area-rise mt-7 max-w-xl text-pretty text-lg leading-relaxed text-primary-foreground/75 sm:text-xl" style={{ animationDelay: "180ms" }}>
-              Boreholes, pumps, tanks and plumbing — planned properly, installed cleanly and supported by a team that knows Gauteng.
+              Boreholes, pumps, tanks and plumbing, planned properly, installed cleanly and supported by a team that knows Gauteng.
             </p>
             <div className="area-rise mt-9 flex flex-wrap gap-4" style={{ animationDelay: "280ms" }}>
-              <Link href="#job-card" className="rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-1">Send a job card</Link>
-              <Link href="/services" className="rounded-full border border-primary-foreground/30 px-7 py-3.5 text-sm font-semibold transition-colors hover:border-primary-foreground hover:bg-primary-foreground/10">See what we do</Link>
+              <Link href={`tel:${PHONE_TEL}`} className="rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-1">Call for a free quote</Link>
+              <Link href="#job-card" className="rounded-full border border-primary-foreground/30 px-7 py-3.5 text-sm font-semibold transition-colors hover:border-primary-foreground hover:bg-primary-foreground/10">Send a job card</Link>
             </div>
             <div className="area-rise mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-primary-foreground/15 pt-5 text-xs font-semibold uppercase tracking-[0.14em] text-primary-foreground/55" style={{ animationDelay: "380ms" }}>
               <span>Residential</span><span>Commercial</span><span>Emergency callouts</span>
@@ -55,13 +77,20 @@ export function HomepageExperience() {
       </section>
 
       <section className="bg-background">
-        <div className="container mx-auto grid gap-12 px-4 py-20 sm:px-8 lg:grid-cols-12 lg:gap-16 lg:px-12 lg:py-28">
-          <ScrollReveal className="lg:col-span-4">
+        <div className="container mx-auto grid gap-12 px-4 py-20 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-12 lg:py-28">
+          <ScrollReveal variant="wipe" className="lg:col-span-5">
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
+              <Image src="/pump_system_installation.webp" alt="Borehole pump and water system installation" fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover transition-transform duration-1000 group-hover:scale-105" />
+              <div className="absolute inset-x-5 bottom-5 rounded-xl border border-white/20 bg-primary/80 p-4 text-primary-foreground backdrop-blur-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">One team. One plan.</p>
+                <p className="mt-1 text-sm text-primary-foreground/75">From the ground to the tap.</p>
+              </div>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={120} className="lg:col-span-6 lg:col-start-7">
             <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground"><span className="text-accent">01</span><span className="h-px w-8 bg-border" />The difference</p>
             <h2 className="mt-5 text-balance text-4xl font-bold leading-tight tracking-tight">Not just a callout. A better way to use water.</h2>
-          </ScrollReveal>
-          <ScrollReveal delay={120} className="lg:col-span-7 lg:col-start-6">
-            <p className="text-pretty text-2xl font-semibold leading-snug tracking-tight md:text-4xl">Good water infrastructure should feel invisible: reliable in the background, ready when your home or business needs it.</p>
+            <p className="mt-7 text-pretty text-2xl font-semibold leading-snug tracking-tight md:text-4xl">Good water infrastructure should feel invisible: reliable in the background, ready when your home or business needs it.</p>
             <p className="mt-7 max-w-2xl leading-relaxed text-muted-foreground">We bring drilling, pumping, storage and plumbing together so you are not left coordinating five different contractors. One experienced team, one clear plan, one finished job.</p>
           </ScrollReveal>
         </div>
