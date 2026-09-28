@@ -131,9 +131,3 @@ export function HomepageExperience() {
   )
 }
 
-
-<style jsx global>{`
-  @keyframes area-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .area-marquee { animation: area-marquee 38s linear infinite; }
-  @media (prefers-reduced-motion: reduce) { .area-marquee { animation-play-state: paused; } }
-`}</style>
