@@ -1,11 +1,11 @@
-# ZECO Construction — Website
+# Borehole Works — Website
 
-Marketing website for **ZECO Construction**, a building, maintenance, and civil works company serving Gauteng, South Africa (Pretoria, Johannesburg, Midrand, and surrounds).
+Marketing website for **Borehole Works**, a borehole drilling, pump, water tank and plumbing company serving Gauteng, South Africa (Pretoria, Centurion, Midrand, Johannesburg, Sandton and surrounds).
 
-- **Live URL:** https://www.zecoconstruction.co.za
+- **Live URL:** https://www.boreholeworks.co.za
 - **Framework:** Next.js (App Router) + TypeScript + Tailwind CSS
 - **Package manager:** pnpm
-- **Deployment:** Vercel
+- **Deployment:** <!-- TODO: confirm — Vercel? -->
 
 ---
 
@@ -29,17 +29,14 @@ pnpm start   # run the production build locally
 
 | | |
 |---|---|
-| **Company name** | ZECO Construction |
-| **Phone** | +27 74 850 9727 |
-| **WhatsApp** | wa.me/27748509727 |
-| **Email** | info@zecoconstruction.co.za |
-| **Location** | Gauteng, South Africa (Johannesburg locality — no public street address) |
-| **Primary color (theme/mask-icon)** | `#f26a1b` |
-| **Logo mark** | Dark rounded-square badge with orange "Z" — see `/public/logo.png`, `/public/logo-icon.png` |
-| **Certifications** | NHBRC Registered, CIDB Graded, SABS Compliant, ECSA Certified |
-| **Years in operation** | 10+ |
+| **Company name** | Borehole Works |
+| **Phone** | 072 411 5472 |
+| **WhatsApp** | wa.me/27724115472 |
+| **Email** | <!-- TODO: add --> |
+| **Location** | Gauteng, South Africa |
+| **Logo mark** | Water droplet icon — see `/public/water_droplet_logo_transparent.png` |
 
-Keep any new copy consistent with this reference — in particular, don't reintroduce the old Goshen Projects Solutions branding, the old phone number (`+27 61 382 1561` / `061 530 7314`), or a specific street address.
+Keep any new copy consistent with this reference.
 
 ---
 
@@ -47,92 +44,132 @@ Keep any new copy consistent with this reference — in particular, don't reintr
 
 ```
 app/
-├── layout.tsx                          # Root layout, metadata, JSON-LD, WhatsApp button
-├── page.tsx                            # Homepage
-├── about/                              # About page
-├── contact/                            # Contact page
+├── layout.tsx                          # Root layout, metadata, JSON-LD
+├── page.tsx                            # Homepage → renders HomepageExperience
+├── about/
+├── contact/
+├── faq/
+├── gallery/
+├── privacy-policy/
+├── terms-of-service/
 ├── services/                           # Services overview (/services)
 ├── service-areas/                      # Service area hub + per-suburb pages
-├── privacy-policy/
-│
-├── building-construction-renovations/  # Service page
-├── property-maintenance/               # Service page
+├── borehole-drilling/                  # Service page
+├── pump-installation-repairs/          # Service page
+├── solar-borehole-pumps/               # Service page
+├── jojo-water-tank-installation/       # Service page
+├── irrigation-systems/                 # Service page
 ├── plumbing-services/                  # Service page
-├── electrical-services/                # Service page
-├── roofing-roof-leak-repairs/          # Service page
-├── waterproofing-services/             # Service page
-├── carpentry-services/                 # Service page
-├── kitchen-bathroom-cupboards/         # Service page
-├── painting-tiling-finishing/          # Service page
-├── paving-driveways-surfacing/         # Service page
-└── concrete-works-bricklaying/         # Service page (see TODO below)
+├── geyser-installation-repairs/        # Service page
+├── blocked-drains-unblocking/          # Service page
+├── emergency-plumber-burst-pipes/      # Service page
+└── sitemap.ts
 
 components/
-├── header.tsx                          # Nav, services dropdown, contact bar
-├── footer.tsx                          # Footer nav, service list, contact info
-├── whatsapp-button.tsx                 # Floating WhatsApp CTA (rendered in layout.tsx)
+├── header.tsx
+├── footer.tsx
+├── whatsapp-button.tsx
+├── service-cta.tsx
 ├── service-page-template.tsx           # Shared wrapper for all /service pages
 ├── service-area-template.tsx           # Shared wrapper for all /service-areas/[suburb] pages
-└── home/
-    ├── hero-section.tsx
-    ├── services-overview.tsx
-    └── cta-section.tsx
+├── scroll-reveal.tsx                   # Scroll-in animation (up / left / wipe variants)
+├── breadcrumbs.tsx
+├── contact-form.tsx
+├── contact-info.tsx
+├── image-marquee.tsx
+├── plumbing-cta.tsx
+├── theme-provider.tsx
+├── watermarked-image.tsx
+├── icons/
+├── ui/
+├── home/
+│   ├── home-data.ts                    # Homepage arrays: hero images, service index, audience tabs, gallery strip
+│   └── homepage-experience.tsx         # Homepage component, imports data from home-data.ts
+└── service-area/
+    ├── area-photo.tsx
+    ├── area-call-desk.tsx
+    └── area-schema.tsx                 # JSON-LD schema builder for area pages
+
+lib/
+├── analytics.ts
+├── utils.ts
+└── service-areas/
+    ├── index.ts                        # Re-exports everything; SERVICE_AREAS array; getServiceArea(), areaUrl()
+    ├── gallery.ts                      # GALLERY: every job photo, its caption and watermark flag
+    ├── services.ts                     # SERVICES: the 9 service keys, names and hrefs
+    ├── types.ts                        # ServiceArea, AreaSlug, GalleryPhoto types
+    └── areas/                          # One file per suburb, each with 9 callouts (all services)
+        ├── pretoria.ts
+        ├── centurion.ts
+        ├── midrand.ts
+        ├── johannesburg.ts
+        ├── sandton.ts
+        ├── morningside.ts
+        ├── fourways.ts
+        ├── randburg.ts
+        ├── rosebank.ts
+        ├── roodepoort.ts
+        └── bedfordview.ts
 
 public/
 ├── favicon.ico, favicon-16x16.png, favicon-32x32.png
-├── apple-touch-icon.png
-├── android-chrome-192x192.png, android-chrome-512x512.png
-├── safari-pinned-tab.svg
 ├── site.webmanifest
-├── logo.png, logo-icon.png, logo-square.png
+├── water_droplet_logo_transparent.png
+└── ...job photos referenced in lib/service-areas/gallery.ts
 ```
 
 ---
 
-## Current Services (10)
+## Current Services (9)
 
-The active service list, consistent across the header nav, homepage grid, and `/services` page:
+The active service list, defined in `lib/service-areas/services.ts` and used across the header nav, homepage index, and every service-area page:
 
-1. Building Construction & Renovations
-2. Property Maintenance
-3. Plumbing Services
-4. Electrical Services
-5. Roofing & Roof Leak Repairs
-6. Waterproofing Services
-7. Carpentry Services
-8. Kitchen & Bathroom Cupboards
-9. Painting, Tiling & Finishing
-10. Paving, Driveways & Surfacing
+1. Borehole Drilling
+2. Pump Installation & Repairs
+3. Solar Borehole Pumps
+4. JoJo Water Tank Installation
+5. Irrigation Systems
+6. Plumbing Services
+7. Geyser Installation & Repairs
+8. Blocked Drains Unblocking
+9. Emergency Plumber & Burst Pipes
 
-**Removed services** (folders deleted, all references cleaned from nav/footer/homepage): Air Conditioning Services, CCTV/Alarm/Surveillance, Fencing/Gates/Access Control, Road Construction & Civil Works, Solar & Energy Solutions.
+**Removed:** Bathroom Renovations (folder deleted; not part of the current offering).
+
+---
+
+## Service Areas (11)
+
+Pretoria, Centurion, Midrand, Johannesburg, Sandton, Morningside, Fourways, Randburg, Rosebank, Roodepoort, Bedfordview.
+
+Each has its own file under `lib/service-areas/areas/`, with 9 callouts (one per service, each with unique local copy and a unique photo within that page) plus a hero, a local "story" section, an FAQ set, and a list of suburbs it covers.
 
 ---
 
 ## URL Structure
 
-- Service pages: `/service-name` (e.g. `/plumbing-services`)
-- Service areas: `/service-areas/[suburb]` (e.g. `/service-areas/sandton`)
-
----
-
-## Known TODOs
-
-- [ ] **`concrete-works-bricklaying` page** — still has old Goshen Projects Solutions branding, address, and phone number. Every other service page has been rebranded; this one hasn't been sent through yet.
-- [ ] **`og-image.jpg`** — referenced in `layout.tsx` Open Graph tags but not yet created. Needs an actual project photo with the logo overlaid (1200×630).
-- [ ] **Unconfirmed stats** — "500+ happy clients" and "50+ professionals" are carried over placeholders from the original template and haven't been confirmed as accurate for ZECO. Search the codebase for `// TODO: confirm` comments.
-- [ ] **Google/Bing/Yandex verification codes** — placeholder values (`your-google-verification-code`) still in `layout.tsx` metadata.
-- [ ] **`services/page.tsx` service count** — currently shows 11 services (includes Concrete Works & Bricklaying, which the header's 10-service dropdown doesn't). Decide on one master list of 10 or 11 and align both.
-- [ ] **`safari-pinned-tab.svg`** — a simplified placeholder "Z" silhouette, not a true vector trace of the real logo. Fine for now, but replace with a properly traced version if you want pixel-perfect accuracy.
+- Service pages: `/service-name` (e.g. `/borehole-drilling`)
+- Service areas: `/service-areas/[suburb]` (e.g. `/service-areas/pretoria`)
 
 ---
 
 ## Notes for Future Edits
 
-- The **`ServicePageTemplate`** and **`ServiceAreaTemplate`** components in `components/` are shared wrappers — editing them affects *every* service page or every service-area page at once. Check there first before assuming a bug is page-specific.
-- When adding or removing a service, update it in **all** of these places: `components/header.tsx`, `components/footer.tsx`, `components/home/services-overview.tsx`, `app/services/page.tsx`, and any `relatedServices` arrays on individual service pages that might link to it.
+- **`ServiceAreaTemplate`** (`components/service-area-template.tsx`) is a shared wrapper — editing it affects *every* service-area page at once. Check there first before assuming a bug is suburb-specific.
+- **`lib/service-areas/`** is intentionally split one file per suburb so no single file grows unmanageable. To add a new suburb: create `lib/service-areas/areas/<slug>.ts`, add the slug to `AreaSlug` in `types.ts`, then import and add it to the `SERVICE_AREAS` array in `index.ts`.
+- To add a new service: add it to `SERVICES` in `lib/service-areas/services.ts`, then add a matching callout (with a photo already in `GALLERY`) to whichever area files should offer it.
+- **`components/home/`** follows the same pattern: `home-data.ts` holds the static arrays (hero images, service index, audience tabs, gallery strip), `homepage-experience.tsx` holds only markup and behavior. Add new homepage content to `home-data.ts`, not inline in the component.
+- **`ScrollReveal`** (`components/scroll-reveal.tsx`) has an outer/inner div split on purpose — the outer div is what gets observed for scroll visibility, the inner div carries the animation styles. The `wipe` variant's `clip-path` breaks scroll detection if applied to the observed element directly, so don't collapse this back into one div.
 - Bulk find-and-replace across the repo (e.g. for a phone number change) works well from Git Bash:
   ```bash
   find . -type f \( -name "*.tsx" -o -name "*.ts" \) -not -path "*/node_modules/*" \
     -exec sed -i 's/OLD_VALUE/NEW_VALUE/g' {} +
   ```
   Always `grep -r` first to preview matches before running the replace.
+
+---
+
+## Known TODOs
+
+- [ ] Confirm deployment provider and add it above.
+- [ ] Add a real contact email to the Brand Reference table.
