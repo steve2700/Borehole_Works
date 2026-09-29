@@ -5,135 +5,15 @@ import Image from "next/image"
 import Link from "next/link"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { TrackedLink } from "@/components/service-cta"
-
-const work = [
-  { number: "01", title: "Water where you need it", copy: "Borehole drilling, pump systems and tanks designed around the way your property actually uses water.", image: "/borehole_drilling_water_gushing.jpg", href: "/borehole-drilling" },
-  { number: "02", title: "The pressure, sorted", copy: "From a weak shower to a dry JoJo tank, we diagnose the system and install the right fix without guesswork.", image: "/pressure_pumps_installations.jpg", href: "/pump-installation-repairs" },
-  { number: "03", title: "A team that leaves it better", copy: "Clean workmanship, clear communication and practical advice from the first call to the final test.", image: "/professional-plumber-working-on-pipes-in-a-gauteng-.jpg", href: "/plumbing-services" },
-]
-
-const services = [
-  {
-    number: "01",
-    title: "Borehole Drilling",
-    tag: "Homes · Farms · Businesses",
-    copy: "A free site assessment first, then drilling, casing and yield testing, so you know what your borehole can deliver before you build around it.",
-    image: "/borehole_drilling_water_gushing.jpg",
-    href: "/borehole-drilling",
-  },
-  {
-    number: "02",
-    title: "Pump Installation & Repairs",
-    tag: "Homes · Farms · Businesses",
-    copy: "Submersible, borehole and pressure pumps installed and repaired, with faults diagnosed properly instead of guessed at.",
-    image: "/pump_installation_hero.jpg",
-    href: "/pump-installation-repairs",
-  },
-  {
-    number: "03",
-    title: "Solar Borehole Pumps",
-    tag: "Farms · Remote sites · Homes",
-    copy: "Off-grid solar pumping sized to your borehole's yield, so water keeps flowing through load shedding.",
-    image: "/solar_borehole_pump_aerial_view.jpg",
-    href: "/solar-borehole-pumps",
-  },
-  {
-    number: "04",
-    title: "Irrigation Systems",
-    tag: "Farms · Smallholdings · Gardens",
-    copy: "Drip irrigation for farms, plots and gardens, fed straight from your borehole and designed around your land.",
-    image: "/large_scale_drip_irrigation_farm.jpg",
-    href: "/irrigation-systems",
-  },
-  {
-    number: "05",
-    title: "Water Tank Installation",
-    tag: "Homes · Farms · Businesses",
-    copy: "Tank sizing, stands, plumbing and pump systems, pressure tested before we hand over.",
-    image: "/jojo_installation.jpg",
-    href: "/jojo-water-tank-installation",
-  },
-  {
-    number: "06",
-    title: "Plumbing Services",
-    tag: "Homes · Businesses",
-    copy: "Installations, repairs and leak detection that connect your water system to your home or business.",
-    image: "/professional-plumber-working-on-pipes-in-a-gauteng-.jpg",
-    href: "/plumbing-services",
-  },
-  {
-    number: "07",
-    title: "Emergency Plumber & Burst Pipes",
-    tag: "24/7 · Homes · Businesses",
-    copy: "Burst pipes and floods stopped first, day or night, before permanent repairs begin.",
-    image: "/burst_pipe_centurion.jpg",
-    href: "/emergency-plumber-burst-pipes",
-  },
-  {
-    number: "08",
-    title: "Geyser Installation & Repairs",
-    tag: "Homes · Businesses",
-    copy: "Electric, solar and Kwikot geysers installed, repaired and serviced, with insurance replacements handled.",
-    image: "/kwikot_geyser_installation.jpg",
-    href: "/geyser-installation-repairs",
-  },
-  {
-    number: "09",
-    title: "Blocked Drains Unblocking",
-    tag: "Homes · Businesses",
-    copy: "High-pressure jetting and CCTV inspection, so blockages are cleared properly and the cause is found.",
-    image: "/blocked_drains.jpg",
-    href: "/blocked-drains-unblocking",
-  },
-]
-
-const audiences = {
-  homes: {
-    label: "Homes",
-    intro: "Independent water, steady pressure and backup for when the municipality lets you down.",
-    items: [
-      { title: "Borehole Drilling", copy: "Your own water supply, assessed honestly before we drill.", image: "/borehole_drilling_rig_action.webp", href: "/borehole-drilling" },
-      { title: "Pump Installation & Repairs", copy: "Steady pressure from the tap to the garden.", image: "/water_pump_installation.jpg", href: "/pump-installation-repairs" },
-      { title: "Water Tank Installation", copy: "Storage and backup so dry taps stop being a surprise.", image: "/eco_water_tanks_installation.jpg", href: "/jojo-water-tank-installation" },
-    ],
-  },
-  farms: {
-    label: "Farms & smallholdings",
-    intro: "Reliable water for crops, livestock and the whole property, wherever the grid doesn't reach.",
-    items: [
-      { title: "Borehole Drilling", copy: "A dependable source for the whole property, tested for yield first.", image: "/borehole_drilling_water_gushing.jpg", href: "/borehole-drilling" },
-      { title: "Irrigation Systems", copy: "Drip irrigation fed straight from your borehole.", image: "/large_scale_drip_irrigation_farm.jpg", href: "/irrigation-systems" },
-      { title: "Solar Borehole Pumps", copy: "Off-grid pumping for remote fields and troughs.", image: "/solar_borehole_tank_installation.jpg", href: "/solar-borehole-pumps" },
-    ],
-  },
-  business: {
-    label: "Businesses",
-    intro: "Reliable water and fast callouts, so downtime doesn't cost you customers.",
-    items: [
-      { title: "Pump Installation & Repairs", copy: "Pressure systems and breakdown repairs done properly.", image: "/pump_system_installation.webp", href: "/pump-installation-repairs" },
-      { title: "Plumbing Services", copy: "Installations, repairs and leak detection.", image: "/professional-plumber-working-on-pipes-installation.jpg", href: "/plumbing-services" },
-      { title: "Emergency Plumber", copy: "Burst pipes and floods dealt with fast, day or night.", image: "/emergency_plumber_Gauteng.jpg", href: "/emergency-plumber-burst-pipes" },
-    ],
-  },
-}
-
-type AudienceKey = keyof typeof audiences
-const audienceKeys = Object.keys(audiences) as AudienceKey[]
-
-const gallery = [
-  "/pump_system_installation.webp",
-  "/jojo_tank_installation.jpg",
-  "/solar_borehole_tank_installation.jpg",
-  "/blocked_drains.jpg",
-  "/geyser-installation.jpg",
-]
-
-const heroImages = [
-  { src: "/borehole_drilling_rig_action.webp", alt: "Borehole drilling rig working in Gauteng" },
-  { src: "/pump_installation_hero.jpg", alt: "Borehole pump installation in Gauteng" },
-  { src: "/jojo_tank_installation.jpg", alt: "JoJo water tank installation in Gauteng" },
-  { src: "/borehole_pump_water_tank_installation.jpg", alt: "Borehole pump and water tank system" },
-]
+import {
+  WORK,
+  SERVICE_INDEX,
+  AUDIENCES,
+  AUDIENCE_KEYS,
+  GALLERY_STRIP,
+  HERO_IMAGES,
+  type AudienceKey,
+} from "./home-data"
 
 export function HomepageExperience() {
   const [activeHero, setActiveHero] = useState(0)
@@ -144,12 +24,12 @@ export function HomepageExperience() {
   const [need, setNeed] = useState("")
 
   useEffect(() => {
-    const interval = setInterval(() => setActiveHero((current) => (current + 1) % heroImages.length), 5000)
+    const interval = setInterval(() => setActiveHero((current) => (current + 1) % HERO_IMAGES.length), 5000)
     return () => clearInterval(interval)
   }, [])
 
-  const currentService = services[activeService]
-  const currentAudience = audiences[activeAudience]
+  const currentService = SERVICE_INDEX[activeService]
+  const currentAudience = AUDIENCES[activeAudience]
 
   const jobMessage = `Hi Borehole Works, I'm ${name || "a customer"} in ${suburb || "Gauteng"}. I need help with: ${need || "a water or plumbing job"}. Please get back to me.`
 
@@ -157,14 +37,14 @@ export function HomepageExperience() {
     <main className="overflow-hidden">
       {/* HERO */}
       <section className="relative isolate min-h-[680px] bg-primary text-primary-foreground lg:min-h-[760px]">
-        {heroImages.map((image, index) => (
+        {HERO_IMAGES.map((image, index) => (
           <div key={image.src} className="absolute inset-0 transition-opacity duration-1000 ease-in-out" style={{ opacity: activeHero === index ? 1 : 0 }}>
             <Image src={image.src} alt={image.alt} fill priority={index === 0} className="object-cover object-center" sizes="100vw" />
           </div>
         ))}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(26,31,37,.96)_0%,rgba(26,31,37,.82)_44%,rgba(26,31,37,.28)_100%)]" />
         <div className="absolute right-5 top-6 z-10 flex gap-2 sm:right-8 lg:right-12 lg:top-8" aria-label="Hero image selection">
-          {heroImages.map((image, index) => (
+          {HERO_IMAGES.map((image, index) => (
             <button key={image.src} type="button" onClick={() => setActiveHero(index)} aria-label={`Show hero image ${index + 1}`} aria-pressed={activeHero === index} className={`h-1.5 rounded-full transition-all ${activeHero === index ? "w-8 bg-accent" : "w-2 bg-primary-foreground/45 hover:bg-primary-foreground/75"}`} />
           ))}
         </div>
@@ -221,7 +101,7 @@ export function HomepageExperience() {
             <h2 className="mt-5 max-w-2xl text-balance text-4xl font-bold tracking-tight md:text-5xl">From first drop to final connection.</h2>
           </ScrollReveal>
           <div className="mt-14 flex flex-col gap-16 lg:gap-24">
-            {work.map((item, index) => (
+            {WORK.map((item, index) => (
               <div key={item.number} className="grid items-center gap-8 md:grid-cols-12 md:gap-14">
                 <div className={`md:col-span-6 ${index % 2 ? "md:order-2" : ""}`}>
                   <Link href={item.href} className="group block overflow-hidden rounded-2xl">
@@ -251,7 +131,7 @@ export function HomepageExperience() {
 
           <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-16">
             <ul className="border-t border-border lg:col-span-7">
-              {services.map((service, index) => {
+              {SERVICE_INDEX.map((service, index) => {
                 const isActive = activeService === index
                 return (
                   <li key={service.href} className="border-b border-border">
@@ -291,7 +171,7 @@ export function HomepageExperience() {
             <div className="hidden lg:col-span-5 lg:block">
               <div className="sticky top-28">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-primary">
-                  {services.map((service, index) => (
+                  {SERVICE_INDEX.map((service, index) => (
                     <div key={service.href} className="absolute inset-0 transition-opacity duration-700" style={{ opacity: activeService === index ? 1 : 0 }}>
                       <Image src={service.image} alt={service.title} fill sizes="40vw" className="object-cover" />
                     </div>
@@ -322,7 +202,7 @@ export function HomepageExperience() {
           </ScrollReveal>
 
           <div role="tablist" aria-label="Choose your property type" className="mt-10 flex flex-wrap gap-3">
-            {audienceKeys.map((key) => (
+            {AUDIENCE_KEYS.map((key) => (
               <button
                 key={key}
                 type="button"
@@ -335,7 +215,7 @@ export function HomepageExperience() {
                     : "border border-border bg-card text-foreground hover:border-accent"
                 }`}
               >
-                {audiences[key].label}
+                {AUDIENCES[key].label}
               </button>
             ))}
           </div>
@@ -372,7 +252,7 @@ export function HomepageExperience() {
       {/* MOVING GALLERY */}
       <section className="bg-primary py-5 text-primary-foreground" aria-label="Recent work gallery">
         <div className="flex w-max gap-5 area-marquee">
-          {[...gallery, ...gallery].map((src, index) => <div key={`${src}-${index}`} className="relative h-48 w-72 overflow-hidden rounded-xl sm:h-64 sm:w-96"><Image src={src} alt="Borehole Works installation" fill sizes="384px" className="object-cover" /></div>)}
+          {[...GALLERY_STRIP, ...GALLERY_STRIP].map((src, index) => <div key={`${src}-${index}`} className="relative h-48 w-72 overflow-hidden rounded-xl sm:h-64 sm:w-96"><Image src={src} alt="Borehole Works installation" fill sizes="384px" className="object-cover" /></div>)}
         </div>
       </section>
 
