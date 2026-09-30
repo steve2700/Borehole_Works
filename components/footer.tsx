@@ -1,29 +1,13 @@
 import Link from "next/link"
 import Image from "next/image"
+import { Phone, Mail, MapPin, Clock, ShieldCheck, BadgeCheck, ArrowRight } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 import { TrackedLink } from "@/components/service-cta"
 import { EMAIL, PHONE_DISPLAY } from "@/components/contact-info"
+import { SERVICES, SERVICE_AREAS, areaUrl } from "@/lib/service-areas"
 
-const services = [
-  { title: "Borehole Drilling", href: "/borehole-drilling" },
-  { title: "Pump Installation & Repairs", href: "/pump-installation-repairs" },
-  { title: "Solar Borehole Pumps", href: "/solar-borehole-pumps" },
-  { title: "Irrigation Systems", href: "/irrigation-systems" },
-  { title: "JoJo Water Tank Installation", href: "/jojo-water-tank-installation" },
-  { title: "Plumbing Services", href: "/plumbing-services" },
-  { title: "Emergency Plumber & Burst Pipes", href: "/emergency-plumber-burst-pipes" },
-  { title: "Geyser Installation & Repairs", href: "/geyser-installation-repairs" },
-  { title: "Blocked Drains Unblocking", href: "/blocked-drains-unblocking" },
-]
-
-const serviceAreas = [
-  { name: "Pretoria", href: "/service-areas/pretoria" },
-  { name: "Johannesburg", href: "/service-areas/johannesburg" },
-  { name: "Sandton", href: "/service-areas/sandton" },
-  { name: "Midrand", href: "/service-areas/midrand" },
-  { name: "Centurion", href: "/service-areas/centurion" },
-  { name: "Randburg", href: "/service-areas/randburg" },
-]
+const services = Object.values(SERVICES)
+const featuredAreas = SERVICE_AREAS.slice(0, 6)
 
 const quickLinks = [
   { title: "About Us", href: "/about" },
@@ -34,27 +18,58 @@ const quickLinks = [
   { title: "Contact Us", href: "/contact" },
 ]
 
+const trustBadges = [
+  { icon: BadgeCheck, title: "Licensed & Certified", copy: "Fully compliant professionals" },
+  { icon: ShieldCheck, title: "Insured & Guaranteed", copy: "All work fully insured" },
+  { icon: Clock, title: "Experienced Team", copy: "10+ years in water systems" },
+]
+
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-primary text-primary-foreground">
+    <footer className="bg-primary text-primary-foreground">
+      {/* CTA banner, mirrors the header's accent pill treatment */}
+      <div className="border-b border-primary-foreground/10">
+        <div className="container mx-auto px-4 py-10 lg:px-8">
+          <div className="flex flex-col items-center justify-between gap-6 rounded-3xl border border-primary-foreground/10 bg-primary-foreground/5 p-8 text-center lg:flex-row lg:text-left">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Water problem right now?</p>
+              <h3 className="mt-2 text-2xl font-bold tracking-tight text-white lg:text-3xl">
+                We pick up the phone when it stops.
+              </h3>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              <TrackedLink
+                kind="call"
+                className="inline-flex h-12 items-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-accent-foreground shadow-lg shadow-accent/25 transition hover:bg-accent/90"
+              >
+                <Phone className="h-4 w-4" />
+                Call Now
+              </TrackedLink>
+              <TrackedLink
+                kind="whatsapp"
+                className="inline-flex h-12 items-center gap-2 rounded-full bg-[#25D366] px-6 text-sm font-semibold text-white transition hover:bg-[#25D366]/90"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                WhatsApp Us
+              </TrackedLink>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Trust Badges */}
       <div className="border-b border-primary-foreground/10 bg-primary/95">
         <div className="container mx-auto px-4 py-8 lg:px-8">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="border-l-2 border-accent pl-4">
-              <h4 className="font-semibold text-white">Licensed & Certified</h4>
-              <p className="text-sm text-primary-foreground/70">Fully compliant professionals</p>
-            </div>
-
-            <div className="border-l-2 border-accent pl-4">
-              <h4 className="font-semibold text-white">Insured & Guaranteed</h4>
-              <p className="text-sm text-primary-foreground/70">All work fully insured</p>
-            </div>
-
-            <div className="border-l-2 border-accent pl-4">
-              <h4 className="font-semibold text-white">Experienced Team</h4>
-              <p className="text-sm text-primary-foreground/70">10+ years in water systems</p>
-            </div>
+            {trustBadges.map(({ icon: Icon, title, copy }) => (
+              <div key={title} className="flex items-start gap-3 border-l-2 border-accent pl-4">
+                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                <div>
+                  <h4 className="font-semibold text-white">{title}</h4>
+                  <p className="text-sm text-primary-foreground/70">{copy}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -65,7 +80,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4 lg:col-span-2">
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full shadow-lg shadow-accent/10 ring-1 ring-primary-foreground/10">
                 <Image
                   src="/logo-icon.png"
                   alt="Borehole Works Logo"
@@ -89,15 +104,11 @@ export function Footer() {
               tap, we deliver reliable water systems that last.
             </p>
 
-            <div>
-              <h4 className="mb-3 text-sm font-semibold text-white">Reach Us Directly</h4>
-              <TrackedLink
-                kind="whatsapp"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-[#25D366]/90"
-              >
-                <WhatsAppIcon className="h-4 w-4" />
-                Chat on WhatsApp
-              </TrackedLink>
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-xs font-semibold text-primary-foreground/80">
+              <Clock className="h-3.5 w-3.5 text-accent" />
+              Mon–Fri 8:00–17:00
+              <span className="h-1 w-1 rounded-full bg-primary-foreground/30" />
+              <span className="text-accent">24/7 Emergency Support</span>
             </div>
           </div>
 
@@ -109,16 +120,16 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent"
+                    className="group inline-flex items-center gap-1.5 text-sm text-primary-foreground/80 transition-colors hover:text-accent"
                   >
-                    {link.title}
+                    <span className="transition-transform group-hover:translate-x-1">{link.title}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Services — sourced from lib/service-areas, never hand-duplicated */}
           <div className="lg:col-span-2">
             <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Our Services</h4>
             <div className="grid grid-cols-2 gap-x-6">
@@ -127,9 +138,9 @@ export function Footer() {
                   <li key={service.href}>
                     <Link
                       href={service.href}
-                      className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent"
+                      className="group inline-flex items-center gap-1.5 text-sm text-primary-foreground/80 transition-colors hover:text-accent"
                     >
-                      {service.title}
+                      <span className="transition-transform group-hover:translate-x-1">{service.name}</span>
                     </Link>
                   </li>
                 ))}
@@ -139,9 +150,9 @@ export function Footer() {
                   <li key={service.href}>
                     <Link
                       href={service.href}
-                      className="inline-block text-sm text-primary-foreground/80 transition-colors hover:translate-x-1 hover:text-accent"
+                      className="group inline-flex items-center gap-1.5 text-sm text-primary-foreground/80 transition-colors hover:text-accent"
                     >
-                      {service.title}
+                      <span className="transition-transform group-hover:translate-x-1">{service.name}</span>
                     </Link>
                   </li>
                 ))}
@@ -151,7 +162,7 @@ export function Footer() {
               href="/services"
               className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
             >
-              View All Services →
+              View All Services <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
@@ -160,49 +171,34 @@ export function Footer() {
             <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Contact Us</h4>
             <ul className="space-y-3 text-sm">
               <li>
+                <TrackedLink kind="call" className="flex items-center gap-2 text-primary-foreground/80 transition-colors hover:text-accent">
+                  <Phone className="h-4 w-4 shrink-0 text-accent" />
+                  {PHONE_DISPLAY}
+                </TrackedLink>
+              </li>
+              <li>
+                <TrackedLink kind="whatsapp" className="flex items-center gap-2 text-primary-foreground/80 transition-colors hover:text-accent">
+                  <WhatsAppIcon className="h-4 w-4 shrink-0" />
+                  WhatsApp: {PHONE_DISPLAY}
+                </TrackedLink>
+              </li>
+              <li>
+                <TrackedLink kind="email" className="flex items-center gap-2 text-primary-foreground/80 transition-colors hover:text-accent">
+                  <Mail className="h-4 w-4 shrink-0 text-accent" />
+                  {EMAIL}
+                </TrackedLink>
+              </li>
+              <li>
                 
                   <a
                   href="https://www.google.com/maps?q=Borehole+Works+Gauteng+South+Africa"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary-foreground/80 transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3 py-1.5 text-primary-foreground/80 transition-colors hover:bg-accent hover:text-white"
                 >
-                  Gauteng, South Africa
-                  <br />
-                  Serving Pretoria &amp; Johannesburg
+                  <MapPin className="h-4 w-4 shrink-0" />
+                  Get Directions
                 </a>
-              </li>
-
-              <li>
-                <TrackedLink
-                  kind="call"
-                  className="text-primary-foreground/80 transition-colors hover:text-accent"
-                >
-                  {PHONE_DISPLAY}
-                </TrackedLink>
-              </li>
-
-              <li>
-                <TrackedLink
-                  kind="whatsapp"
-                  className="text-primary-foreground/80 transition-colors hover:text-accent"
-                >
-                  WhatsApp: {PHONE_DISPLAY}
-                </TrackedLink>
-              </li>
-
-              <li>
-                <TrackedLink
-                  kind="email"
-                  className="text-primary-foreground/80 transition-colors hover:text-accent"
-                >
-                  {EMAIL}
-                </TrackedLink>
-              </li>
-
-              <li className="text-primary-foreground/80">
-                <div className="font-semibold text-white">Mon-Fri: 8:00 - 17:00</div>
-                <div className="text-accent">24/7 Emergency Support</div>
               </li>
             </ul>
           </div>
@@ -214,10 +210,10 @@ export function Footer() {
             Proudly Serving Gauteng
           </h4>
           <div className="flex flex-wrap justify-center gap-3">
-            {serviceAreas.map((area) => (
+            {featuredAreas.map((area) => (
               <Link
-                key={area.href}
-                href={area.href}
+                key={area.slug}
+                href={areaUrl(area.slug).replace(/^https?:\/\/[^/]+/, "")}
                 className="rounded-full bg-primary-foreground/10 px-4 py-1.5 text-sm text-primary-foreground/80 transition-all hover:bg-accent hover:text-white"
               >
                 {area.name}
@@ -238,22 +234,13 @@ export function Footer() {
             © {new Date().getFullYear()} Borehole Works. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            <Link
-              href="/privacy-policy"
-              className="text-sm text-primary-foreground/70 transition-colors hover:text-accent"
-            >
+            <Link href="/privacy-policy" className="text-sm text-primary-foreground/70 transition-colors hover:text-accent">
               Privacy Policy
             </Link>
-            <Link
-              href="/terms-of-service"
-              className="text-sm text-primary-foreground/70 transition-colors hover:text-accent"
-            >
+            <Link href="/terms-of-service" className="text-sm text-primary-foreground/70 transition-colors hover:text-accent">
               Terms of Service
             </Link>
-            <Link
-              href="/sitemap.xml"
-              className="text-sm text-primary-foreground/70 transition-colors hover:text-accent"
-            >
+            <Link href="/sitemap.xml" className="text-sm text-primary-foreground/70 transition-colors hover:text-accent">
               Sitemap
             </Link>
           </div>
